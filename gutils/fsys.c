@@ -1031,10 +1031,10 @@ char* GFileMimeType(const char *path) {
         // Prevents a 1-byte underflow when trying to strip '~' further down, as well as breaking
         // early for this exact match. This may be better abstracted out alongside altering the
         // behaviour when clicking 'Open' on any directory, however?
-        if (strcmp(path, "..") == 0) {
-            ret = copy("inode/directory");
-            return ret;
-        }
+        //if (strcmp(path, "..") == 0) {
+        //    ret = copy("inode/directory");
+        //    return ret;
+        //}
 
         pt = strrchr(path, '.');
 
@@ -1048,6 +1048,11 @@ char* GFileMimeType(const char *path) {
         } else {
             pt = copy(pt + 1);
             int len = strlen(pt);
+
+            // Handle the .. 'directory'. Prevents underflowing below
+            if(len < 1)
+                return copy("inode/directory");
+
             if (pt[len - 1] == '~') {
                 pt[len - 1] = '\0';
             }
