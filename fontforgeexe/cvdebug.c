@@ -860,7 +860,7 @@ static struct { int flag; void (*create)(DebugView *); } wcreat[] = {
     { 0, NULL }
 };
 
-static void DVMenuCreate(GWindow v, GMenuItem *mi,GEvent *e) {
+static void DVMenuCreate(GWindow v, GDMenuItem *mi,GEvent *e) {
     DebugView *dv = (DebugView *) GDrawGetUserData(v);
 
     if ( (&dv->regs)[mi->mid-MID_Registers]==NULL ) {
@@ -873,7 +873,7 @@ static void DVMenuCreate(GWindow v, GMenuItem *mi,GEvent *e) {
     SavePrefs(true);
 }
 
-static GMenuItem popupwindowlist[] = {
+static GDMenuItem popupwindowlist[] = {
     { { (unichar_t *) N_("Registers"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 0, 1, 0, 0, 0, 1, 0, 0, '\0' }, '\0', 0, NULL, NULL, DVMenuCreate, MID_Registers },
     { { (unichar_t *) N_("Stack"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 0, 1, 0, 0, 0, 1, 0, 0, '\0' }, '\0', 0, NULL, NULL, DVMenuCreate, MID_Stack },
     { { (unichar_t *) N_("Storage"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 0, 1, 0, 0, 0, 1, 0, 0, '\0' }, '\0', 0, NULL, NULL, DVMenuCreate, MID_Storage },

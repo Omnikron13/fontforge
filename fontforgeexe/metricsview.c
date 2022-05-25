@@ -3460,7 +3460,7 @@ static void MVMenuKPCloseup(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *U
     KernPairD(mv->sf,sc1,sc2,mv->layer,mv->vertical);
 }
 
-static GMenuItem2 wnmenu[] = {
+static GDMenuItem2 wnmenu[] = {
     { { (unichar_t *) N_("New O_utline Window"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'u' }, H_("New Outline Window|No Shortcut"), NULL, NULL, MVMenuOpenOutline, MID_OpenOutline },
     { { (unichar_t *) N_("New _Bitmap Window"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'B' }, H_("New Bitmap Window|No Shortcut"), NULL, NULL, MVMenuOpenBitmap, MID_OpenBitmap },
     { { (unichar_t *) N_("New _Metrics Window"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 1, 1, 0, 0, 0, 0, 1, 1, 0, 'M' }, H_("New Metrics Window|No Shortcut"), NULL, NULL, /* No function, never avail */NULL, 0 },
@@ -3498,11 +3498,11 @@ static void MVWindowMenuBuild(GWindow gw,struct gdmenuitem *mi,GEvent *e) {
     }
 }
 
-static GMenuItem2 dummyitem[] = {
+static GDMenuItem2 dummyitem[] = {
     { { (unichar_t *) N_("Font|_New"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'N' }, NULL, NULL, NULL, NULL, 0 },
     GDMENUITEM2_EMPTY
 };
-static GMenuItem2 fllist[] = {
+static GDMenuItem2 fllist[] = {
     { { (unichar_t *) N_("Font|_New"), (GImage *) "filenew.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'N' }, H_("New|No Shortcut"), NULL, NULL, MenuNew, 0 },
     { { (unichar_t *) N_("_Open"), (GImage *) "fileopen.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'O' }, H_("Open|No Shortcut"), NULL, NULL, MVMenuOpen, 0 },
     { { (unichar_t *) N_("Recen_t"), (GImage *) "filerecent.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 't' }, NULL, dummyitem, MenuRecentBuild, NULL, MID_Recent },
@@ -3529,7 +3529,7 @@ static GMenuItem2 fllist[] = {
     GDMENUITEM2_EMPTY
 };
 
-static GMenuItem2 edlist[] = {
+static GDMenuItem2 edlist[] = {
     { { (unichar_t *) N_("_Undo"), (GImage *) "editundo.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'U' }, H_("Undo|No Shortcut"), NULL, NULL, MVUndo, MID_Undo },
     { { (unichar_t *) N_("_Redo"), (GImage *) "editredo.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'R' }, H_("Redo|No Shortcut"), NULL, NULL, MVRedo, MID_Redo },
     { { NULL, NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 1, 0, 0, 0, '\0' }, NULL, NULL, NULL, NULL, 0 }, /* line */
@@ -3551,21 +3551,21 @@ static GMenuItem2 edlist[] = {
     GDMENUITEM2_EMPTY
 };
 
-static GMenuItem2 smlist[] = {
+static GDMenuItem2 smlist[] = {
     { { (unichar_t *) N_("_Simplify"), (GImage *) "elementsimplify.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'S' }, H_("Simplify|No Shortcut"), NULL, NULL, MVMenuSimplify, MID_Simplify },
     { { (unichar_t *) N_("Simplify More..."), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'S' }, H_("Simplify More...|No Shortcut"), NULL, NULL, MVMenuSimplifyMore, MID_SimplifyMore },
     { { (unichar_t *) N_("Clea_nup Glyph"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'n' }, H_("Cleanup Glyph|No Shortcut"), NULL, NULL, MVMenuCleanup, MID_CleanupGlyph },
     GDMENUITEM2_EMPTY
 };
 
-static GMenuItem2 rmlist[] = {
+static GDMenuItem2 rmlist[] = {
     { { (unichar_t *) N_("_Remove Overlap"), (GImage *) "overlaprm.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, true, 0, 0, 0, 0, 1, 1, 0, 'O' }, H_("Remove Overlap|No Shortcut"), NULL, NULL, MVMenuOverlap, MID_RmOverlap },
     { { (unichar_t *) N_("_Intersect"), (GImage *) "overlapintersection.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, true, 0, 0, 0, 0, 1, 1, 0, 'I' }, H_("Intersect|No Shortcut"), NULL, NULL, MVMenuOverlap, MID_Intersection },
     { { (unichar_t *) N_("_Find Intersections"), (GImage *) "overlapfindinter.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, true, 0, 0, 0, 0, 1, 1, 0, 'O' }, H_("Find Intersections|No Shortcut"), NULL, NULL, MVMenuOverlap, MID_FindInter },
     GDMENUITEM2_EMPTY
 };
 
-static GMenuItem2 eflist[] = {
+static GDMenuItem2 eflist[] = {
     { { (unichar_t *) N_("_Inline"), (GImage *) "stylesinline.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, true, 0, 0, 0, 0, 1, 1, 0, 'O' }, H_("Inline|No Shortcut"), NULL, NULL, MVMenuInline, 0 },
     { { (unichar_t *) N_("_Outline"), (GImage *) "stylesoutline.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, true, 0, 0, 0, 0, 1, 1, 0, 'I' }, H_("Outline|No Shortcut"), NULL, NULL, MVMenuOutline, 0 },
     { { (unichar_t *) N_("_Shadow"), (GImage *) "stylesshadow.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, true, 0, 0, 0, 0, 1, 1, 0, 'S' }, H_("Shadow|No Shortcut"), NULL, NULL, MVMenuShadow, 0 },
@@ -3573,7 +3573,7 @@ static GMenuItem2 eflist[] = {
     GDMENUITEM2_EMPTY
 };
 
-static GMenuItem2 balist[] = {
+static GDMenuItem2 balist[] = {
     { { (unichar_t *) N_("_Build Accented Glyph"), (GImage *) "elementbuildaccent.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'B' }, H_("Build Accented Glyph|No Shortcut"), NULL, NULL, MVMenuBuildAccent, MID_BuildAccent },
     { { (unichar_t *) N_("Build _Composite Glyph"), (GImage *) "elementbuildcomposite.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'B' }, H_("Build Composite Glyph|No Shortcut"), NULL, NULL, MVMenuBuildComposite, MID_BuildComposite },
     GDMENUITEM2_EMPTY
@@ -3601,7 +3601,7 @@ static void balistcheck(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     }
 }
 
-static GMenuItem2 ellist[] = {
+static GDMenuItem2 ellist[] = {
     { { (unichar_t *) N_("_Font Info..."), (GImage *) "elementfontinfo.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'F' }, H_("Font Info...|No Shortcut"), NULL, NULL, MVMenuFontInfo, 0 },
     { { (unichar_t *) N_("Glyph _Info..."), (GImage *) "elementglyphinfo.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'I' }, H_("Glyph Info...|No Shortcut"), NULL, NULL, MVMenuCharInfo, MID_CharInfo },
     { { (unichar_t *) N_("S_how Dependent"), (GImage *) "elementshowdep.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'D' }, H_("Show Dependent|No Shortcut"), NULL, NULL, MVMenuShowDependents, MID_ShowDependents },
@@ -3628,7 +3628,7 @@ static GMenuItem2 ellist[] = {
     GDMENUITEM2_EMPTY
 };
 
-static GMenuItem2 dummyall[] = {
+static GDMenuItem2 dummyall[] = {
     { { (unichar_t *) N_("All"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 1, 1, 0, 0, 0, 0, 1, 1, 0, 'K' }, H_("All|No Shortcut"), NULL, NULL, NULL, 0 },
     GDMENUITEM2_EMPTY
 };
@@ -3637,13 +3637,13 @@ static GMenuItem2 dummyall[] = {
 static void aplistbuild(GWindow base, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(base);
 
-    GMenuItemArrayFree(mi->sub);
+    GDMenuItemArrayFree(mi->sub);
     mi->sub = NULL;
 
     _aplistbuild(mi, mv->sf, MVMenuAnchorPairs);
 }
 
-static GMenuItem2 cblist[] = {
+static GDMenuItem2 cblist[] = {
     { { (unichar_t *) N_("_Kern Pairs"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'K' }, H_("Kern Pairs|No Shortcut"), NULL, NULL, MVMenuKernPairs, MID_KernPairs },
     { { (unichar_t *) N_("_Anchored Pairs"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'K' }, H_("Anchored Pairs|No Shortcut"), dummyall, aplistbuild, MVMenuAnchorPairs, MID_AnchorPairs },
     { { (unichar_t *) N_("_Ligatures"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'L' }, H_("Ligatures|No Shortcut"), NULL, NULL, MVMenuLigatures, MID_Ligatures },
@@ -3686,7 +3686,7 @@ static void cblistcheck(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     }
 }
 
-static GMenuItem2 lylist[] = {
+static GDMenuItem2 lylist[] = {
     { { (unichar_t *) N_("Layer|Foreground"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 1, 1, 1, 1, 0, 0, 1, 1, 0, '\0' }, NULL, NULL, NULL, MVMenuChangeLayer, ly_fore },
     GDMENUITEM2_EMPTY
 };
@@ -3695,9 +3695,9 @@ static void lylistcheck(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     SplineFont *sf = mv->fv->b.sf;
     int ly;
-    GMenuItem *sub;
+    GDMenuItem *sub;
 
-    sub = calloc(sf->layer_cnt+1,sizeof(GMenuItem));
+    sub = calloc(sf->layer_cnt+1,sizeof(GDMenuItem));
     for ( ly=ly_fore; ly<sf->layer_cnt; ++ly ) {
 	sub[ly-1].ti.text = utf82u_copy(sf->layers[ly].name);
 	sub[ly-1].ti.checkable = true;
@@ -3706,11 +3706,11 @@ static void lylistcheck(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
 	sub[ly-1].mid = ly;
 	sub[ly-1].ti.fg = sub[ly-1].ti.bg = COLOR_DEFAULT;
     }
-    GMenuItemArrayFree(mi->sub);
+    GDMenuItemArrayFree(mi->sub);
     mi->sub = sub;
 }
 
-static GMenuItem2 gdlist[] = {
+static GDMenuItem2 gdlist[] = {
     { { (unichar_t *) N_("_Show"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 1, 0, 0, 0, 1, 1, 0, 'C' }, H_("Show|No Shortcut"), NULL, NULL, MVMenuShowGrid, MID_ShowGrid },
     { { (unichar_t *) N_("_Partial"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 1, 0, 0, 0, 1, 1, 0, 'C' }, H_("Partial|No Shortcut"), NULL, NULL, MVMenuShowGrid, MID_PartialGrid },
     { { (unichar_t *) N_("Hide when _Moving"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 1, 0, 0, 0, 1, 1, 0, 'C' }, H_("Hide when Moving|No Shortcut"), NULL, NULL, MVMenuShowGrid, MID_HideGridWhenMoving },
@@ -3739,7 +3739,7 @@ static void gdlistcheck(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     }
 }
 
-static GMenuItem2 vwlist[] = {
+static GDMenuItem2 vwlist[] = {
     { { (unichar_t *) N_("Z_oom out"), (GImage *) "viewzoomout.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'o' }, H_("Zoom out|No Shortcut"), NULL, NULL, MVMenuScale, MID_ZoomOut },
     { { (unichar_t *) N_("Zoom _in"), (GImage *) "viewzoomin.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'i' }, H_("Zoom in|No Shortcut"), NULL, NULL, MVMenuScale, MID_ZoomIn },
     { { NULL, NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 1, 0, 0, 0, '\0' }, NULL, NULL, NULL, NULL, 0 }, /* line */
@@ -3784,7 +3784,7 @@ static void MVMenuContextualHelp(GWindow UNUSED(base), struct gdmenuitem *UNUSED
     help("ui/mainviews/metricsview.html", NULL);
 }
 
-static GMenuItem2 tylist[] = {
+static GDMenuItem2 tylist[] = {
     { { (unichar_t *) N_("_Kerning only"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 1, 0, 0, 0, 1, 1, 0, 'C' }, H_("Kerning only|No Shortcut"), NULL, NULL, MVMenuWindowType, MID_KernOnly },
     { { (unichar_t *) N_("_Advance Width only"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 1, 0, 0, 0, 1, 1, 0, 'T' }, H_("Advance Width only|No Shortcut"), NULL, NULL, MVMenuWindowType, MID_WidthOnly },
     { { (unichar_t *) N_("_Both"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 1, 0, 0, 0, 1, 1, 0, 'T' }, H_("Both|No Shortcut"), NULL, NULL, MVMenuWindowType, MID_BothKernWidth },
@@ -3843,7 +3843,7 @@ static void MVMenuRemoveVKern(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent 
     SCRemoveVKern(sc);
 }
 
-static GMenuItem2 mtlist[] = {
+static GDMenuItem2 mtlist[] = {
     { { (unichar_t *) N_("_Center in Width"), (GImage *) "metricscenter.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'C' }, H_("Center in Width|No Shortcut"), NULL, NULL, MVMenuCenter, MID_Center },
     { { (unichar_t *) N_("_Thirds in Width"), (GImage *) "menuempty.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'T' }, H_("Thirds in Width|No Shortcut"), NULL, NULL, MVMenuCenter, MID_Thirds },
     { { (unichar_t *) N_("Set _Width..."), (GImage *) "metricssetwidth.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'W' }, H_("Set Width...|No Shortcut"), NULL, NULL, MVMenuSetWidth, MID_SetWidth },
@@ -4043,8 +4043,8 @@ static void vwlistcheck(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
 	    vwlist[i].ti.fg = vwlist[i].ti.bg = COLOR_DEFAULT;
 	}
     }
-    GMenuItemArrayFree(mi->sub);
-    mi->sub = GMenuItem2ArrayCopy(vwlist,NULL);
+    GDMenuItemArrayFree(mi->sub);
+    mi->sub = GDMenuItem2ArrayCopy(vwlist,NULL);
 }
 
 static void mtlistcheck(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
@@ -4069,7 +4069,7 @@ static void mtlistcheck(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     }
 }
 
-static GMenuItem2 mblist[] = {
+static GDMenuItem2 mblist[] = {
     { { (unichar_t *) N_("_File"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'F' }, H_("File|No Shortcut"), fllist, fllistcheck, NULL, 0  },
     { { (unichar_t *) N_("_Edit"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'E' }, H_("Edit|No Shortcut"), edlist, edlistcheck, NULL, 0  },
     { { (unichar_t *) N_("E_lement"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'l' }, H_("Element|No Shortcut"), ellist, ellistcheck, NULL, 0  },

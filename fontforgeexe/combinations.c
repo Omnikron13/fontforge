@@ -920,13 +920,13 @@ static void KPMenuACM(GWindow gw,struct gdmenuitem *mi,GEvent *e) {
     KPAC(kpd,false);
 }
 
-static GMenuItem kernmenu[] = {
+static GDMenuItem kernmenu[] = {
     { { (unichar_t *) N_("C_lear"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 0, 0, 0, 0, 0, 1, 0, 0, 'N' }, '\177', 0, NULL, NULL, KPMenuRemove, 0 },
     { { (unichar_t *) N_("Kern Pair Closeup"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 0, 0, 0, 0, 0, 1, 0, 0, 'N' }, '\0', 0, NULL, NULL, KPMenuKPCloseup, 0 },
     GDMENUITEM_EMPTY
 };
 
-static GMenuItem acmenu[] = {
+static GDMenuItem acmenu[] = {
     { { (unichar_t *) N_("Anchor Control for Base"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 0, 0, 0, 0, 0, 1, 0, 0, 'N' }, '\0', 0, NULL, NULL, KPMenuACB, 0 },
     { { (unichar_t *) N_("Anchor Control for Mark"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 0, 0, 0, 0, 0, 1, 0, 0, 'N' }, '\0', 0, NULL, NULL, KPMenuACM, 0 },
     GDMENUITEM_EMPTY

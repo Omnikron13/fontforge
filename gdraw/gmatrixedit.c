@@ -180,7 +180,7 @@ static void GMatrixEdit_destroy(GGadget *g) {
 
     for ( c=0; c<gme->cols; ++c ) {
 	if ( gme->col_data[c].enum_vals!=NULL )
-	    GMenuItemArrayFree(gme->col_data[c].enum_vals);
+	    GDMenuItemArrayFree(gme->col_data[c].enum_vals);
 	free( gme->col_data[c].title );
     }
     free( gme->col_data );
@@ -232,7 +232,7 @@ static void GMatrixEdit_Move(GGadget *g, int32_t x, int32_t y) {
     _ggadget_move(g,x,y);
 }
 
-static GMenuItem *FindMi(GMenuItem *mi, intptr_t val ) {
+static GDMenuItem *FindMi(GDMenuItem *mi, intptr_t val ) {
     int i;
 
     for ( i=0; mi[i].ti.text!=NULL || mi[i].ti.line; ++i ) {
@@ -247,7 +247,7 @@ static int GME_ColWidth(GMatrixEdit *gme, int c) {
     FontInstance *old = GDrawSetFont(gme->g.base,gme->font);
     char *str, *pt;
     int r;
-    GMenuItem *mi;
+    GDMenuItem *mi;
 
     if ( gme->col_data[c].hidden )
 return( 0 );
@@ -722,7 +722,7 @@ static int GME_RecalcFH(GMatrixEdit *gme) {
     int32_t end = -1;
     char *str, *ept;
     GTextBounds bounds;
-    GMenuItem *mi;
+    GDMenuItem *mi;
 
     GDrawSetFont(gme->nested,gme->font);
     as = gme->font_as; ds = gme->font_fh-as;
@@ -1260,7 +1260,7 @@ static void GME_StrBigEdit(GMatrixEdit *gme,char *str) {
     gme->wasnew = false;
 }
 
-static void GME_EnumDispatch(GWindow gw, GMenuItem *mi, GEvent *e) {
+static void GME_EnumDispatch(GWindow gw, GDMenuItem *mi, GEvent *e) {
     GMatrixEdit *gme = GDrawGetUserData(gw);
 
     if ( (intptr_t) mi->ti.userdata == GME_NoChange )
@@ -1285,7 +1285,7 @@ static void GME_FinishChoice(GWindow gw) {
 }
 
 static void GME_Choices(GMatrixEdit *gme,GEvent *event,int r,int c) {
-    GMenuItem *mi = gme->col_data[c].enum_vals;
+    GDMenuItem *mi = gme->col_data[c].enum_vals;
     int val = gme->data[r*gme->cols+c].u.md_ival;
     int i;
 
@@ -1296,7 +1296,7 @@ static void GME_Choices(GMatrixEdit *gme,GEvent *event,int r,int c) {
     _GMenuCreatePopupMenu(gme->nested,event, mi, GME_FinishChoice);
 }
 
-static void GME_EnumStringDispatch(GWindow gw, GMenuItem *mi, GEvent *e) {
+static void GME_EnumStringDispatch(GWindow gw, GDMenuItem *mi, GEvent *e) {
     GMatrixEdit *gme = GDrawGetUserData(gw);
     int r = gme->active_row, c = gme->active_col;
 
@@ -1324,7 +1324,7 @@ return;
 }
 
 static void GME_StringChoices(GMatrixEdit *gme,GEvent *event,int r,int c) {
-    GMenuItem *mi = gme->col_data[c].enum_vals;
+    GDMenuItem *mi = gme->col_data[c].enum_vals;
     char *val = gme->data[r*gme->cols+c].u.md_str;
     int i;
 
@@ -1493,7 +1493,7 @@ return;
 		gme->col_data[c].enum_vals!=NULL &&
 		r<gme->rows ) {
 	    char *str = gme->data[r*gme->cols+c].u.md_str;
-	    GMenuItem *enums = gme->col_data[c].enum_vals;
+	    GDMenuItem *enums = gme->col_data[c].enum_vals;
 	    for ( i=0; enums[i].ti.text!=NULL || enums[i].ti.line ; ++i ) {
 		if ( enums[i].ti.userdata!=NULL && strcmp(enums[i].ti.userdata,str)==0 ) {
 		    if ( enums[i].ti.text_is_1byte )
@@ -1507,7 +1507,7 @@ return;
 		gme->col_data[c].enum_vals!=NULL &&
 		r<gme->rows ) {
 	    char *str = gme->data[r*gme->cols+c].u.md_str, buf[8];
-	    GMenuItem *enums = gme->col_data[c].enum_vals;
+	    GDMenuItem *enums = gme->col_data[c].enum_vals;
 	    for ( i=0; enums[i].ti.text!=NULL || enums[i].ti.line ; ++i ) {
 		buf[0] = ((intptr_t) enums[i].ti.userdata)>>24;
 		buf[1] = ((intptr_t) enums[i].ti.userdata)>>16;
@@ -1534,7 +1534,7 @@ static void GMatrixEdit_SubExpose(GMatrixEdit *gme,GWindow pixmap,GEvent *event)
     GRect clip, old;
     Color fg, mkbg;
     struct matrix_data *data;
-    GMenuItem *mi;
+    GDMenuItem *mi;
 
     GDrawGetSize(gme->nested,&size);
     if ( gme->g.state!=gs_enabled )
@@ -1929,12 +1929,12 @@ static int _GME_DeleteActive(GGadget *g, GEvent *e) {
 return( true );
 }
 
-static GMenuItem *GMenuItemFromTI(GTextInfo *ti,int is_enum) {
+static GDMenuItem *GDMenuItemFromTI(GTextInfo *ti,int is_enum) {
     int cnt;
-    GMenuItem *mi;
+    GDMenuItem *mi;
 
     for ( cnt=0; ti[cnt].text!=NULL || ti[cnt].line; ++cnt );
-    mi = calloc((cnt+1),sizeof(GMenuItem));
+    mi = calloc((cnt+1),sizeof(GDMenuItem));
     for ( cnt=0; ti[cnt].text!=NULL || ti[cnt].line; ++cnt ) {
 	mi[cnt].ti = ti[cnt];
 	if ( ti[cnt].bg == ti[cnt].fg )
@@ -1986,7 +1986,7 @@ GGadget *GMatrixEditCreate(struct gwindow *base, GGadgetData *gd,void *data) {
 	gme->col_data[c].me_type = matrix->col_init[c].me_type;
 	gme->col_data[c].func = matrix->col_init[c].func;
 	if ( matrix->col_init[c].enum_vals!=NULL )
-	    gme->col_data[c].enum_vals = GMenuItemFromTI(matrix->col_init[c].enum_vals,
+	    gme->col_data[c].enum_vals = GDMenuItemFromTI(matrix->col_init[c].enum_vals,
 		    matrix->col_init[c].me_type==me_enum );
 	else
 	    gme->col_data[c].enum_vals = NULL;
@@ -2346,15 +2346,15 @@ void GMatrixEditSetColumnChoices(GGadget *g, int col, GTextInfo *ti) {
     GMatrixEdit *gme = (GMatrixEdit *) g;
 
     if ( gme->col_data[col].enum_vals!=NULL )
-	GMenuItemArrayFree(gme->col_data[col].enum_vals);
+	GDMenuItemArrayFree(gme->col_data[col].enum_vals);
     if ( ti!=NULL )
-	gme->col_data[col].enum_vals = GMenuItemFromTI(ti,
+	gme->col_data[col].enum_vals = GDMenuItemFromTI(ti,
 		    gme->col_data[col].me_type==me_enum );
     else
 	gme->col_data[col].enum_vals = NULL;
 }
 
-GMenuItem *GMatrixEditGetColumnChoices(GGadget *g, int col) {
+GDMenuItem *GMatrixEditGetColumnChoices(GGadget *g, int col) {
     GMatrixEdit *gme = (GMatrixEdit *) g;
 
 return( gme->col_data[col].enum_vals );

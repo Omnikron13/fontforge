@@ -2386,12 +2386,12 @@ return;
     fclose(file);
 }
 
-static void AttSaveM(GWindow gw, GMenuItem *mi,GEvent *e) {
+static void AttSaveM(GWindow gw, GDMenuItem *mi,GEvent *e) {
     struct att_dlg *att = (struct att_dlg *) GDrawGetUserData(gw);
     AttSave(att);
 }
 
-static GMenuItem att_popuplist[] = {
+static GDMenuItem att_popuplist[] = {
     { { (unichar_t *) N_("Save"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 0, 0, 0, 0, 0, 1, 0, 0, 'S' }, 'S', ksm_control, NULL, NULL, AttSaveM, 0 },
     GDMENUITEM_EMPTY
 };

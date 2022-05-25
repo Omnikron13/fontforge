@@ -33,10 +33,10 @@
 #ifdef FONTFORGE_CAN_USE_GDK
 
 // As gdk #includes glib, we must apply the same name mangling here.
-#define GMenuItem GMenuItem_GIO
+#define GDMenuItem GDMenuItem_GIO
 #include <gdk/gdk.h>
 #include <gdk/gdkkeysyms.h>
-#undef GMenuItem
+#undef GDMenuItem
 
 #endif // FONTFORGE_CAN_USE_GDK
 

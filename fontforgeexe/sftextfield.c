@@ -889,7 +889,7 @@ return;
 
 static SFTextArea *popup_kludge;
 
-static void SFTFPopupInvoked(GWindow v, GMenuItem *mi,GEvent *e) {
+static void SFTFPopupInvoked(GWindow v, GDMenuItem *mi,GEvent *e) {
     SFTextArea *st;
     if ( popup_kludge==NULL )
 return;
@@ -926,7 +926,7 @@ return;
     }
 }
 
-static GMenuItem sftf_popuplist[] = {
+static GDMenuItem sftf_popuplist[] = {
     { { (unichar_t *) N_("_Undo"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 0, 0, 0, 0, 0, 1, 1, 0, 'U' }, 'Z', ksm_control, NULL, NULL, SFTFPopupInvoked, MID_Undo },
     { { NULL, NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 0, 0, 0, 0, 1, 0, 0, 0, '\0' }, '\0', 0, NULL, NULL, NULL, 0 }, /* line */
     { { (unichar_t *) N_("Cu_t"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 0, 0, 0, 0, 0, 1, 1, 0, 't' }, 'X', ksm_control, NULL, NULL, SFTFPopupInvoked, MID_Cut },

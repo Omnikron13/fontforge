@@ -293,7 +293,7 @@ static char *popupsres[] = {
     N_("Rotate the selection in 3D and project back to plane"), N_("Perform a perspective transformation on the selection"),
     N_("Rectangle or Ellipse"),  N_("Polygon or Star"),
     N_("Rectangle or Ellipse"),  N_("Polygon or Star")};
-GMenuItem2 cvtoollist[] = {
+GDMenuItem2 cvtoollist[] = {
     { { (unichar_t *) N_("_Pointer"), (GImage *) "toolspointer.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 1, 0, 0, 0, 1, 1, 0, 'C' }, H_("Pointer|No Shortcut"), NULL, NULL, CVMenuTool, cvt_pointer },
     { { (unichar_t *) N_("_Magnify"), (GImage *) "toolsmagnify.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 1, 0, 0, 0, 1, 1, 0, 'C' }, H_("Magnify|No Shortcut"), NULL, NULL, CVMenuTool, cvt_magnify },
     { { (unichar_t *) N_("_Freehand"), (GImage *) "toolsfreehand.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 1, 0, 0, 0, 1, 1, 0, 'C' }, H_("Freehand|No Shortcut"), NULL, NULL, CVMenuTool, cvt_freehand },
@@ -321,7 +321,7 @@ GMenuItem2 cvtoollist[] = {
     { { (unichar_t *) N_("Star"), (GImage *) "toolsstar.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 1, 0, 0, 0, 1, 1, 0, 'T' }, H_("Star|No Shortcut"), NULL, NULL, CVMenuTool, cvt_star },
     GDMENUITEM2_EMPTY
 };
-GMenuItem2 cvspirotoollist[] = {
+GDMenuItem2 cvspirotoollist[] = {
     { { (unichar_t *) N_("_Pointer"), (GImage *) "toolspointer.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 1, 0, 0, 0, 1, 1, 0, 'C' }, H_("Pointer|No Shortcut"), NULL, NULL, CVMenuTool, cvt_pointer },
     { { (unichar_t *) N_("_Magnify"), (GImage *) "toolsmagnify.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 1, 0, 0, 0, 1, 1, 0, 'C' }, H_("Magnify|No Shortcut"), NULL, NULL, CVMenuTool, cvt_magnify },
     { { (unichar_t *) N_("_Freehand"), (GImage *) "toolsfreehand.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 1, 0, 0, 0, 1, 1, 0, 'C' }, H_("Freehand|No Shortcut"), NULL, NULL, CVMenuTool, cvt_freehand },
@@ -1735,7 +1735,7 @@ return;
 #define MIDL_NamePoint  2318
 #define MIDL_NameContour  2319
 
-static void CVLayer2Invoked(GWindow v, GMenuItem *mi, GEvent *e) {
+static void CVLayer2Invoked(GWindow v, GDMenuItem *mi, GEvent *e) {
     CharView *cv = (CharView *) GDrawGetUserData(v);
     Layer temp;
     int layer = CVLayer(&cv->b);
@@ -1815,7 +1815,7 @@ return;
 }
 
 static void Layer2Menu(CharView *cv,GEvent *event, int nolayer) {
-    GMenuItem mi[20];
+    GDMenuItem mi[20];
     int i;
     static char *names[] = { N_("Layer Info..."), N_("New Layer..."), N_("Del Layer"), (char *) -1,
 	    N_("_First"), N_("_Earlier"), N_("L_ater"), N_("_Last"), NULL };
@@ -2604,7 +2604,7 @@ static char *UniqueLayerName(SplineChar *sc, const char *base)
 }
 
 /* Layers palette menu selection */
-static void CVLayerInvoked(GWindow v, GMenuItem *mi, GEvent *e) {
+static void CVLayerInvoked(GWindow v, GDMenuItem *mi, GEvent *e) {
     CharView *cv = (CharView *) GDrawGetUserData(v);
     int layer = CVLayer(&cv->b);
     SplineChar *sc = cv->b.sc;
@@ -2724,7 +2724,7 @@ return;
 
 /* Pop up the layers palette context menu */
 static void LayerMenu(CharView *cv,GEvent *event, int nolayer) {
-    GMenuItem mi[20];
+    GDMenuItem mi[20];
     int i;
     static char *names[] = {
                      /*N_("Rename Layer..."),*/
@@ -3382,7 +3382,7 @@ return( cvlayers );
 
 /* ***************** CVTools and other common palette functions follow ************ */
 
-static void CVPopupInvoked(GWindow v, GMenuItem *mi, GEvent *e) {
+static void CVPopupInvoked(GWindow v, GDMenuItem *mi, GEvent *e) {
     CharView *cv = (CharView *) GDrawGetUserData(v);
     int pos;
 
@@ -3403,7 +3403,7 @@ static void CVPopupInvoked(GWindow v, GMenuItem *mi, GEvent *e) {
     CVToolsSetCursor(cv,cv->had_control?ksm_control:0,NULL);
 }
 
-static void CVPopupLayerInvoked(GWindow v, GMenuItem *mi, GEvent *e) {
+static void CVPopupLayerInvoked(GWindow v, GDMenuItem *mi, GEvent *e) {
     CharView *cv = (CharView *) GDrawGetUserData(v);
     int layer = mi->mid==0 ? 1 : mi->mid==1 ? 0 : -1;
 
@@ -3411,7 +3411,7 @@ static void CVPopupLayerInvoked(GWindow v, GMenuItem *mi, GEvent *e) {
         CVLSelectLayer(cv, layer);
 }
 
-static void CVPopupSelectInvoked(GWindow v, GMenuItem *mi, GEvent *e) {
+static void CVPopupSelectInvoked(GWindow v, GDMenuItem *mi, GEvent *e) {
     CharView *cv = (CharView *) GDrawGetUserData(v);
 
     switch ( mi->mid ) {
@@ -3454,7 +3454,7 @@ static void CVPopupSelectInvoked(GWindow v, GMenuItem *mi, GEvent *e) {
 }
 
 void CVToolsPopup(CharView *cv, GEvent *event) {
-    GMenuItem mi[125];
+    GDMenuItem mi[125];
     int i=0;
     int j=0;
     int anysel=0;
@@ -4439,7 +4439,7 @@ return( bvtools );
 return( bvtools );
 }
 
-static void BVPopupInvoked(GWindow v, GMenuItem *mi,GEvent *e) {
+static void BVPopupInvoked(GWindow v, GDMenuItem *mi,GEvent *e) {
     BitmapView *bv = (BitmapView *) GDrawGetUserData(v);
     int pos;
 
@@ -4459,7 +4459,7 @@ static void BVPopupInvoked(GWindow v, GMenuItem *mi,GEvent *e) {
 }
 
 void BVToolsPopup(BitmapView *bv, GEvent *event) {
-    GMenuItem mi[21];
+    GDMenuItem mi[21];
     int i, j;
 
     memset(mi,'\0',sizeof(mi));

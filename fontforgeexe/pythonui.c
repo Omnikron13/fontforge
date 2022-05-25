@@ -134,9 +134,9 @@ enum py_menu_flag { pmf_font=1, pmf_char=2 };
 static struct py_menu_data {
     struct py_menu_item *items;
     int cnt, max;
-    GMenuItem2 *menu;
+    GDMenuItem2 *menu;
     ff_menu_callback moveto, invoke;
-    void (*setmenu)(GMenuItem2 *menu);
+    void (*setmenu)(GDMenuItem2 *menu);
     uint16_t mn_offset;
     unichar_t *mn_string;
     GHashTable *mn_avail;
@@ -412,7 +412,7 @@ static unichar_t *DoMnemonic(unichar_t *trans, unichar_t *alt,
 
 static void InsertSubMenus(struct py_menu_spec *spec, struct py_menu_data *pmd) {
     int i, j;
-    GMenuItem2 *mmn, *orig_menu, **mn;
+    GDMenuItem2 *mmn, *orig_menu, **mn;
     unichar_t alt;
     char *untrans, *action, *tmp_str;
     unichar_t *trans, *tmp_uni;
@@ -451,8 +451,8 @@ static void InsertSubMenus(struct py_menu_spec *spec, struct py_menu_data *pmd) 
 	    }
 	}
 	if ( *mn==NULL || (*mn)[j].ti.text==NULL ) {
-	    *mn = realloc(*mn,(j+2)*sizeof(GMenuItem2));
-	    memset(*mn+j,0,2*sizeof(GMenuItem2));
+	    *mn = realloc(*mn,(j+2)*sizeof(GDMenuItem2));
+	    memset(*mn+j,0,2*sizeof(GDMenuItem2));
 	}
 	mmn = *mn;
 	if ( mmn[j].ti.text==NULL ) {

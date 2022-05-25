@@ -795,28 +795,28 @@ return( NULL );
 return( ti );
 }
 
-void GMenuItemArrayFree(GMenuItem *mi) {
+void GDMenuItemArrayFree(GDMenuItem *mi) {
     int i;
 
     if ( mi == NULL )
 return;
     for ( i=0; mi[i].ti.text || mi[i].ti.image || mi[i].ti.line; ++i ) {
-	GMenuItemArrayFree(mi[i].sub);
+	GDMenuItemArrayFree(mi[i].sub);
 	free(mi[i].ti.text);
     }
     free(mi);
 }
 
-GMenuItem *GMenuItemArrayCopy(GMenuItem *mi, uint16_t *cnt) {
+GDMenuItem *GDMenuItemArrayCopy(GDMenuItem *mi, uint16_t *cnt) {
     int i;
-    GMenuItem *arr;
+    GDMenuItem *arr;
 
     if ( mi==NULL )
 return( NULL );
     for ( i=0; mi[i].ti.text!=NULL || mi[i].ti.image!=NULL || mi[i].ti.line; ++i );
     if ( i==0 )
 return( NULL );
-    arr = malloc((i+1)*sizeof(GMenuItem));
+    arr = malloc((i+1)*sizeof(GDMenuItem));
     for ( i=0; mi[i].ti.text!=NULL || mi[i].ti.image!=NULL || mi[i].ti.line; ++i ) {
 	arr[i] = mi[i];
 	GTextInfoImageLookup(&arr[i].ti);
@@ -832,32 +832,32 @@ return( NULL );
 	if ( islower(arr[i].shortcut))
 	    arr[i].shortcut = toupper(arr[i].shortcut);
 	if ( mi[i].sub!=NULL )
-	    arr[i].sub = GMenuItemArrayCopy(mi[i].sub,NULL);
+	    arr[i].sub = GDMenuItemArrayCopy(mi[i].sub,NULL);
     }
-    memset(&arr[i],'\0',sizeof(GMenuItem));
+    memset(&arr[i],'\0',sizeof(GDMenuItem));
     if ( cnt!=NULL ) *cnt = i;
 return( arr );
 }
 
-int GMenuItemArrayMask(GMenuItem *mi) {
+int GDMenuItemArrayMask(GDMenuItem *mi) {
     int mask = 0;
     int i;
 
     for ( i=0; mi[i].ti.text!=NULL || mi[i].ti.image!=NULL || mi[i].ti.line; ++i ) {
 	if ( mi[i].sub!=NULL )
-	    mask |= GMenuItemArrayMask(mi[i].sub);
+	    mask |= GDMenuItemArrayMask(mi[i].sub);
 	else
 	    mask |= mi[i].short_mask;
     }
 return( mask );
 }
 
-int GMenuItemArrayAnyUnmasked(GMenuItem *mi) {
+int GDMenuItemArrayAnyUnmasked(GDMenuItem *mi) {
     int i;
 
     for ( i=0; mi[i].ti.text!=NULL || mi[i].ti.image!=NULL || mi[i].ti.line; ++i ) {
 	if ( mi[i].sub!=NULL ) {
-	    if ( GMenuItemArrayAnyUnmasked(mi[i].sub) )
+	    if ( GDMenuItemArrayAnyUnmasked(mi[i].sub) )
 return( true );
 	} else {
 	    if ( (mi[i].short_mask&~ksm_shift)==0 && mi[i].shortcut!=0 )
@@ -867,13 +867,13 @@ return( true );
 return( false );
 }
 
-void GMenuItem2ArrayFree(GMenuItem2 *mi) {
+void GDMenuItem2ArrayFree(GDMenuItem2 *mi) {
     int i;
 
     if ( mi == NULL )
 return;
     for ( i=0; mi[i].ti.text || mi[i].ti.image || mi[i].ti.line; ++i ) {
-	GMenuItem2ArrayFree(mi[i].sub);
+	GDMenuItem2ArrayFree(mi[i].sub);
 	free(mi[i].ti.text);
     }
     free(mi);
@@ -929,7 +929,7 @@ static void initmods(void) {
     }
 }
 
-int GMenuItemParseMask(char *shortcut) {
+int GDMenuItemParseMask(char *shortcut) {
     char *pt, *sh;
     int mask, temp, i;
 
@@ -1069,7 +1069,7 @@ int HotkeyParse( Hotkey* hk, const char *shortcut ) {
 //    fprintf(stderr,"HotkeyParse(end) spec:%d hk->state:%d hk->keysym:%d shortcut:%s\n", GK_Special, hk->state, hk->keysym, shortcut );
 }
 
-void GMenuItemParseShortCut(GMenuItem *mi,char *shortcut) {
+void GDMenuItemParseShortCut(GDMenuItem *mi,char *shortcut) {
     char *pt, *sh;
     int mask, temp, i;
 
@@ -1138,16 +1138,16 @@ return;
     }
 }
 
-GMenuItem *GMenuItem2ArrayCopy(GMenuItem2 *mi, uint16_t *cnt) {
+GDMenuItem *GDMenuItem2ArrayCopy(GDMenuItem2 *mi, uint16_t *cnt) {
     int i;
-    GMenuItem *arr;
+    GDMenuItem *arr;
 
     if ( mi==NULL )
 return( NULL );
     for ( i=0; mi[i].ti.text!=NULL || mi[i].ti.image!=NULL || mi[i].ti.line; ++i );
     if ( i==0 )
 return( NULL );
-    arr = calloc((i+1),sizeof(GMenuItem));
+    arr = calloc((i+1),sizeof(GDMenuItem));
     for ( i=0; mi[i].ti.text!=NULL || mi[i].ti.image!=NULL || mi[i].ti.line; ++i ) {
 	arr[i].ti = mi[i].ti;
 	GTextInfoImageLookup(&arr[i].ti);
@@ -1155,7 +1155,7 @@ return( NULL );
 	arr[i].invoke = mi[i].invoke;
 	arr[i].mid = mi[i].mid;
 	if ( mi[i].shortcut!=NULL )
-	    GMenuItemParseShortCut(&arr[i],mi[i].shortcut);
+	    GDMenuItemParseShortCut(&arr[i],mi[i].shortcut);
 	if ( mi[i].ti.text!=NULL ) {
 	    if ( mi[i].ti.text_is_1byte )
 		arr[i].ti.text = utf82u_mncopy((char *) mi[i].ti.text,&arr[i].ti.mnemonic);
@@ -1168,9 +1168,9 @@ return( NULL );
 	if ( islower(arr[i].shortcut))
 	    arr[i].shortcut = toupper(arr[i].shortcut);
 	if ( mi[i].sub!=NULL )
-	    arr[i].sub = GMenuItem2ArrayCopy(mi[i].sub,NULL);
+	    arr[i].sub = GDMenuItem2ArrayCopy(mi[i].sub,NULL);
     }
-    memset(&arr[i],'\0',sizeof(GMenuItem));
+    memset(&arr[i],'\0',sizeof(GDMenuItem));
     if ( cnt!=NULL ) *cnt = i;
 return( arr );
 }

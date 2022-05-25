@@ -880,7 +880,7 @@ static int GFileChooserUpDirButton(GGadget *g, GEvent *e) {
 return( true );
 }
 
-static GMenuItem gfcpopupmenu[] = {
+static GDMenuItem gfcpopupmenu[] = {
     { { (unichar_t *) N_("Show Hidden Files"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 0, 1, 0, 0, 0, 1, 0, 0, 'H' }, '\0', ksm_control, NULL, NULL, GFCHideToggle, 0 },
     { { (unichar_t *) N_("Directories Amid Files"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 0, 1, 0, 0, 0, 1, 0, 0, 'H' }, '\0', ksm_control, NULL, NULL, GFCDirsAmidToggle, 0 },
     { { (unichar_t *) N_("Directories First"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 0, 1, 0, 0, 0, 1, 0, 0, 'H' }, '\0', ksm_control, NULL, NULL, GFCDirsFirstToggle, 0 },
@@ -1033,7 +1033,7 @@ static void GFCPath(GWindow gw,struct gdmenuitem *mi,GEvent *e) {
 	GFileChooserScanDir(gfc,gfc->paths[mi->mid]);
 }
 
-static GMenuItem gfcbookmarkmenu[] = {
+static GDMenuItem gfcbookmarkmenu[] = {
     { { (unichar_t *) N_("Directory|Back"), &_GIcon_backarrow, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 0, 0, '\0' }, '\0', ksm_control, NULL, NULL, GFCBack, 0 },
     { { (unichar_t *) N_("Directory|Forward"), &_GIcon_forwardarrow, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 0, 0, '\0' }, '\0', ksm_control, NULL, NULL, GFCForward, 0 },
     { { NULL, NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 0, 0, 0, 0, 1, 0, 0, 0, '\0' }, '\0', 0, NULL, NULL, NULL, 0 }, /* line */
@@ -1047,7 +1047,7 @@ static int bgotten=false;
 static int GFileChooserBookmarks(GGadget *g, GEvent *e) {
     if ( e->type==et_controlevent && e->u.control.subtype == et_buttonpress ) {
 	GFileChooser *gfc = (GFileChooser *) GGadgetGetUserData(g);
-	GMenuItem *mi;
+	GDMenuItem *mi;
 	int i, bcnt, mcnt, pcnt;
 	GEvent fake;
 	GRect pos;
@@ -1067,7 +1067,7 @@ static int GFileChooserBookmarks(GGadget *g, GEvent *e) {
 	    if ( pcnt!=0 && bcnt!=0 ) ++pcnt;
 	    bcnt += pcnt;
 	}
-	mi = calloc((mcnt+bcnt+1),sizeof(GMenuItem));
+	mi = calloc((mcnt+bcnt+1),sizeof(GDMenuItem));
 	for ( mcnt=0; gfcbookmarkmenu[mcnt].ti.text!=NULL || gfcbookmarkmenu[mcnt].ti.line; ++mcnt ) {
 	    mi[mcnt] = gfcbookmarkmenu[mcnt];
 	    mi[mcnt].ti.text = (unichar_t *) copy( (char *) mi[mcnt].ti.text);
@@ -1110,7 +1110,7 @@ static int GFileChooserBookmarks(GGadget *g, GEvent *e) {
 	fake.u.mouse.x = pos.x;
 	fake.u.mouse.y = pos.y+pos.height;
 	GMenuCreatePopupMenu(gfc->g.base,&fake, mi);
-	GMenuItemArrayFree(mi);
+	GDMenuItemArrayFree(mi);
     }
 return( true );
 }

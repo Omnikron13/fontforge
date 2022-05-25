@@ -2375,7 +2375,7 @@ return( copy(dvstr));
 static void finishedit(GGadget *g, int r, int c, int wasnew);
 static void kernfinishedit(GGadget *g, int r, int c, int wasnew);
 static void kerninit(GGadget *g, int r);
-static void enable_enum(GGadget *g, GMenuItem *mi, int r, int c);
+static void enable_enum(GGadget *g, GDMenuItem *mi, int r, int c);
 
 static struct col_init simplesubsci[] = {
     { me_enum , NULL, NULL, enable_enum, N_("Subtable") },
@@ -2446,7 +2446,7 @@ struct matrixinit mi[] = {
     MATRIXINIT_EMPTY
 };
 
-static void enable_enum(GGadget *g, GMenuItem *mi, int r, int c) {
+static void enable_enum(GGadget *g, GDMenuItem *mi, int r, int c) {
     int i,rows,j;
     struct matrix_data *possub;
     CharInfo *ci;
@@ -2682,7 +2682,7 @@ return( false );
 
 static void kerninit(GGadget *g, int r) {
     CharInfo *ci = GDrawGetUserData(GGadgetGetWindow(g));
-    GMenuItem *mi = GMatrixEditGetColumnChoices(g,0);
+    GDMenuItem *mi = GMatrixEditGetColumnChoices(g,0);
     int i,cols,rows;
     struct matrix_data *possub;
     uint32_t script;

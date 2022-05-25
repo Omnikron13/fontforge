@@ -823,10 +823,10 @@ extern void MenuNew(GWindow gw,struct gdmenuitem *mi,GEvent *e);
 extern void WindowMenuBuild(GWindow base,struct gdmenuitem *mi,GEvent *);
 extern void MenuRecentBuild(GWindow base,struct gdmenuitem *mi,GEvent *);
 extern void MenuScriptsBuild(GWindow base,struct gdmenuitem *mi,GEvent *);
-extern void mb2FreeGetText(GMenuItem2 *mb);
-extern void mb2DoGetText(GMenuItem2 *mb);
-extern void mbFreeGetText(GMenuItem *mb);
-extern void mbDoGetText(GMenuItem *mb);
+extern void mb2FreeGetText(GDMenuItem2 *mb);
+extern void mb2DoGetText(GDMenuItem2 *mb);
+extern void mbFreeGetText(GDMenuItem *mb);
+extern void mbDoGetText(GDMenuItem *mb);
 extern int RecentFilesAny(void);
 extern void _aplistbuild(struct gdmenuitem *mi,SplineFont *sf,
 	void (*func)(GWindow,struct gdmenuitem *,GEvent *));
@@ -1213,7 +1213,7 @@ extern void DVCreateGloss(DebugView *dv);
 extern void DVMarkPts(DebugView *dv,SplineSet *ss);
 extern int CVXPos(DebugView *dv,int offset,int width);
 
-extern GMenuItem *GetEncodingMenu(void (*func)(GWindow,GMenuItem *,GEvent *),
+extern GDMenuItem *GetEncodingMenu(void (*func)(GWindow,GDMenuItem *,GEvent *),
 	Encoding *current);
 
 extern GTextInfo *TIFromName(const char *name);
@@ -1256,7 +1256,7 @@ extern void SFBdfProperties(SplineFont *sf, EncMap *map, BDFFont *thisone);
 
 
 
-extern GMenuItem2 helplist[];
+extern GDMenuItem2 helplist[];
 extern BasePoint last_ruler_offset[];
 
 extern void CVCopyLayerToLayer(CharView *cv);
@@ -1267,11 +1267,11 @@ extern void FVCompareLayerToLayer(FontView *fv);
 extern void MathInit(void);
 extern void SFMathDlg(SplineFont *sf,int def_layer);
 
-extern GMenuItem2 *cvpy_menu, *fvpy_menu;
+extern GDMenuItem2 *cvpy_menu, *fvpy_menu;
 extern void cvpy_tllistcheck(GWindow gw,struct gdmenuitem *mi,GEvent *e);
 extern void fvpy_tllistcheck(GWindow gw,struct gdmenuitem *mi,GEvent *e);
 
-extern GMenuItem2 *cv_menu, *fv_menu;
+extern GDMenuItem2 *cv_menu, *fv_menu;
 extern void cv_tl2listcheck(GWindow gw,struct gdmenuitem *mi,GEvent *e);
 extern void fv_tl2listcheck(GWindow gw,struct gdmenuitem *mi,GEvent *e);
 
@@ -1339,8 +1339,8 @@ extern void SPSelectNextPoint( SplinePoint *sp, int state );
 extern void SPSelectPrevPoint( SplinePoint *sp, int state );
 
 #ifndef _NO_PYTHON
-extern void CVSetToolsSubmenu(GMenuItem2 *py_menu);
-extern void FVSetToolsSubmenu(GMenuItem2 *py_menu);
+extern void CVSetToolsSubmenu(GDMenuItem2 *py_menu);
+extern void FVSetToolsSubmenu(GDMenuItem2 *py_menu);
 #endif
 
 /**

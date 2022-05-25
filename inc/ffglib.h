@@ -22,13 +22,13 @@
 #ifndef FONTFORGE_FFGLIB_H
 #define FONTFORGE_FFGLIB_H
 
-#define GMenuItem GMenuItem_GIO
+#define GDMenuItem GDMenuItem_GIO
 
 #include <gio/gio.h>
 #include <glib-object.h>
 #include <glib.h>
 #include <glib/gstdio.h>
 
-#undef GMenuItem
+#undef GDMenuItem
 
 #endif /* FONTFORGE_FFGLIB_H */

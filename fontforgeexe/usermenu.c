@@ -45,8 +45,8 @@ static int cv_menu_max = 0;
 static int fv_menu_cnt = 0;
 static int fv_menu_max = 0;
 
-GMenuItem2 *cv_menu;
-GMenuItem2 *fv_menu;
+GDMenuItem2 *cv_menu;
+GDMenuItem2 *fv_menu;
 
 static void
 tl2listcheck(struct gdmenuitem *mi,
@@ -179,12 +179,12 @@ InsertSubMenus(menu_info_func func,
                menu_info_data data,
                char *shortcut_str,
                char **submenu_names,
-               GMenuItem2 **mn,
+               GDMenuItem2 **mn,
                int is_cv)
 {
     int i;
     int j;
-    GMenuItem2 *mmn;
+    GDMenuItem2 *mmn;
 
     for (i = 0; submenu_names[i] != NULL; ++i) {
         unichar_t *submenuu = utf82u_copy(submenu_names[i]);
@@ -200,8 +200,8 @@ InsertSubMenus(menu_info_func func,
         }
         
         if (*mn == NULL || (*mn)[j].ti.text == NULL) {
-            *mn = realloc(*mn,(j+2)*sizeof(GMenuItem2));
-            memset(*mn+j,0,2*sizeof(GMenuItem2));
+            *mn = realloc(*mn,(j+2)*sizeof(GDMenuItem2));
+            memset(*mn+j,0,2*sizeof(GDMenuItem2));
         }
         mmn = *mn;
         if (mmn[j].ti.text == NULL) {

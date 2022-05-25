@@ -552,7 +552,7 @@ static void BdfP_Expose(struct bdf_dlg *bd, GWindow pixmap) {
     GDrawDrawLine(pixmap,bd->value_x,0,bd->value_x,bd->vheight, _ggadget_Default_Box.border_darker);
 }
 
-static void BdfP_Invoked(GWindow v, GMenuItem *mi, GEvent *e) {
+static void BdfP_Invoked(GWindow v, GDMenuItem *mi, GEvent *e) {
     struct bdf_dlg *bd = (struct bdf_dlg *) GDrawGetUserData(v);
     BDFFont *bdf = bd->cur->bdf;
     char *prop_name = cu_copy(mi->ti.text);
@@ -592,11 +592,11 @@ static void BdfP_Invoked(GWindow v, GMenuItem *mi, GEvent *e) {
 }
 
 static void BdfP_PopupMenuProps(struct bdf_dlg *bd, GEvent *e) {
-    GMenuItem *mi;
+    GDMenuItem *mi;
     int i;
 
     for ( i=0 ; StandardProps[i].name!=NULL; ++i );
-    mi = calloc(i+3,sizeof(GMenuItem));
+    mi = calloc(i+3,sizeof(GDMenuItem));
     mi[0].ti.text = (unichar_t *) _("No Change");
     mi[0].ti.text_is_1byte = true;
     mi[0].ti.fg = COLOR_DEFAULT;

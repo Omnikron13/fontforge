@@ -489,9 +489,9 @@ return;
     }
 }
 
-GMenuItem *GetEncodingMenu(void (*func)(GWindow,GMenuItem *,GEvent *),
+GDMenuItem *GetEncodingMenu(void (*func)(GWindow,GDMenuItem *,GEvent *),
 	Encoding *current) {
-    GMenuItem *mi;
+    GDMenuItem *mi;
     int i, cnt;
     Encoding *item;
 
@@ -503,7 +503,7 @@ GMenuItem *GetEncodingMenu(void (*func)(GWindow,GMenuItem *,GEvent *),
 	    ++cnt;
     i = cnt+1;
     i += sizeof(encodingtypes)/sizeof(encodingtypes[0]);
-    mi = calloc(i+1,sizeof(GMenuItem));
+    mi = calloc(i+1,sizeof(GDMenuItem));
     for ( i=0; i<sizeof(encodingtypes)/sizeof(encodingtypes[0])-1; ++i ) {
 	mi[i].ti = encodingtypes[i];
 	if ( !mi[i].ti.line ) {

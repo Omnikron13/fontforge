@@ -529,7 +529,7 @@ static int ReopenLastFonts(void) {
 static void GrokNavigationMask(void) {
     extern int navigation_mask;
 
-    navigation_mask = GMenuItemParseMask(H_("NavigationMask|None"));
+    navigation_mask = GDMenuItemParseMask(H_("NavigationMask|None"));
 }
 
 /**

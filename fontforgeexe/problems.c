@@ -4798,7 +4798,7 @@ static void VWMenuSelect(GWindow gw,struct gdmenuitem *mi,GEvent *e) {
     GDrawRequestExpose(fv->v,NULL,false);
 }
 
-static GMenuItem vw_subselect[] = {
+static GDMenuItem vw_subselect[] = {
     { { (unichar_t *) N_("problselect|Errors"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0 }, '\0', 0, NULL, NULL, VWMenuSelect, MID_SelectErrors },
     { { (unichar_t *) N_("problselect|Open Contours"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0 }, '\0', 0, NULL, NULL, VWMenuSelect, MID_SelectOpen },
     { { (unichar_t *) N_("problselect|Bad Direction"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0 }, '\0', 0, NULL, NULL, VWMenuSelect, MID_SelectDir },
@@ -4997,7 +4997,7 @@ static void VWMenuManySimplify(GWindow gw,struct gdmenuitem *mi,GEvent *e) {
     } while ( k<vw->sf->subfontcnt );
 }
 
-static GMenuItem vw_subfixup[] = {
+static GDMenuItem vw_subfixup[] = {
     { { (unichar_t *) N_("problfixup|Open Contours"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0 }, '\0', 0, NULL, NULL, VWMenuManyConnect, 0 },
     { { (unichar_t *) N_("problfixup|Self Intersections"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, true, 0, 0, 0, 0, 1, 1, 0, 0 }, '\0', 0, NULL, NULL, VWMenuManyOverlap, 0 },
     { { (unichar_t *) N_("problfixup|Mark for Overlap fix before Save"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, true, 0, 0, 0, 0, 1, 1, 0, 0 }, '\0', 0, NULL, NULL, VWMenuManyMark, 0 },
@@ -5008,7 +5008,7 @@ static GMenuItem vw_subfixup[] = {
     GDMENUITEM_EMPTY
 };
 
-static GMenuItem vw_popuplist[] = {
+static GDMenuItem vw_popuplist[] = {
     { { (unichar_t *) N_("Close Open Contours"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0 }, '\0', 0, NULL, NULL, VWMenuConnect, 0 },
     { { (unichar_t *) N_("Inline All References"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, true, 0, 0, 0, 0, 1, 1, 0, 0 }, '\0', 0, NULL, NULL, VWMenuInlineRefs, 0 },
     { { (unichar_t *) N_("Remove Overlap"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, true, 0, 0, 0, 0, 1, 1, 0, 0 }, '\0', 0, NULL, NULL, VWMenuOverlap, 0 },

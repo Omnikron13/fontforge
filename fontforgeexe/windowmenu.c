@@ -38,7 +38,7 @@ static void WindowSelect(GWindow base,struct gdmenuitem *mi,GEvent *e) {
     GDrawRaise(mi->ti.userdata);
 }
 
-static void AddMI(GMenuItem *mi,GWindow gw,int changed, int top) {
+static void AddMI(GDMenuItem *mi,GWindow gw,int changed, int top) {
     char* title = GDrawGetWindowTitle8(gw);
     mi->ti.userdata = gw;
     mi->ti.bg = GDrawGetDefaultBackground(GDrawGetDisplayOfWindow(gw));
@@ -58,7 +58,7 @@ void WindowMenuBuild(GWindow basew,struct gdmenuitem *mi,GEvent *e) {
     CharViewBase *cv;
     MetricsView *mv;
     BitmapView *bv;
-    GMenuItem *sub;
+    GDMenuItem *sub;
     BDFFont *bdf;
 
     precnt = 6;
@@ -83,11 +83,11 @@ void WindowMenuBuild(GWindow basew,struct gdmenuitem *mi,GEvent *e) {
 	/* This can't happen */
 return;
     }
-    sub = calloc(cnt+1,sizeof(GMenuItem));
+    sub = calloc(cnt+1,sizeof(GDMenuItem));
     memcpy(sub,mi->sub,precnt*sizeof(struct gdmenuitem));
     for ( i=0; i<precnt; ++i )
 	mi->sub[i].ti.text = NULL;
-    GMenuItemArrayFree(mi->sub);
+    GDMenuItemArrayFree(mi->sub);
     mi->sub = sub;
 
     for ( i=0; sub[i].ti.text!=NULL || sub[i].ti.line; ++i ) {
@@ -127,10 +127,10 @@ static void RecentSelect(GWindow base,struct gdmenuitem *mi,GEvent *e) {
 void MenuRecentBuild(GWindow base,struct gdmenuitem *mi,GEvent *e) {
     int i, cnt, cnt1;
     FontViewBase *fv;
-    GMenuItem *sub;
+    GDMenuItem *sub;
 
     if ( mi->sub!=NULL ) {
-	GMenuItemArrayFree(mi->sub);
+	GDMenuItemArrayFree(mi->sub);
 	mi->sub = NULL;
     }
 
@@ -146,14 +146,14 @@ void MenuRecentBuild(GWindow base,struct gdmenuitem *mi,GEvent *e) {
 	/* This can't happen */
 return;
     }
-    sub = calloc(cnt+1,sizeof(GMenuItem));
+    sub = calloc(cnt+1,sizeof(GDMenuItem));
     cnt1 = 0;
     for ( i=0; i<RECENT_MAX && RecentFiles[i]!=NULL; ++i ) {
 	for ( fv=(FontViewBase *) fv_list; fv!=NULL; fv=fv->next )
 	    if ( fv->sf->filename!=NULL && strcmp(fv->sf->filename,RecentFiles[i])==0 )
 	break;
 	if ( fv==NULL ) {
-	    GMenuItem *mi = &sub[cnt1++];
+	    GDMenuItem *mi = &sub[cnt1++];
 	    mi->ti.userdata = RecentFiles[i];
 	    mi->ti.bg = mi->ti.fg = COLOR_DEFAULT;
 	    mi->invoke = RecentSelect;
@@ -195,10 +195,10 @@ return;
 /* Builds up a menu containing any user defined scripts */
 void MenuScriptsBuild(GWindow base,struct gdmenuitem *mi,GEvent *e) {
     int i;
-    GMenuItem *sub;
+    GDMenuItem *sub;
 
     if ( mi->sub!=NULL ) {
-	GMenuItemArrayFree(mi->sub);
+	GDMenuItemArrayFree(mi->sub);
 	mi->sub = NULL;
     }
 
@@ -207,9 +207,9 @@ void MenuScriptsBuild(GWindow base,struct gdmenuitem *mi,GEvent *e) {
 	/* This can't happen */
 return;
     }
-    sub = calloc(i+1,sizeof(GMenuItem));
+    sub = calloc(i+1,sizeof(GDMenuItem));
     for ( i=0; i<SCRIPT_MENU_MAX && script_menu_names[i]!=NULL; ++i ) {
-	GMenuItem *mi = &sub[i];
+	GDMenuItem *mi = &sub[i];
 	mi->ti.userdata = (void *) (intptr_t) i;
 	mi->ti.bg = mi->ti.fg = COLOR_DEFAULT;
 	mi->invoke = ScriptSelect;
@@ -225,11 +225,11 @@ return;
 void _aplistbuild(struct gdmenuitem *top,SplineFont *sf,
 	void (*func)(GWindow,struct gdmenuitem *,GEvent *)) {
     int cnt;
-    GMenuItem *mi, *sub;
+    GDMenuItem *mi, *sub;
     AnchorClass *ac;
 
     if ( top->sub!=NULL ) {
-	GMenuItemArrayFree(top->sub);
+	GDMenuItemArrayFree(top->sub);
 	top->sub = NULL;
     }
 
@@ -239,7 +239,7 @@ void _aplistbuild(struct gdmenuitem *top,SplineFont *sf,
 	cnt = 1;
     else
 	cnt += 2;
-    sub = calloc(cnt+1,sizeof(GMenuItem));
+    sub = calloc(cnt+1,sizeof(GDMenuItem));
     mi = &sub[0];
     mi->ti.userdata = (void *) (-1);
     mi->ti.bg = mi->ti.fg = COLOR_DEFAULT;
@@ -262,7 +262,7 @@ void _aplistbuild(struct gdmenuitem *top,SplineFont *sf,
     top->sub = sub;
 }
 
-void mbFreeGetText(GMenuItem *mb) {
+void mbFreeGetText(GDMenuItem *mb) {
     /* free gettext substitutions on this menu and all sub menus */
     int i;
 
@@ -277,7 +277,7 @@ return;
     }
 }
 
-void mbDoGetText(GMenuItem *mb) {
+void mbDoGetText(GDMenuItem *mb) {
     /* perform gettext substitutions on this menu and all sub menus */
     int i;
 
@@ -299,7 +299,7 @@ return;
     }
 }
 
-void mb2FreeGetText(GMenuItem2 *mb) {
+void mb2FreeGetText(GDMenuItem2 *mb) {
     /* free gettext substitutions on this menu and all sub menus */
     int i;
 
@@ -314,7 +314,7 @@ return;
     }
 }
 
-void mb2DoGetText(GMenuItem2 *mb) {
+void mb2DoGetText(GDMenuItem2 *mb) {
     /* perform gettext substitutions on this menu and all sub menus */
     int i;
 

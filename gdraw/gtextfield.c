@@ -987,7 +987,7 @@ return;
 
 static GTextField *popup_kludge;
 
-static void GTFPopupInvoked(GWindow v, GMenuItem *mi,GEvent *e) {
+static void GTFPopupInvoked(GWindow v, GDMenuItem *mi,GEvent *e) {
     GTextField *gt;
     if ( popup_kludge==NULL )
 return;
@@ -1022,7 +1022,7 @@ return;
     _ggadget_redraw(&gt->g);
 }
 
-static GMenuItem gtf_popuplist[] = {
+static GDMenuItem gtf_popuplist[] = {
     { { (unichar_t *) "_Undo", NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 0, 0, 0, 0, 0, 1, 1, 0, '\0' }, 'Z', ksm_control, NULL, NULL, GTFPopupInvoked, MID_Undo },
     { { NULL, NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 0, 0, 0, 0, 1, 0, 0, 0, '\0' }, '\0', 0, NULL, NULL, NULL, 0 }, /* line */
     { { (unichar_t *) "Cu_t", NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 0, 0, 0, 0, 0, 1, 1, 0, '\0' }, 'X', ksm_control, NULL, NULL, GTFPopupInvoked, MID_Cut },

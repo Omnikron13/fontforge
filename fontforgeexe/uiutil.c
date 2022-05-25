@@ -281,7 +281,7 @@ static void WarnMenuClear(GWindow gw,struct gdmenuitem *mi,GEvent *e) {
 #define MID_Copy	1
 #define MID_Clear	2
 
-GMenuItem warnpopupmenu[] = {
+GDMenuItem warnpopupmenu[] = {
     { { (unichar_t *) N_("Cu_t"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 1, 0, 0, 0, 0, 0, 1, 1, 0, 't' }, '\0', ksm_control, NULL, NULL, NULL, 0 },
     { { (unichar_t *) N_("_Copy"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 0, 0, 0, 0, 0, 1, 1, 0, 'C' }, '\0', ksm_control, NULL, NULL, WarnMenuCopy, MID_Copy },
     { { (unichar_t *) N_("_Paste"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 1, 0, 0, 0, 0, 0, 1, 1, 0, 'P' }, '\0', ksm_control, NULL, NULL, NULL, 0 },

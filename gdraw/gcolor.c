@@ -484,7 +484,7 @@ static int popup_e_h(GWindow gw, GEvent *event) {
 	    GDrawDrawLine(gw,1,1,GRAD_WIDTH/2-1,GRAD_WIDTH-2,0x000000);
 	    GDrawDrawLine(gw,GRAD_WIDTH/2-1,GRAD_WIDTH-2,GRAD_WIDTH-2,1,0x000000);
 	} else if ( event->type == et_mousedown ) {
-	    GMenuItem menu[2*USEFUL_MAX+2];
+	    GDMenuItem menu[2*USEFUL_MAX+2];
 	    int i,j,k;
 
 	    memset(menu,0,sizeof(menu));

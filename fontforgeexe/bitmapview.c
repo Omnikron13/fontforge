@@ -2142,7 +2142,7 @@ void BVColInit(void) {
     GResEditDoInit(&charviewpoints_ri);
 }
 
-static GMenuItem2 wnmenu[] = {
+static GDMenuItem2 wnmenu[] = {
     { { (unichar_t *) N_("New O_utline Window"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'u' }, H_("New Outline Window|Ctl+H"), NULL, NULL, BVMenuOpenOutline, 0 },
     { { (unichar_t *) N_("New _Bitmap Window"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 1, 0, 0, 0, 0, 0, 1, 1, 0, 'B' }, H_("New Bitmap Window|Ctl+J"), NULL, NULL, /* No function, never avail */NULL, 0 },
     { { (unichar_t *) N_("New _Metrics Window"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'M' }, H_("New Metrics Window|Ctl+K"), NULL, NULL, BVMenuOpenMetrics, 0 },
@@ -2176,11 +2176,11 @@ char *BVFlipNames[] = { N_("Flip Horizontally"), N_("Flip Vertically"),
     NU_("Rotate 180°"),
     N_("Skew..."), NULL };
 
-static GMenuItem2 dummyitem[] = {
+static GDMenuItem2 dummyitem[] = {
     { { (unichar_t *) N_("Font|_New"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'N' }, NULL, NULL, NULL, NULL, 0 },
     GDMENUITEM2_EMPTY
 };
-static GMenuItem2 fllist[] = {
+static GDMenuItem2 fllist[] = {
     { { (unichar_t *) N_("Font|_New"), (GImage *) "filenew.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'N' }, H_("New|Ctl+N"), NULL, NULL, MenuNew, 0 },
     { { (unichar_t *) N_("_Open"), (GImage *) "fileopen.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'O' }, H_("Open|Ctl+O"), NULL, NULL, BVMenuOpen, 0 },
     { { (unichar_t *) N_("Recen_t"), (GImage *) "filerecent.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 't' }, NULL, dummyitem, MenuRecentBuild, NULL, MID_Recent },
@@ -2206,7 +2206,7 @@ static GMenuItem2 fllist[] = {
     GDMENUITEM2_EMPTY
 };
 
-static GMenuItem2 edlist[] = {
+static GDMenuItem2 edlist[] = {
     { { (unichar_t *) N_("_Undo"), (GImage *) "editundo.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'U' }, H_("Undo|Ctl+Z"), NULL, NULL, BVUndo, MID_Undo },
     { { (unichar_t *) N_("_Redo"), (GImage *) "editredo.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'R' }, H_("Redo|Ctl+Y"), NULL, NULL, BVRedo, MID_Redo },
     { { NULL, NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 1, 0, 0, 0, '\0' }, NULL, NULL, NULL, NULL, 0 }, /* line */
@@ -2224,7 +2224,7 @@ static GMenuItem2 edlist[] = {
     GDMENUITEM2_EMPTY
 };
 
-static GMenuItem2 trlist[] = {
+static GDMenuItem2 trlist[] = {
     { { (unichar_t *) N_("Flip _Horizontally"), (GImage *) "transformfliphor.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'H' }, H_("Flip Horizontally|No Shortcut"), NULL, NULL, BVMenuRotateInvoked, bvt_fliph },
     { { (unichar_t *) N_("Flip _Vertically"), (GImage *) "transformflipvert.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'V' }, H_("Flip Vertically|No Shortcut"), NULL, NULL, BVMenuRotateInvoked, bvt_flipv },
     { { (unichar_t *) NU_("_Rotate 90° CW"), (GImage *) "transformrotatecw.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'R' }, H_("Rotate 90 CW|No Shortcut"), NULL, NULL, BVMenuRotateInvoked, bvt_rotate90cw },
@@ -2234,7 +2234,7 @@ static GMenuItem2 trlist[] = {
     GDMENUITEM2_EMPTY
 };
 
-static GMenuItem2 ellist[] = {
+static GDMenuItem2 ellist[] = {
     { { (unichar_t *) N_("_Font Info..."), (GImage *) "elementfontinfo.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'F' }, H_("Font Info...|Ctl+Shft+F"), NULL, NULL, BVMenuFontInfo, 0 },
     { { (unichar_t *) N_("Glyph _Info..."), (GImage *) "elementglyphinfo.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'I' }, H_("Glyph Info...|Ctl+I"), NULL, NULL, BVMenuGetInfo, MID_GetInfo },
     { { (unichar_t *) N_("BDF Info..."), (GImage *) "elementbdfinfo.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'I' }, H_("BDF Info...|No Shortcut"), NULL, NULL, BVMenuBDFInfo, 0 },
@@ -2247,7 +2247,7 @@ static GMenuItem2 ellist[] = {
     GDMENUITEM2_EMPTY
 };
 
-static GMenuItem2 pllist[] = {
+static GDMenuItem2 pllist[] = {
     { { (unichar_t *) N_("_Tools"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 1, 0, 0, 0, 1, 1, 0, 'T' }, H_("Tools|No Shortcut"), NULL, NULL, BVMenuPaletteShow, MID_Tools },
     { { (unichar_t *) N_("_Layers"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 1, 0, 0, 0, 1, 1, 0, 'L' }, H_("Layers|No Shortcut"), NULL, NULL, BVMenuPaletteShow, MID_Layers },
     { { (unichar_t *) N_("_Shades"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 1, 0, 0, 0, 1, 1, 0, 'S' }, H_("Shades|No Shortcut"), NULL, NULL, BVMenuPaletteShow, MID_Shades },
@@ -2256,7 +2256,7 @@ static GMenuItem2 pllist[] = {
     GDMENUITEM2_EMPTY
 };
 
-static GMenuItem2 vwlist[] = {
+static GDMenuItem2 vwlist[] = {
     { { (unichar_t *) N_("_Fit"), (GImage *) "viewfit.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'F' }, H_("Fit|Ctl+F"), NULL, NULL, BVMenuScale, MID_Fit },
     { { (unichar_t *) N_("Z_oom out"), (GImage *) "viewzoomout.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'o' }, H_("Zoom out|Alt+Ctl+-"), NULL, NULL, BVMenuScale, MID_ZoomOut },
     { { (unichar_t *) N_("Zoom _in"), (GImage *) "viewzoomin.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'i' }, H_("Zoom in|Alt+Ctl+Shft++"), NULL, NULL, BVMenuScale, MID_ZoomIn },
@@ -2275,13 +2275,13 @@ static GMenuItem2 vwlist[] = {
     GDMENUITEM2_EMPTY
 };
 
-static GMenuItem2 mtlist[] = {
+static GDMenuItem2 mtlist[] = {
     { { (unichar_t *) N_("Set _Width..."), (GImage *) "metricssetwidth.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'W' }, H_("Set Width...|Ctl+Shft+L"), NULL, NULL, BVMenuSetWidth, MID_SetWidth },
     { { (unichar_t *) N_("Set _Vertical Width..."), (GImage *) "metricssetvwidth.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'W' }, H_("Set Vertical Width...|Ctl+Shft+L"), NULL, NULL, BVMenuSetWidth, MID_SetVWidth },
     GDMENUITEM2_EMPTY
 };
 
-static GMenuItem2 mblist[] = {
+static GDMenuItem2 mblist[] = {
     { { (unichar_t *) N_("_File"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'F' }, NULL, fllist, fllistcheck, NULL, 0 },
     { { (unichar_t *) N_("_Edit"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'E' }, NULL, edlist, edlistcheck, NULL, 0 },
     { { (unichar_t *) N_("E_lement"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'l' }, NULL, ellist, ellistcheck, NULL, 0 },
