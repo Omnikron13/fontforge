@@ -134,7 +134,7 @@ typedef struct gmenu {
     struct gmenu *parent, *child;
     struct gmenubar *menubar;
     GWindow owner;
-    GTimer *scrollit;		/* No longer in use, see comment below */
+    GDTimer *scrollit;		/* No longer in use, see comment below */
     FontInstance *font;
     void (*donecallback)(GWindow owner);
     GIC *gic;

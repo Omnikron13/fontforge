@@ -24,7 +24,6 @@
 
 #define GList  GList_Glib
 #define GMenuItem GMenuItem_GIO
-#define GTimer GTimer_GTK
 
 #include <gio/gio.h>
 #include <glib-object.h>
@@ -33,6 +32,5 @@
 
 #undef GList
 #undef GMenuItem
-#undef GTimer
 
 #endif /* FONTFORGE_FFGLIB_H */

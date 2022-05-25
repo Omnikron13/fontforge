@@ -145,7 +145,7 @@ typedef struct charview {
     uint16 rfh, ras;
     GFont *rfont;
     BasePoint lastknife;
-    GTimer *pressed;
+    GDTimer *pressed;
     GWindow backimgs;
     enum expandedge { ee_none, ee_nw, ee_up, ee_ne, ee_right, ee_se, ee_down,
 	    ee_sw, ee_left, ee_max } expandedge;
@@ -233,7 +233,7 @@ typedef struct fontview {
     GGadget *vsb, *mb;
     struct fontview *next;
     int pressed_pos, end_pos;
-    GTimer *pressed;
+    GDTimer *pressed;
     char *selected;
     MetricsView *metrics;
     unsigned int onlycopydisplayed: 1;

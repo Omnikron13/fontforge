@@ -703,12 +703,12 @@ void GDrawPostDragEvent(GWindow w,GEvent *mouse,enum event_type et) {
     (gdisp->funcs->postDragEvent)(w,mouse,et);
 }
 
-GTimer *GDrawRequestTimer(GWindow w,int32_t time_from_now,int32_t frequency,
+GDTimer *GDrawRequestTimer(GWindow w,int32_t time_from_now,int32_t frequency,
 	void *userdata) {
 return( (w->display->funcs->requestTimer)(w,time_from_now,frequency,userdata));
 }
 
-void GDrawCancelTimer(GTimer *timer) {
+void GDrawCancelTimer(GDTimer *timer) {
     GDisplay *gdisp;
     if ( timer==NULL )
 return;

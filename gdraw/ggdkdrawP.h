@@ -75,14 +75,14 @@ extern const char *GdkEventName(int code);
 typedef enum visibility_state VisibilityState;
 typedef struct ggdkwindow *GGDKWindow;
 
-// Really GTimer should be opaque...
-typedef struct ggdktimer { // :GTimer
+// Really GDTimer should be opaque...
+typedef struct ggdktimer { // :GDTimer
     long time_sec;             // longs not int32s to match timeval
     long time_usec;
     int32_t repeat_time;          // 0 == one shot (run once)
     GWindow owner;
     void *userdata;
-    struct gtimer *next;       // Unused in favour of a GLib list
+    struct gdtimer *next;       // Unused in favour of a GLib list
     unsigned int active: 1;
     // Extensions below
     unsigned int stopped: 1;

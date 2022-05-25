@@ -36,7 +36,7 @@
 
 struct ggadget;
 struct ggadgetcreatedata;
-struct gtimer;
+struct gdtimer;
 
 typedef GWindow GWidget;
 

@@ -54,10 +54,10 @@ typedef struct printffdlg {
     struct printinfo pi;
     GWindow gw;
     GWindow setup;
-    GTimer *sizechanged;
-    GTimer *dpichanged;
-    GTimer *widthchanged;
-    GTimer *resized;
+    GDTimer *sizechanged;
+    GDTimer *dpichanged;
+    GDTimer *widthchanged;
+    GDTimer *resized;
     GTextInfo *scriptlangs;
     FontView *fv;
     CharView *cv;

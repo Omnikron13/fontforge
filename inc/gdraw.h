@@ -74,7 +74,7 @@ typedef struct gtextbounds {
 enum selnames { sn_primary, sn_clipboard, sn_drag_and_drop, sn_user1, sn_user2, sn_max };
 typedef struct gwindow *GWindow;
 typedef struct gdisplay GDisplay;
-typedef struct gtimer GTimer;
+typedef struct gdtimer GDTimer;
 
 enum keystate_mask { ksm_shift=1, ksm_capslock=2, ksm_control=4, ksm_meta=8,
 	ksm_cmdsuse=0x8,
@@ -182,7 +182,7 @@ typedef struct gevent {
 	    int32_t x,y;
 	} drag_drop;
 	struct {
-	    GTimer *timer;
+	    GDTimer *timer;
 	    void *userdata;
 	} timer;
 	struct {
@@ -422,9 +422,9 @@ extern void GDrawEventLoop(GDisplay *disp);
 extern void GDrawPostEvent(GEvent *e);
 extern void GDrawPostDragEvent(GWindow gw,GEvent *e,enum event_type);
 
-extern GTimer *GDrawRequestTimer(GWindow w,int32_t time_from_now,int32_t frequency,
+extern GDTimer *GDrawRequestTimer(GWindow w,int32_t time_from_now,int32_t frequency,
 	void *userdata);
-extern void GDrawCancelTimer(GTimer *timer);
+extern void GDrawCancelTimer(GDTimer *timer);
 
 extern int GDrawRequestDeviceEvents(GWindow w,int devcnt,struct gdeveventmask *de);
 extern int GDrawShortcutKeyMatches(const GEvent *e, unichar_t ch);

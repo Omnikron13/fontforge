@@ -49,7 +49,7 @@
 #endif
 
 // Forward declarations
-static void GGDKDrawCancelTimer(GTimer *timer);
+static void GGDKDrawCancelTimer(GDTimer *timer);
 static void GGDKDrawDestroyWindow(GWindow w);
 static void GGDKDrawPostEvent(GEvent *e);
 static void GGDKDrawProcessPendingEvents(GDisplay *gdisp);
@@ -220,7 +220,7 @@ static gboolean _GGDKDraw_OnWindowDestroyed(gpointer data) {
         }
 
         // Remove all relevant timers that haven't been cleaned up by the user
-        // Note: We do not free the GTimer struct as the user may then call DestroyTimer themselves...
+        // Note: We do not free the GDTimer struct as the user may then call DestroyTimer themselves...
         GList_Glib *ent = gw->display->timers;
         while (ent != NULL) {
             GList_Glib *next = ent->next;
@@ -856,7 +856,7 @@ static gboolean _GGDKDraw_ProcessTimerEvent(gpointer user_data) {
     e.type = et_timer;
     e.w = timer->owner;
     e.native_window = timer->owner->native_window;
-    e.u.timer.timer = (GTimer *)timer;
+    e.u.timer.timer = (GDTimer *)timer;
     e.u.timer.userdata = timer->userdata;
 
     GGDKDRAW_ADDREF(timer);
@@ -864,7 +864,7 @@ static gboolean _GGDKDraw_ProcessTimerEvent(gpointer user_data) {
     if (timer->active) {
         if (timer->repeat_time == 0) {
             timer->stopped = true; // Since we return false, this timer is no longer valid.
-            GGDKDrawCancelTimer((GTimer *)timer);
+            GGDKDrawCancelTimer((GDTimer *)timer);
             ret = false;
         } else if (timer->has_differing_repeat_time) {
             timer->has_differing_repeat_time = false;
@@ -1881,7 +1881,7 @@ static void *GGDKDrawRequestSelection(GWindow w, enum selnames sn, char *typenam
     gw->is_waiting_for_selection = true;
     gw->is_notified_of_selection = false;
 
-    GTimer_GTK *timer = g_timer_new();
+    GTimer *timer = g_timer_new();
     g_timer_start(timer);
 
     while (gw->is_waiting_for_selection) {
@@ -2253,7 +2253,7 @@ static int GGDKDrawShortcutKeyMatches(const GEvent *e, unichar_t ch) {
     return k == ch;
 }
 
-static GTimer *GGDKDrawRequestTimer(GWindow w, int32_t time_from_now, int32_t frequency, void *userdata) {
+static GDTimer *GGDKDrawRequestTimer(GWindow w, int32_t time_from_now, int32_t frequency, void *userdata) {
     //Log(LOGDEBUG, " ");
     GGDKTimer *timer = calloc(1, sizeof(GGDKTimer));
     GGDKWindow gw = (GGDKWindow)w;
@@ -2271,14 +2271,14 @@ static GTimer *GGDKDrawRequestTimer(GWindow w, int32_t time_from_now, int32_t fr
     timer->glib_timeout_id = g_timeout_add(time_from_now, _GGDKDraw_ProcessTimerEvent, timer);
 
     GGDKDRAW_ADDREF(timer);
-    return (GTimer *)timer;
+    return (GDTimer *)timer;
 }
 
-static void GGDKDrawCancelTimer(GTimer *timer) {
+static void GGDKDrawCancelTimer(GDTimer *timer) {
     //Log(LOGDEBUG, " ");
-    GGDKTimer *gtimer = (GGDKTimer *)timer;
-    gtimer->active = false;
-    GGDKDRAW_DECREF(gtimer, _GGDKDraw_OnTimerDestroyed);
+    GGDKTimer *gdtimer = (GGDKTimer *)timer;
+    gdtimer->active = false;
+    GGDKDRAW_DECREF(gdtimer, _GGDKDraw_OnTimerDestroyed);
 }
 
 // Our function VTable
@@ -2572,7 +2572,7 @@ void _GGDKDraw_DestroyDisplay(GDisplay *disp) {
         while (gdisp->timers != NULL) {
             GGDKTimer *timer = (GGDKTimer *)gdisp->timers->data;
             timer->reference_count = 1;
-            GGDKDrawCancelTimer((GTimer *)timer);
+            GGDKDrawCancelTimer((GDTimer *)timer);
         }
     }
 

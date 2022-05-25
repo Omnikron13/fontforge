@@ -235,7 +235,7 @@ typedef struct charview {
     int start_intersection_snapped;
     int end_intersection_snapped;
     GFont *rfont;
-    GTimer *pressed;
+    GDTimer *pressed;
     GWindow backimgs;
     GIC *gic;
     GIC *gwgic;
@@ -287,7 +287,7 @@ typedef struct charview {
     real oldlbearing;
     int16_t oldic, oldtah;
 #if _ModKeysAutoRepeat
-    GTimer *autorpt;
+    GDTimer *autorpt;
     int keysym, oldstate;
     int oldkeyx, oldkeyy;
     GWindow oldkeyw;
@@ -353,7 +353,7 @@ typedef struct bitmapview {
     int event_x, event_y;
     int16_t sas, sfh;
 #if _ModKeysAutoRepeat
-    GTimer *autorpt;
+    GDTimer *autorpt;
     int keysym, oldstate;
 #endif
     int color;			/* for greyscale fonts (between 0,255) */
@@ -439,8 +439,8 @@ typedef struct fontview {
     GWindow gw, v;
     GFont **fontset;
     GGadget *vsb, *mb;
-    GTimer *pressed;
-    GTimer *resize;
+    GDTimer *pressed;
+    GDTimer *resize;
     GEvent resize_event;
     GIC *gic;
     GIC *gwgic;

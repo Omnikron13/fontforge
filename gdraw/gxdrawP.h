@@ -76,11 +76,9 @@ capable of using composite.
 #  include <cairo/cairo-xlib.h>
 #  include <cairo/cairo.h>
 # endif
-#  define GTimer GTimer_GTK
 #  include <X11/Xft/Xft.h>
 #  include <ft2build.h>
 #  include <pango/pango.h>
-#  undef GTimer
 #endif
 
 #ifdef HAVE_PTHREAD_H
@@ -289,7 +287,7 @@ typedef struct gxdisplay /* : GDisplay */ {
     Pixmap fence_stipple;
     int32_t mycontext;
     int16_t top_window_count;
-    GTimer *timers;
+    GDTimer *timers;
     Time last_event_time;
     struct gxselinfo selinfo[sn_max];
     int amax, alen;

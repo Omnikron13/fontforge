@@ -200,7 +200,7 @@ GResInfo listmark_ri = {
 
 
 static GWindow popup;
-static GTimer *popup_timer, *popup_vanish_timer;
+static GDTimer *popup_timer, *popup_vanish_timer;
 static int popup_visible = false;
 
 void GGadgetInit(void) {

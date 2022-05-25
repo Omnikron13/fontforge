@@ -155,7 +155,7 @@ struct delayed_event {
 
 extern GImage splashimage_legacy;
 static GWindow splashw;
-static GTimer *autosave_timer, *splasht;
+static GDTimer *autosave_timer, *splasht;
 GResFont splash_font = GRESFONT_INIT("400 10pt " SERIF_UI_FAMILIES);
 GResFont splash_monofont = GRESFONT_INIT("400 10pt " MONO_UI_FAMILIES);
 GResFont splash_italicfont = GRESFONT_INIT("400 10pt italic " SERIF_UI_FAMILIES);
@@ -285,7 +285,7 @@ void DelayEvent(void (*func)(void *), void *data) {
 }
 
 static void DoDelayedEvents(GEvent *event) {
-    GTimer *t = event->u.timer.timer;
+    GDTimer *t = event->u.timer.timer;
     struct delayed_event *info = (struct delayed_event *) (event->u.timer.userdata);
 
     if ( info!=NULL ) {
@@ -305,7 +305,7 @@ struct argsstruct {
 static void SendNextArg(struct argsstruct *args) {
     int i;
     char *msg;
-    static GTimer *timeout;
+    static GDTimer *timeout;
 
     if ( timeout!=NULL ) {
 	GDrawCancelTimer(timeout);

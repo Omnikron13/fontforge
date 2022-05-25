@@ -125,13 +125,13 @@ struct ginput_context {
     struct ginput_context *next;
 };
 
-struct gtimer {
+struct gdtimer {
     long time_sec;				/* longs not int32s to match timeval */
     long time_usec;
     int32_t repeat_time;				/* 0 => one shot */
     GWindow owner;
     void *userdata;
-    struct gtimer *next;
+    struct gdtimer *next;
     unsigned int active: 1;
 };
 
@@ -244,8 +244,8 @@ struct displayfuncs {
     int  (*requestDeviceEvents)(GWindow w,int devcnt,struct gdeveventmask *de);
     int  (*shortcutKeyMatches)(const GEvent *e, unichar_t ch);
 
-    GTimer *(*requestTimer)(GWindow w,int32_t time_from_now,int32_t frequency, void *userdata);
-    void (*cancelTimer)(GTimer *timer);
+    GDTimer *(*requestTimer)(GWindow w,int32_t time_from_now,int32_t frequency, void *userdata);
+    void (*cancelTimer)(GDTimer *timer);
 
     void (*getFontMetrics)(GWindow,GFont *,int *,int *,int *);
 
