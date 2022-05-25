@@ -1377,7 +1377,7 @@ return( true );
 #define MID_AutoKernCol		1005
 #define MID_AutoKernAll		1006
 
-static void kernmenu_dispatch(GWindow gw, GMenuItem *mi, GEvent *e) {
+static void kernmenu_dispatch(GWindow gw, GDMenuItem *mi, GEvent *e) {
     KernClassDlg *kcd = GDrawGetUserData(gw);
     int i;
 
