@@ -229,9 +229,9 @@ static void CVMouseMove(CharView *cv, GEvent *event );
 static void CVMouseUp(CharView *cv, GEvent *event );
 static void CVHScroll(CharView *cv,struct sbevent *sb);
 static void CVVScroll(CharView *cv,struct sbevent *sb);
-/*static void CVElide(GWindow gw,struct gmenuitem *mi,GEvent *e);*/
-static void CVMenuSimplify(GWindow gw,struct gmenuitem *mi,GEvent *e);
-static void CVMenuSimplifyMore(GWindow gw,struct gmenuitem *mi,GEvent *e);
+/*static void CVElide(GWindow gw,struct gdmenuitem *mi,GEvent *e);*/
+static void CVMenuSimplify(GWindow gw,struct gdmenuitem *mi,GEvent *e);
+static void CVMenuSimplifyMore(GWindow gw,struct gdmenuitem *mi,GEvent *e);
 static void CVPreviewModeSet(GWindow gw, int checked);
 static void CVExposeRulers(CharView *cv, GWindow pixmap);
 
@@ -3572,7 +3572,7 @@ static void CVSetCharSelectorValueFromSC( CharView *cv, SplineChar *sc )
 }
 	    
 // See comment in gtabset.c (fn GTabSetRemoveTabByPos)
-static void CVMenuCloseTab(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e));
+static void CVMenuCloseTab(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e));
 static void CVTabSetRemoveSync(GWindow gw, int pos) {
     CharView* cv = (CharView*) GDrawGetUserData(gw);
     // There's no other good way to pass an "argument" to this function as its definition
@@ -3787,7 +3787,7 @@ static void CVSwitchToTab(CharView *cv,int tnum ) {
     CVChangeChar(cv,unienc);
 }
 
-static void CVMenuShowTab(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void CVMenuShowTab(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     CVSwitchToTab(cv,mi->mid);
 }
@@ -6631,7 +6631,7 @@ return( true );
 
 #define MID_Warnings	3000
 
-static void CVMenuClose(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuClose(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     if ( cv->b.container )
 	(cv->b.container->funcs->doClose)(cv->b.container);
@@ -6640,7 +6640,7 @@ static void CVMenuClose(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED
 }
 
 // This can be triggered two ways: by the "X" buttons on tabs, and regularly in the menu.
-static void CVMenuCloseTab(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuCloseTab(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     int pos, i;
 
@@ -6667,7 +6667,7 @@ return;
     cv->ctpos = -1;
 }
 
-static void CVMenuOpen(GWindow gw, struct gmenuitem *mi, GEvent *g) {
+static void CVMenuOpen(GWindow gw, struct gdmenuitem *mi, GEvent *g) {
     CharView *d = (CharView*)GDrawGetUserData(gw);
     FontView *fv = NULL;
     if (d) {
@@ -6676,45 +6676,45 @@ static void CVMenuOpen(GWindow gw, struct gmenuitem *mi, GEvent *g) {
     _FVMenuOpen(fv);
 }
 
-static void CVMenuOpenBitmap(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuOpenBitmap(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     if ( cv->b.fv->sf->bitmaps==NULL )
 return;
     BitmapViewCreatePick(CVCurEnc(cv),(FontView *) (cv->b.fv));
 }
 
-static void CVMenuOpenMetrics(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuOpenMetrics(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     MetricsViewCreate((FontView *) (cv->b.fv),cv->b.sc,NULL);
 }
 
-static void CVMenuSave(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuSave(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     _FVMenuSave((FontView *) (cv->b.fv));
 }
 
-static void CVMenuSaveAs(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuSaveAs(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     _FVMenuSaveAs((FontView *) (cv->b.fv));
 }
 
-static void CVMenuGenerate(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuGenerate(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     FontViewBase *fv = cv->b.fv;
     SFGenerateFont(cv->b.sc->parent,CVLayer((CharViewBase *) cv),false,fv->normal==NULL?fv->map:fv->normal);
 }
 
-static void CVMenuGenerateFamily(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuGenerateFamily(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     _FVMenuGenerate((FontView *) (cv->b.fv),gf_macfamily);
 }
 
-static void CVMenuGenerateTTC(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuGenerateTTC(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     _FVMenuGenerate((FontView *) (cv->b.fv),gf_ttc);
 }
 
-static void CVMenuExport(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuExport(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     CVExport(cv);
 }
@@ -6745,13 +6745,13 @@ static void CVInkscapeAdjust(CharView *cv) {
 	CVFit(cv);
 }
 
-static void CVMenuImport(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuImport(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     CVImport(cv);
     CVInkscapeAdjust(cv);
 }
 
-static void CVMenuRevert(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuRevert(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     FVDelay((FontView *) (cv->b.fv),(void (*)(FontView *)) FVRevert);
 			    /* The revert command can potentially */
@@ -6760,7 +6760,7 @@ static void CVMenuRevert(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSE
 			    /* we get a crash. So delay till after the menu completes */
 }
 
-static void CVMenuRevertGlyph(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuRevertGlyph(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     SplineChar *sc, temp;
     Undoes **undoes;
@@ -6816,26 +6816,26 @@ return;
     }
 }
 
-static void CVAddWordList(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e))
+static void CVAddWordList(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e))
 {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     WordlistLoadToGTextInfo( cv->charselector, &cv->charselectoridx );
 }
 
-static void CVMenuPrint(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuPrint(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
 
     PrintFFDlg(NULL,cv->b.sc,NULL);
 }
 
 #if !defined(_NO_PYTHON)
-static void CVMenuExecute(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuExecute(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     ScriptDlg((FontView *) (cv->b.fv),cv);
 }
 #endif		/* !_NO_PYTHON */
 
-static void fllistcheck(GWindow gw, struct gmenuitem *mi,GEvent *UNUSED(e)) {
+static void fllistcheck(GWindow gw, struct gdmenuitem *mi,GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     FontView *fvs;
 
@@ -6878,62 +6878,62 @@ static void fllistcheck(GWindow gw, struct gmenuitem *mi,GEvent *UNUSED(e)) {
     }
 }
 
-static void CVMenuFontInfo(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuFontInfo(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     FontInfo(cv->b.sc->parent,CVLayer((CharViewBase *) cv),-1,false);
 }
 
-static void CVMenuFindProblems(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuFindProblems(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     FindProblems(NULL,cv,NULL);
 }
 
-static void CVMenuEmbolden(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuEmbolden(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     EmboldenDlg(NULL,cv);
 }
 
-static void CVMenuItalic(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuItalic(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     ItalicDlg(NULL,cv);
 }
 
-static void CVMenuOblique(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuOblique(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     ObliqueDlg(NULL,cv);
 }
 
-static void CVMenuCondense(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuCondense(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     CondenseExtendDlg(NULL,cv);
 }
 
-static void CVMenuChangeXHeight(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuChangeXHeight(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     ChangeXHeightDlg(NULL,cv);
 }
 
-static void CVMenuChangeGlyph(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuChangeGlyph(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     GlyphChangeDlg(NULL,cv,gc_generic);
 }
 
-static void CVMenuInline(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuInline(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     OutlineDlg(NULL,cv,NULL,true);
 }
 
-static void CVMenuOutline(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuOutline(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     OutlineDlg(NULL,cv,NULL,false);
 }
 
-static void CVMenuShadow(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuShadow(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     ShadowDlg(NULL,cv,NULL,false);
 }
 
-static void CVMenuWireframe(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuWireframe(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     ShadowDlg(NULL,cv,NULL,true);
 }
@@ -6952,24 +6952,24 @@ static void _CVMenuScale(CharView *cv, int mid) {
     }
 }
 
-static void CVMenuScale(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void CVMenuScale(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     _CVMenuScale(cv,mi->mid);
 }
 
-static void CVMenuShowHide(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuShowHide(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     CVShows.showpoints = cv->showpoints = !cv->showpoints;
     GDrawRequestExpose(cv->v,NULL,false);
 }
 
-static void CVMenuShowHideControlPoints(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuShowHideControlPoints(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     CVShows.alwaysshowcontrolpoints = cv->alwaysshowcontrolpoints = !cv->alwaysshowcontrolpoints;
     GDrawRequestExpose(cv->v,NULL,false);
 }
 
-static void CVMenuNumberPoints(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void CVMenuNumberPoints(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
 
     switch ( mi->mid ) {
@@ -6996,7 +6996,7 @@ static void CVMenuNumberPoints(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(
     SCUpdateAll(cv->b.sc);
 }
 
-static void CVMenuMarkExtrema(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuMarkExtrema(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
 
     CVShows.markextrema = cv->markextrema = !cv->markextrema;
@@ -7004,7 +7004,7 @@ static void CVMenuMarkExtrema(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *
     GDrawRequestExpose(cv->v,NULL,false);
 }
 
-static void CVMenuMarkPointsOfInflection(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuMarkPointsOfInflection(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
 
     CVShows.markpoi = cv->markpoi = !cv->markpoi;
@@ -7012,7 +7012,7 @@ static void CVMenuMarkPointsOfInflection(GWindow gw, struct gmenuitem *UNUSED(mi
     GDrawRequestExpose(cv->v,NULL,false);
 }
 
-static void CVMenuShowAlmostHV(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuShowAlmostHV(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
 
     CVShows.showalmosthvlines = cv->showalmosthvlines = !cv->showalmosthvlines;
@@ -7020,7 +7020,7 @@ static void CVMenuShowAlmostHV(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent 
     GDrawRequestExpose(cv->v,NULL,false);
 }
 
-static void CVMenuShowAlmostHVCurves(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuShowAlmostHVCurves(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
 
     CVShows.showalmosthvcurves = cv->showalmosthvcurves = !cv->showalmosthvcurves;
@@ -7028,7 +7028,7 @@ static void CVMenuShowAlmostHVCurves(GWindow gw, struct gmenuitem *UNUSED(mi), G
     GDrawRequestExpose(cv->v,NULL,false);
 }
 
-static void CVMenuDefineAlmost(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuDefineAlmost(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     char buf[20], *end;
     int val;
@@ -7052,7 +7052,7 @@ return;
     }
 }
 
-static void CVMenuShowCPInfo(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuShowCPInfo(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
 
     CVShows.showcpinfo = cv->showcpinfo = !cv->showcpinfo;
@@ -7061,7 +7061,7 @@ static void CVMenuShowCPInfo(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *U
     /*  which s/he is currently not, s/he is manipulating the menu */
 }
 
-static void CVMenuShowTabs(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuShowTabs(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
 
     CVShows.showtabs = cv->showtabs = !cv->showtabs;
@@ -7069,7 +7069,7 @@ static void CVMenuShowTabs(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNU
     SavePrefs(true);
 }
 
-static void CVMenuShowSideBearings(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuShowSideBearings(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
 
     CVShows.showsidebearings = cv->showsidebearings = !cv->showsidebearings;
@@ -7077,7 +7077,7 @@ static void CVMenuShowSideBearings(GWindow gw, struct gmenuitem *UNUSED(mi), GEv
     GDrawRequestExpose(cv->v,NULL,false);
 }
 
-static void CVMenuShowRefNames(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuShowRefNames(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
 
     CVShows.showrefnames = cv->showrefnames = !cv->showrefnames;
@@ -7085,7 +7085,7 @@ static void CVMenuShowRefNames(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent 
     GDrawRequestExpose(cv->v,NULL,false);
 }
 
-static void CVMenuSnapOutlines(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuSnapOutlines(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
 
     CVShows.snapoutlines = cv->snapoutlines = !cv->snapoutlines;
@@ -7093,7 +7093,7 @@ static void CVMenuSnapOutlines(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent 
     GDrawRequestExpose(cv->v,NULL,false);
 }
 
-static void CVMenuShowHints(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void CVMenuShowHints(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
 
     switch ( mi->mid ) {
@@ -7162,12 +7162,12 @@ static void _CVMenuShowHideRulers(CharView *cv) {
     SavePrefs(true);
 }
 
-static void CVMenuShowHideRulers(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuShowHideRulers(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     _CVMenuShowHideRulers(cv);
 }
 
-static void CVMenuFill(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuFill(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
 
     CVShows.showfilled = cv->showfilled = !cv->showfilled;
@@ -7271,7 +7271,7 @@ static void CVPreviewModeSet(GWindow gw, int checked ) {
     GDrawRequestExpose(cv->v,NULL,false);
 }
 
-static void CVMenuPreview(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void CVMenuPreview(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     int checked = mi->ti.checked;
 
 #if 0
@@ -7286,7 +7286,7 @@ static void CVMenuPreview(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
     CVPreviewModeSet(gw, checked);
 }
 
-static void CVMenuDraggingComparisonOutline(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e))
+static void CVMenuDraggingComparisonOutline(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e))
 {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
 
@@ -7298,7 +7298,7 @@ static void CVMenuDraggingComparisonOutline(GWindow gw, struct gmenuitem *mi, GE
 }
 
 
-static void CVMenuShowGridFit(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuShowGridFit(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
 
     if ( !hasFreeType() || cv->dv!=NULL )
@@ -7307,7 +7307,7 @@ static void CVMenuShowGridFit(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *
     CVFtPpemDlg(cv,false);
 }
 
-static void CVMenuShowGridFitLiveUpdate(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuShowGridFitLiveUpdate(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
 
     if ( !hasFreeType() || cv->dv!=NULL )
@@ -7316,7 +7316,7 @@ static void CVMenuShowGridFitLiveUpdate(GWindow gw, struct gmenuitem *UNUSED(mi)
     CVFtPpemDlg(cv,false);
 }
 
-static void CVMenuChangePointSize(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void CVMenuChangePointSize(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
 
     if ( !hasFreeType() || cv->dv!=NULL || !cv->show_ft_results )
@@ -7349,12 +7349,12 @@ return;
     SCRefreshTitles(cv->b.sc);
 }
 
-static void CVMenuEditInstrs(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuEditInstrs(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     SCEditInstructions(cv->b.sc);
 }
 
-static void CVMenuDebug(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuDebug(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
 
     if ( !hasFreeTypeDebugger())
@@ -7362,7 +7362,7 @@ return;
     CVFtPpemDlg(cv,true);
 }
 
-static void CVMenuDeltas(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuDeltas(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
 
     if ( !hasFreeTypeDebugger())
@@ -7370,7 +7370,7 @@ return;
     DeltaSuggestionDlg(NULL,cv);
 }
 
-static void CVMenuClearInstrs(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuClearInstrs(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
 
     if ( cv->b.sc->ttf_instrs_len!=0 ) {
@@ -7384,29 +7384,29 @@ static void CVMenuClearInstrs(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *
     }
 }
 
-static void CVMenuKernPairs(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuKernPairs(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     SFShowKernPairs(cv->b.sc->parent,cv->b.sc,NULL,CVLayer((CharViewBase *) cv));
 }
 
-static void CVMenuLigatures(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuLigatures(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     SFShowLigatures(cv->b.fv->sf,cv->b.sc);
 }
 
-static void CVMenuAnchorPairs(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuAnchorPairs(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     SFShowKernPairs(cv->b.sc->parent,cv->b.sc,(AnchorClass *) (-1),CVLayer((CharViewBase *) cv));
 }
 
-static void CVMenuAPDetach(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuAPDetach(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     cv->apmine = cv->apmatch = NULL;
     cv->apsc = NULL;
     GDrawRequestExpose(cv->v,NULL,false);
 }
 
-static void CVMenuAPAttachSC(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void CVMenuAPAttachSC(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     enum anchor_type type;
     AnchorPoint *ap;
@@ -7567,7 +7567,7 @@ return;
 }
 
 
-static void CVMenuChangeChar(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void CVMenuChangeChar(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     _CVMenuChangeChar(cv,mi->mid);
 }
@@ -8231,17 +8231,17 @@ static void CVSelectContours(CharView *cv) {
     SCUpdateAll(cv->b.sc);
 }
 
-static void CVMenuSelectContours(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuSelectContours(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     CVSelectContours(cv);
 }
 
-static void CVMenuSelectPointAt(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuSelectPointAt(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     CVSelectPointAt(cv);
 }
 
-static void CVNextPrevSpiroPt(CharView *cv, struct gmenuitem *mi) {
+static void CVNextPrevSpiroPt(CharView *cv, struct gdmenuitem *mi) {
     CharViewTab* tab = CVGetActiveTab(cv);
     RefChar *r; ImageList *il;
     SplineSet *spl, *ss;
@@ -8311,7 +8311,7 @@ return;
     SCUpdateAll(cv->b.sc);
 }
 
-static void CVNextPrevPt(CharView *cv, struct gmenuitem *mi) {
+static void CVNextPrevPt(CharView *cv, struct gdmenuitem *mi) {
     CharViewTab* tab = CVGetActiveTab(cv);
     SplinePoint *selpt=NULL, *other;
     RefChar *r; ImageList *il;
@@ -8386,12 +8386,12 @@ return;
     SCUpdateAll(cv->b.sc);
 }
 
-static void CVMenuNextPrevPt(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void CVMenuNextPrevPt(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     CVNextPrevPt(cv, mi);
 }
 
-static void CVNextPrevCPt(CharView *cv, struct gmenuitem *mi) {
+static void CVNextPrevCPt(CharView *cv, struct gdmenuitem *mi) {
     SplinePoint *selpt=NULL;
     RefChar *r; ImageList *il;
     SplineSet *spl;
@@ -8406,12 +8406,12 @@ return;
     SCUpdateAll(cv->b.sc);
 }
 
-static void CVMenuNextPrevCPt(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void CVMenuNextPrevCPt(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     CVNextPrevCPt(cv, mi);
 }
 
-static void CVMenuGotoChar(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuGotoChar(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     int pos;
 
@@ -8425,21 +8425,21 @@ return;
 	CVChangeChar(cv,pos);
 }
 
-static void CVMenuFindInFontView(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuFindInFontView(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     CVDoFindInFontView(cv);
 }
 
-static void CVMenuPalettesDock(GWindow UNUSED(gw), struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuPalettesDock(GWindow UNUSED(gw), struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     PalettesChangeDocking();
 }
 
-static void CVMenuPaletteShow(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void CVMenuPaletteShow(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     CVPaletteSetVisible(cv, mi->mid==MID_Tools, !CVPaletteIsVisible(cv, mi->mid==MID_Tools));
 }
 
-static void cv_pllistcheck(CharView *cv, struct gmenuitem *mi) {
+static void cv_pllistcheck(CharView *cv, struct gdmenuitem *mi) {
     extern int palettes_docked;
 
     for ( mi = mi->sub; mi->ti.text!=NULL || mi->ti.line ; ++mi ) {
@@ -8457,26 +8457,26 @@ static void cv_pllistcheck(CharView *cv, struct gmenuitem *mi) {
     }
 }
 
-static void pllistcheck(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void pllistcheck(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     cv_pllistcheck(cv, mi);
 }
 
 /*
  * Unused
-static void tablistcheck(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void tablistcheck(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     GDrawGetUserData(gw);
 }
 */
 
-static void CVUndo(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVUndo(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
 
     CVDoUndo(&cv->b);
     cv->lastselpt = NULL;
 }
 
-static void CVRedo(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVRedo(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
 
     CVDoRedo(&cv->b);
@@ -8495,27 +8495,27 @@ return;
 	CVClearSel(cv);
 }
 
-static void CVCopy(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVCopy(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     _CVCopy(cv);
 }
 
-static void CVCopyLookupData(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVCopyLookupData(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     SCCopyLookupData(cv->b.sc);
 }
 
-static void CVCopyRef(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVCopyRef(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     CopyReference(cv->b.sc);
 }
 
-static void CVMenuCopyGridFit(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuCopyGridFit(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     CVCopyGridFit(&cv->b);
 }
 
-static void CVCopyWidth(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void CVCopyWidth(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     if ( mi->mid==MID_CopyVWidth && !cv->b.sc->parent->hasvmetrics )
 return;
@@ -8580,7 +8580,7 @@ static void CVDoClear(CharView *cv) {
     }
 }
 
-static void CVClear(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVClear(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     int anyanchor;
 
@@ -8591,7 +8591,7 @@ return;
     CVCharChangedUpdate(&cv->b);
 }
 
-static void CVClearBackground(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVClearBackground(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     SCClearBackground(cv->b.sc);
 }
@@ -8610,7 +8610,7 @@ static void _CVPaste(CharView *cv) {
 	cv->b.sc->changedsincelasthinted = false;
 }
 
-static void CVPaste(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVPaste(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     _CVPaste(cv);
     // Before July 2019, all pastes would reset the view such that all splines
@@ -8634,7 +8634,7 @@ return;
     CVCharChangedUpdate(&cv->b);
 }
 
-void CVMerge(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+void CVMerge(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     _CVMerge(cv,false);
 }
@@ -8661,7 +8661,7 @@ static void _CVMergeToLine(CharView *cv, int elide) {
     CVCharChangedUpdate(&cv->b);
 }
 
-void CVMergeToLine(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+void CVMergeToLine(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     _CVMergeToLine(cv,false);
 
@@ -8679,7 +8679,7 @@ static void _CVJoin(CharView *cv) {
 	CVCharChangedUpdate(&cv->b);
 }
 
-static void CVJoin(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVJoin(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     _CVJoin(cv);
 }
@@ -8694,12 +8694,12 @@ return;
     CVCharChangedUpdate(&cv->b);
 }
 
-static void CVCut(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVCut(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     _CVCut(cv);
 }
 
-static void CVCopyFgBg(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVCopyFgBg(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
 
     if ( cv->b.sc->layers[ly_fore].splines==NULL )
@@ -8707,17 +8707,17 @@ return;
     SCCopyLayerToLayer(cv->b.sc,ly_fore,ly_back,false);
 }
 
-static void CVMenuCopyL2L(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuCopyL2L(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     CVCopyLayerToLayer(cv);
 }
 
-static void CVMenuCompareL2L(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuCompareL2L(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     CVCompareLayerToLayer(cv);
 }
 
-static void CVSelectAll(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void CVSelectAll(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     int mask = -1;
 
@@ -8735,7 +8735,7 @@ static void CVSelectAll(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
 	SCUpdateAll(cv->b.sc);
 }
 
-static void CVSelectOpenContours(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVSelectOpenContours(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     SplineSet *ss;
     int i;
@@ -8762,19 +8762,19 @@ static void CVSelectOpenContours(GWindow gw, struct gmenuitem *UNUSED(mi), GEven
 	SCUpdateAll(cv->b.sc);
 }
 
-static void CVSelectNone(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVSelectNone(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     if ( CVClearSel(cv))
 	SCUpdateAll(cv->b.sc);
 }
 
-static void CVSelectInvert(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVSelectInvert(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     CVInvertSel(cv);
     SCUpdateAll(cv->b.sc);
 }
 
-static void CVSelectWidth(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVSelectWidth(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     if ( HasUseMyMetrics(cv->b.sc,CVLayer((CharViewBase *) cv))!=NULL )
 return;
@@ -8783,7 +8783,7 @@ return;
     SCUpdateAll(cv->b.sc);
 }
 
-static void CVSelectVWidth(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVSelectVWidth(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     if ( !cv->showvmetrics || !cv->b.sc->parent->hasvmetrics )
 return;
@@ -8794,7 +8794,7 @@ return;
     SCUpdateAll(cv->b.sc);
 }
 
-static void CVSelectHM(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVSelectHM(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     SplinePoint *sp; SplineSet *spl; RefChar *r; ImageList *im;
     spiro_cp *junk;
@@ -8848,7 +8848,7 @@ static void _CVUnlinkRef(CharView *cv) {
     }
 }
 
-static void CVUnlinkRef(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVUnlinkRef(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     _CVUnlinkRef(cv);
 }
@@ -9047,7 +9047,7 @@ static char* getValueFromUser( CharView *cv, const char* windowTitle, const char
 
 
 
-static void CVRemoveUndoes(GWindow gw,struct gmenuitem *mi,GEvent *e)
+static void CVRemoveUndoes(GWindow gw,struct gdmenuitem *mi,GEvent *e)
 {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     static int lastValue = 10;
@@ -9065,7 +9065,7 @@ static void CVRemoveUndoes(GWindow gw,struct gmenuitem *mi,GEvent *e)
 /* we can only copy if there's something selected to copy */
 /* figure out what things are possible from the edit menu before the user */
 /*  pulls it down */
-static void cv_edlistcheck(CharView *cv, struct gmenuitem *mi) {
+static void cv_edlistcheck(CharView *cv, struct gdmenuitem *mi) {
     int anypoints, anyrefs, anyimages, anyanchor;
 
     CVAnySel(cv,&anypoints,&anyrefs,&anyimages,&anyanchor);
@@ -9122,12 +9122,12 @@ static void cv_edlistcheck(CharView *cv, struct gmenuitem *mi) {
     }
 }
 
-static void edlistcheck(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void edlistcheck(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     cv_edlistcheck(cv, mi);
 }
 
-static void CVMenuAcceptableExtrema(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuAcceptableExtrema(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     SplineSet *ss;
     Spline *s, *first;
@@ -9143,7 +9143,7 @@ static void CVMenuAcceptableExtrema(GWindow gw, struct gmenuitem *UNUSED(mi), GE
     }
 }
 
-static void _CVMenuPointType(CharView *cv, struct gmenuitem *mi) {
+static void _CVMenuPointType(CharView *cv, struct gdmenuitem *mi) {
     int pointtype = mi->mid==MID_Corner?pt_corner:mi->mid==MID_Tangent?pt_tangent:
 	    mi->mid==MID_Curve?pt_curve:pt_hvcurve;
     SplinePointList *spl;
@@ -9167,7 +9167,7 @@ static void _CVMenuPointType(CharView *cv, struct gmenuitem *mi) {
     CVCharChangedUpdate(&cv->b);
 }
 
-static void _CVMenuSpiroPointType(CharView *cv, struct gmenuitem *mi) {
+static void _CVMenuSpiroPointType(CharView *cv, struct gdmenuitem *mi) {
     int pointtype = mi->mid==MID_SpiroCorner?SPIRO_CORNER:
 		    mi->mid==MID_SpiroG4?SPIRO_G4:
 		    mi->mid==MID_SpiroG2?SPIRO_G2:
@@ -9193,7 +9193,7 @@ static void _CVMenuSpiroPointType(CharView *cv, struct gmenuitem *mi) {
 }
 
 
-void CVMenuPointType(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+void CVMenuPointType(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     if ( cv->b.sc->inspiro && hasspiro())
 	_CVMenuSpiroPointType(cv, mi);
@@ -9201,7 +9201,7 @@ void CVMenuPointType(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
 	_CVMenuPointType(cv, mi);
 }
 
-static void _CVMenuImplicit(CharView *cv, struct gmenuitem *mi) {
+static void _CVMenuImplicit(CharView *cv, struct gdmenuitem *mi) {
     SplinePointList *spl;
     Spline *spline, *first;
     int dontinterpolate = mi->mid==MID_NoImplicitPt;
@@ -9224,13 +9224,13 @@ return;
     CVCharChangedUpdate(&cv->b);
 }
 
-static void CVMenuImplicit(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void CVMenuImplicit(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     _CVMenuImplicit(cv, mi);
 }
 
 static GMenuItem2 spiroptlist[], ptlist[];
-static void cv_ptlistcheck(CharView *cv, struct gmenuitem *mi) {
+static void cv_ptlistcheck(CharView *cv, struct gdmenuitem *mi) {
     int type = -2, cnt=0, ccp_cnt=0, spline_selected=0;
     int spirotype = -2, opencnt=0, spirocnt=0;
     SplinePointList *spl, *sel=NULL, *onlysel=NULL;
@@ -9377,12 +9377,12 @@ static void cv_ptlistcheck(CharView *cv, struct gmenuitem *mi) {
     }
 }
 
-static void ptlistcheck(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void ptlistcheck(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     cv_ptlistcheck(cv, mi);
 }
 
-static void _CVMenuDir(CharView *cv, struct gmenuitem *mi) {
+static void _CVMenuDir(CharView *cv, struct gdmenuitem *mi) {
     int splinepoints, dir;
     SplinePointList *spl;
     Spline *spline, *first;
@@ -9419,17 +9419,17 @@ static void _CVMenuDir(CharView *cv, struct gmenuitem *mi) {
 	CVCharChangedUpdate(&cv->b);
 }
 
-static void CVMenuDir(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void CVMenuDir(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     _CVMenuDir(cv, mi);
 }
 
-static void CVMenuCheckSelf(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuCheckSelf(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     CVShows.checkselfintersects = cv->checkselfintersects = !cv->checkselfintersects;
 }
 
-static void CVMenuGlyphSelfIntersects(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuGlyphSelfIntersects(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     Spline *s=NULL, *s2=NULL;
     SplineSet *ss;
@@ -9668,12 +9668,12 @@ void CVDoTransform(CharView *cv, enum cvtools cvt ) {
 	    cvt);
 }
 
-static void CVMenuTransform(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuTransform(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     CVDoTransform(cv,cvt_none);
 }
 
-static void CVMenuPOV(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuPOV(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     struct pov_data pov_data;
     if ( PointOfViewDlg(&pov_data,cv->b.sc->parent,true)==-1 )
@@ -9681,13 +9681,13 @@ return;
     CVPointOfView(cv,&pov_data);
 }
 
-static void CVMenuNLTransform(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuNLTransform(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     cv->lastselpt = NULL; cv->lastselcp = NULL;
     NonLinearDlg(NULL,cv);
 }
 
-void CVMenuConstrain(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+void CVMenuConstrain(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     CVConstrainSelection( cv,
                           mi->mid==MID_Average  ? constrainSelection_AveragePoints :
@@ -9695,7 +9695,7 @@ void CVMenuConstrain(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
                           constrainSelection_SpaceSelectedRegions );
 }
 
-static void CVMenuMakeParallel(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuMakeParallel(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     CVMakeParallel(cv);
 }
@@ -9725,17 +9725,17 @@ static void _CVMenuRound2Int(CharView *cv, double factor) {
     CVCharChangedUpdate(&cv->b);
 }
 
-static void CVMenuRound2Int(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuRound2Int(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     _CVMenuRound2Int(cv,1.0);
 }
 
-static void CVMenuRound2Hundredths(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuRound2Hundredths(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     _CVMenuRound2Int(cv,100.0);
 }
 
-static void CVMenuCluster(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuCluster(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     int layer = cv->b.drawmode == dm_grid ? ly_grid :
 		cv->b.drawmode == dm_back ? ly_back
@@ -9743,18 +9743,18 @@ static void CVMenuCluster(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUS
     SCRoundToCluster(cv->b.sc,layer,true,.1,.5);
 }
 
-static void CVMenuStroke(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuStroke(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     CVStroke(cv);
 }
 
 #ifdef FONTFORGE_CONFIG_TILEPATH
-static void CVMenuTilePath(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuTilePath(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     CVTile(cv);
 }
 
-static void CVMenuPatternTile(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuPatternTile(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     CVPatternTile(cv);
 }
@@ -9789,7 +9789,7 @@ static void _CVMenuOverlap(CharView *cv,enum overlap_type ot) {
     CVCharChangedUpdate(&cv->b);
 }
 
-static void CVMenuOverlap(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void CVMenuOverlap(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     int anysel;
 
@@ -9800,7 +9800,7 @@ static void CVMenuOverlap(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
 			  (anysel ? over_fisel : over_findinter));
 }
 
-static void CVMenuOrder(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void CVMenuOrder(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     SplinePointList *spl;
     RefChar *r;
@@ -9970,7 +9970,7 @@ static void _CVMenuAddExtrema(CharView *cv) {
     CVCharChangedUpdate(&cv->b);
 }
 
-static void CVMenuAddExtrema(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuAddExtrema(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     _CVMenuAddExtrema(cv);
 }
@@ -9983,15 +9983,15 @@ static void _CVMenuAction(GWindow gw, void (*func)(SplineChar*, SplineSet*, int)
     CVCharChangedUpdate(&cv->b);
 }
 
-static void CVMenuAddInflections(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuAddInflections(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     _CVMenuAction(gw,&SplineCharAddInflections);
 }
 
-static void CVMenuBalance(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuBalance(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     _CVMenuAction(gw,&SplineCharBalance);
 }
 
-static void CVMenuHarmonize(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuHarmonize(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     _CVMenuAction(gw,&SplineCharHarmonize);
 }
 
@@ -10021,17 +10021,17 @@ return;
     CVCharChangedUpdate(&cv->b);
 }
 
-static void CVMenuSimplify(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuSimplify(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     CVSimplify(cv,0);
 }
 
-static void CVMenuSimplifyMore(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuSimplifyMore(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     CVSimplify(cv,1);
 }
 
-static void CVMenuCleanupGlyph(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuCleanupGlyph(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     CVSimplify(cv,-1);
 }
@@ -10061,7 +10061,7 @@ static void CVCanonicalStart(CharView *cv) {
 	}
 }
 
-static void CVMenuCanonicalStart(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuCanonicalStart(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     CVCanonicalStart(cv);
 }
@@ -10070,7 +10070,7 @@ static void CVCanonicalContour(CharView *cv) {
     CanonicalContours(cv->b.sc,CVLayer((CharViewBase *) cv));
 }
 
-static void CVMenuCanonicalContours(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuCanonicalContours(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     CVCanonicalContour(cv);
 }
@@ -10101,7 +10101,7 @@ return;
     CVCharChangedUpdate(&cv->b);
 }
 
-static void CVMenuMakeFirst(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuMakeFirst(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     _CVMenuMakeFirst(cv);
 }
@@ -10139,12 +10139,12 @@ return;
     CVCharChangedUpdate(&cv->b);
 }
 
-static void CVMenuSpiroMakeFirst(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuSpiroMakeFirst(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     _CVMenuSpiroMakeFirst(cv);
 }
 
-static void CVMenuMakeLine(GWindow gw, struct gmenuitem *mi, GEvent *e) {
+static void CVMenuMakeLine(GWindow gw, struct gdmenuitem *mi, GEvent *e) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     _CVMenuMakeLine((CharViewBase *) cv,mi->mid==MID_MakeArc, e!=NULL && (e->u.mouse.state&ksm_meta));
 }
@@ -10166,7 +10166,7 @@ void _CVMenuNamePoint(CharView *cv, SplinePoint *sp) {
     }
 }
 
-static void CVMenuNamePoint(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuNamePoint(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     SplinePointList *spl;
     SplinePoint *sp;
@@ -10228,7 +10228,7 @@ return;
     }
 }
 
-static void CVMenuNameContour(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuNameContour(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     _CVMenuNameContour(cv);
 }
@@ -10479,7 +10479,7 @@ return;		/* Need a spline */
     GDrawDestroyWindow(iosa.gw);
 }
 
-static void CVMenuInsertPt(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuInsertPt(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     _CVMenuInsertPt(cv);
 }
@@ -10542,7 +10542,7 @@ static void _CVCenterCP(CharView *cv) {
 	CVCharChangedUpdate(&cv->b);
 }
 
-static void CVMenuCenterCP(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuCenterCP(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     _CVCenterCP(cv);
 }
@@ -10577,7 +10577,7 @@ void CVMakeClipPath(CharView *cv) {
 	CVCharChangedUpdate((CharViewBase *) cv);
 }
 
-static void CVMenuClipPath(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuClipPath(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     CVMakeClipPath(cv);
 }
@@ -10598,12 +10598,12 @@ return;
     ApGetInfo(cv,NULL);
 }
 
-static void CVMenuAddAnchor(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuAddAnchor(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     CVAddAnchor(cv);
 }
 
-static void CVMenuAutotrace(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *e) {
+static void CVMenuAutotrace(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *e) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     GCursor ct;
 
@@ -10614,7 +10614,7 @@ static void CVMenuAutotrace(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *e)
     GDrawSetCursor(cv->v,ct);
 }
 
-static void CVMenuBuildAccent(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuBuildAccent(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     extern int onlycopydisplayed;
     int layer = CVLayer((CharViewBase *) cv);
@@ -10626,7 +10626,7 @@ return;
     SCBuildComposit(cv->b.fv->sf,cv->b.sc,layer,NULL,onlycopydisplayed,true);
 }
 
-static void CVMenuBuildComposite(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuBuildComposite(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     extern int onlycopydisplayed;
     int layer = CVLayer((CharViewBase *) cv);
@@ -10638,7 +10638,7 @@ return;
     SCBuildComposit(cv->b.fv->sf,cv->b.sc,layer,NULL,onlycopydisplayed,false);
 }
 
-static void CVMenuReverseDir(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuReverseDir(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     int changed=false;
     SplineSet *ss;
@@ -10657,7 +10657,7 @@ static void CVMenuReverseDir(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *U
 	CVCharChangedUpdate(&cv->b);
 }
 
-static void CVMenuCorrectDir(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuCorrectDir(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     int changed=false, refchanged=false;
     RefChar *ref;
@@ -10697,37 +10697,37 @@ return;
 	CVCharChangedUpdate(&cv->b);
 }
 
-static void CVMenuInsertText(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuInsertText(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     InsertTextDlg(cv);
 }
 
-static void CVMenuGetInfo(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuGetInfo(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     CVGetInfo(cv);
 }
 
-static void CVMenuCharInfo(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuCharInfo(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     SCCharInfo(cv->b.sc,CVLayer((CharViewBase *) cv),cv->b.fv->map,CVCurEnc(cv));
 }
 
-static void CVMenuShowDependentRefs(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuShowDependentRefs(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     SCRefBy(cv->b.sc);
 }
 
-static void CVMenuShowDependentSubs(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuShowDependentSubs(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     SCSubBy(cv->b.sc);
 }
 
-static void CVMenuBitmaps(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void CVMenuBitmaps(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     BitmapDlg((FontView *) (cv->b.fv),cv->b.sc,mi->mid==MID_RemoveBitmaps?-1: (mi->mid==MID_AvailBitmaps) );
 }
 
-static void cv_allistcheck(CharView *cv, struct gmenuitem *mi) {
+static void cv_allistcheck(CharView *cv, struct gdmenuitem *mi) {
     int selpoints = 0;
     SplinePointList *spl;
     SplinePoint *sp=NULL;
@@ -10763,12 +10763,12 @@ static void cv_allistcheck(CharView *cv, struct gmenuitem *mi) {
     }
 }
 
-static void allistcheck(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void allistcheck(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     cv_allistcheck(cv, mi);
 }
 
-static void cv_balistcheck(CharView *cv, struct gmenuitem *mi) {
+static void cv_balistcheck(CharView *cv, struct gdmenuitem *mi) {
     int layer = CVLayer((CharViewBase *) cv);
 
     for ( mi = mi->sub; mi->ti.text!=NULL || mi->ti.line ; ++mi ) {
@@ -10783,12 +10783,12 @@ static void cv_balistcheck(CharView *cv, struct gmenuitem *mi) {
     }
 }
 
-static void balistcheck(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void balistcheck(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     cv_balistcheck(cv, mi);
 }
 
-static void delistcheck(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void delistcheck(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
 
     for ( mi = mi->sub; mi->ti.text!=NULL || mi->ti.line ; ++mi ) {
@@ -10803,7 +10803,7 @@ static void delistcheck(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
     }
 }
 
-static void rndlistcheck(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void rndlistcheck(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
 
     for ( mi = mi->sub; mi->ti.text!=NULL || mi->ti.line ; ++mi ) {
@@ -10815,7 +10815,7 @@ static void rndlistcheck(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
     }
 }
 
-static void cv_ellistcheck(CharView *cv, struct gmenuitem *mi) {
+static void cv_ellistcheck(CharView *cv, struct gdmenuitem *mi) {
     int anypoints = 0, splinepoints, dir = -2;
     int self_intersects=-2;
     SplinePointList *spl;
@@ -10963,12 +10963,12 @@ static void cv_ellistcheck(CharView *cv, struct gmenuitem *mi) {
     }
 }
 
-static void ellistcheck(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void ellistcheck(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     cv_ellistcheck(cv, mi);
 }
 
-static void CVMenuAutoHint(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuAutoHint(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     /*int removeOverlap = e==NULL || !(e->u.mouse.state&ksm_shift);*/
     int was = cv->b.sc->changedsincelasthinted;
@@ -10984,23 +10984,23 @@ static void CVMenuAutoHint(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNU
     }
 }
 
-static void CVMenuAutoHintSubs(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuAutoHintSubs(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     SCFigureHintMasks(cv->b.sc,CVLayer((CharViewBase *) cv));
     SCUpdateAll(cv->b.sc);
 }
 
-static void CVMenuAutoCounter(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuAutoCounter(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     SCFigureCounterMasks(cv->b.sc);
 }
 
-static void CVMenuDontAutoHint(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuDontAutoHint(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     cv->b.sc->manualhints = !cv->b.sc->manualhints;
 }
 
-static void CVMenuNowakAutoInstr(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuNowakAutoInstr(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     SplineChar *sc = cv->b.sc;
     GlobalInstrCt gic;
@@ -11016,7 +11016,7 @@ static void CVMenuNowakAutoInstr(GWindow gw, struct gmenuitem *UNUSED(mi), GEven
     SCUpdateAll(sc);
 }
 
-static void CVMenuClearHints(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void CVMenuClearHints(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
 
     SCPreserveHints(cv->b.sc,CVLayer((CharViewBase *) cv));
@@ -11077,7 +11077,7 @@ return( 0 );
 return( cnt );
 }
 
-static void CVMenuAddHint(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void CVMenuAddHint(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     BasePoint *bp[4], unit;
     StemInfo *h=NULL;
@@ -11151,12 +11151,12 @@ return;
     SCUpdateAll(cv->b.sc);
 }
 
-static void CVMenuCreateHint(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void CVMenuCreateHint(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     CVCreateHint(cv,mi->mid==MID_CreateHHint,true);
 }
 
-static void CVMenuReviewHints(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuReviewHints(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
 
     if ( cv->b.sc->hstem==NULL && cv->b.sc->vstem==NULL )
@@ -11164,7 +11164,7 @@ return;
     CVReviewHints(cv);
 }
 
-static void htlistcheck(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void htlistcheck(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     int cvlayer = CVLayer((CharViewBase *) cv);
     BasePoint *bp[4], unit;
@@ -11236,7 +11236,7 @@ static void htlistcheck(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
     }
 }
 
-static void mtlistcheck(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void mtlistcheck(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     RefChar *r = HasUseMyMetrics(cv->b.sc,CVLayer((CharViewBase *) cv));
 
@@ -11261,7 +11261,7 @@ static void mtlistcheck(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
     }
 }
 
-static void cv_sllistcheck(CharView *cv, struct gmenuitem *mi) {
+static void cv_sllistcheck(CharView *cv, struct gdmenuitem *mi) {
     SplinePoint *sp; SplineSet *spl; RefChar *r; ImageList *im;
     spiro_cp *scp;
     SplineSet *test;
@@ -11316,12 +11316,12 @@ static void cv_sllistcheck(CharView *cv, struct gmenuitem *mi) {
     }
 }
 
-static void sllistcheck(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void sllistcheck(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     cv_sllistcheck(cv, mi);
 }
 
-static void cv_cblistcheck(CharView *cv, struct gmenuitem *mi) {
+static void cv_cblistcheck(CharView *cv, struct gdmenuitem *mi) {
     int i;
     KernPair *kp;
     SplineChar *sc = cv->b.sc;
@@ -11375,7 +11375,7 @@ static void cv_cblistcheck(CharView *cv, struct gmenuitem *mi) {
     }
 }
 
-static void cv_nplistcheck(CharView *cv, struct gmenuitem *mi) {
+static void cv_nplistcheck(CharView *cv, struct gdmenuitem *mi) {
     SplineChar *sc = cv->b.sc;
     int order2 = cv->b.layerheads[cv->b.drawmode]->order2;
     int is_grid_layer = cv->b.drawmode == dm_grid;
@@ -11405,7 +11405,7 @@ static void cv_nplistcheck(CharView *cv, struct gmenuitem *mi) {
     }
 }
 
-static void gflistcheck(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void gflistcheck(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
 
     for ( mi = mi->sub; mi->ti.text!=NULL || mi->ti.line ; ++mi ) {
@@ -11435,7 +11435,7 @@ static void gflistcheck(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
     }
 }
 
-static void swlistcheck(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void swlistcheck(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     SplineFont *sf = cv->b.sc->parent;
 
@@ -11536,7 +11536,7 @@ static void swlistcheck(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
     }
 }
 
-static void cv_vwlistcheck(CharView *cv, struct gmenuitem *mi) {
+static void cv_vwlistcheck(CharView *cv, struct gdmenuitem *mi) {
     int pos, gid;
     SplineFont *sf = cv->b.sc->parent;
     EncMap *map = cv->b.fv->map;
@@ -11586,22 +11586,22 @@ static void cv_vwlistcheck(CharView *cv, struct gmenuitem *mi) {
     }
 }
 
-static void cblistcheck(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void cblistcheck(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     cv_cblistcheck(cv, mi);
 }
 
-static void nplistcheck(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void nplistcheck(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     cv_nplistcheck(cv, mi);
 }
 
-static void vwlistcheck(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void vwlistcheck(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     cv_vwlistcheck(cv, mi);
 }
 
-static void CVMenuCenter(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void CVMenuCenter(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     DBounds bb;
     real transform[6];
@@ -11638,7 +11638,7 @@ static void CVMenuCenter(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
     cv->b.drawmode = drawmode;
 }
 
-static void CVMenuSetWidth(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void CVMenuSetWidth(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
 
     if ( mi->mid == MID_SetVWidth && !cv->b.sc->parent->hasvmetrics )
@@ -11650,22 +11650,22 @@ return;
 		  wt_vwidth);
 }
 
-static void CVMenuRemoveKern(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuRemoveKern(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     SCRemoveKern(cv->b.sc);
 }
 
-static void CVMenuRemoveVKern(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuRemoveVKern(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     SCRemoveVKern(cv->b.sc);
 }
 
-static void CVMenuKPCloseup(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuKPCloseup(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     KernPairD(cv->b.sc->parent,cv->b.sc,NULL,CVLayer((CharViewBase *) cv),false);
 }
 
-static void CVMenuAnchorsAway(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void CVMenuAnchorsAway(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     AnchorPoint *ap;
 
@@ -11693,9 +11693,9 @@ static GMenuItem2 wnmenu[] = {
     GMENUITEM2_EMPTY
 };
 
-static void CVWindowMenuBuild(GWindow gw, struct gmenuitem *mi, GEvent *e) {
+static void CVWindowMenuBuild(GWindow gw, struct gdmenuitem *mi, GEvent *e) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
-    struct gmenuitem *wmi;
+    struct gdmenuitem *wmi;
 
     WindowMenuBuild(gw,mi,e);
     for ( wmi = mi->sub; wmi->ti.text!=NULL || wmi->ti.line ; ++wmi ) {
@@ -11878,7 +11878,7 @@ static GMenuItem2 smlist[] = {
     GMENUITEM2_EMPTY
 };
 
-static void smlistcheck(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void smlistcheck(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
 
     for ( mi = mi->sub; mi->ti.text!=NULL || mi->ti.line ; ++mi ) {
@@ -11909,7 +11909,7 @@ static GMenuItem2 orlist[] = {
     GMENUITEM2_EMPTY
 };
 
-static void orlistcheck(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void orlistcheck(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     SplinePointList *spl;
     RefChar *r;
@@ -12067,7 +12067,7 @@ static GMenuItem2 ap2list[] = {
     GMENUITEM2_EMPTY
 };
 
-static void ap2listbuild(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void ap2listbuild(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     char buf[300];
     GMenuItem *sub;
@@ -12106,7 +12106,7 @@ static void ap2listbuild(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
     mi->sub = sub;
 }
 
-static void CVMenuKernByClasses(GWindow gw,struct gmenuitem *mi,GEvent *e) {
+static void CVMenuKernByClasses(GWindow gw,struct gdmenuitem *mi,GEvent *e) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     MetricsView *mv = 0;
     SplineFont *sf = cv->b.sc->parent;
@@ -12114,7 +12114,7 @@ static void CVMenuKernByClasses(GWindow gw,struct gmenuitem *mi,GEvent *e) {
     ShowKernClasses(sf, mv, cvlayer, false);
 }
 
-static void CVMenuVKernByClasses(GWindow gw,struct gmenuitem *mi,GEvent *e) {
+static void CVMenuVKernByClasses(GWindow gw,struct gdmenuitem *mi,GEvent *e) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     MetricsView *mv = 0;
     SplineFont *sf = cv->b.sc->parent;
@@ -12122,7 +12122,7 @@ static void CVMenuVKernByClasses(GWindow gw,struct gmenuitem *mi,GEvent *e) {
     ShowKernClasses(sf, mv, cvlayer, true);
 }
 
-static void CVMenuVKernFromHKern(GWindow gw,struct gmenuitem *mi,GEvent *e) {
+static void CVMenuVKernFromHKern(GWindow gw,struct gdmenuitem *mi,GEvent *e) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     FVVKernFromHKern((FontViewBase *) cv->b.fv);
 }
@@ -12161,7 +12161,7 @@ static GMenuItem2 aplist[] = {
     GMENUITEM2_EMPTY
 };
 
-static void aplistcheck(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void aplistcheck(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     SplineChar *sc = cv->b.sc, **glyphs;
     SplineFont *sf = sc->parent;
@@ -12217,11 +12217,11 @@ static void CVMoveInWordListByOffset( CharView* cv, int offset )
     Wordlist_MoveByOffset( cv->charselector, &cv->charselectoridx, offset );
 }
 
-static void CVMenuNextLineInWordList(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void CVMenuNextLineInWordList(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     CharView* cv = (CharView*) GDrawGetUserData(gw);
     CVMoveInWordListByOffset( cv, 1 );
 }
-static void CVMenuPrevLineInWordList(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void CVMenuPrevLineInWordList(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     CharView* cv = (CharView*) GDrawGetUserData(gw);
     CVMoveInWordListByOffset( cv, -1 );
 }
@@ -12320,7 +12320,7 @@ static GMenuItem2 vwlist[] = {
     GMENUITEM2_EMPTY
 };
 
-static void CVMenuShowMMMask(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void CVMenuShowMMMask(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     uint32_t changemask = (uint32_t) (intptr_t) mi->ti.userdata;
     /* Change which mms get displayed in the "background" */
@@ -12342,7 +12342,7 @@ static GMenuItem2 mvlist[] = {
     GMENUITEM2_EMPTY
 };
 
-static void mvlistcheck(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void mvlistcheck(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     int i, base, j;
     MMSet *mm = cv->b.sc->parent->mm;
@@ -12388,7 +12388,7 @@ static void mvlistcheck(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
     }
 }
 
-static void CVMenuReblend(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuReblend(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     char *err;
     MMSet *mm = cv->b.sc->parent->mm;
@@ -12410,7 +12410,7 @@ static GMenuItem2 mmlist[] = {
     GMENUITEM2_EMPTY
 };
 
-static void CVMenuShowSubChar(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void CVMenuShowSubChar(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     SplineFont *new = mi->ti.userdata;
     /* Change to the same char in a different instance font of the mm */
@@ -12419,7 +12419,7 @@ static void CVMenuShowSubChar(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e
     cv->b.layerheads[dm_grid] = &new->grid;
 }
 
-static void mmlistcheck(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void mmlistcheck(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     int i, base, j;
     MMSet *mm = cv->b.sc->parent->mm;
@@ -12457,7 +12457,7 @@ static void mmlistcheck(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
     }
 }
 
-static void CVMenuContextualHelp(GWindow UNUSED(gw), struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void CVMenuContextualHelp(GWindow UNUSED(gw), struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     help("ui/mainviews/charview.html", NULL);
 }
 

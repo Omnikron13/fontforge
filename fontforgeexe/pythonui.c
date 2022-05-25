@@ -126,7 +126,7 @@ struct py_menu_item {
     PyObject *data;			/* May be None (left as None) */
 };
 
-typedef void (*ff_menu_callback)(GWindow gw, struct gmenuitem *mi, GEvent *e);
+typedef void (*ff_menu_callback)(GWindow gw, struct gdmenuitem *mi, GEvent *e);
 
 enum py_menu_type { pmt_font=0, pmt_char=1, pmt_size=2 };
 enum py_menu_flag { pmf_font=1, pmf_char=2 };
@@ -215,7 +215,7 @@ static unichar_t *SetMnemonicSuffix(const unichar_t *menu_string, unichar_t e, u
     return r;
 }
 
-static void py_tllistcheck(struct gmenuitem *mi, PyObject *owner, struct py_menu_data *pmd) {
+static void py_tllistcheck(struct gdmenuitem *mi, PyObject *owner, struct py_menu_data *pmd) {
     PyObject *arglist, *result;
 
     if ( mi == NULL )
@@ -255,7 +255,7 @@ static void py_tllistcheck(struct gmenuitem *mi, PyObject *owner, struct py_menu
     }
 }
 
-static void py_menuactivate(struct gmenuitem *mi, PyObject *owner, struct py_menu_data *pmd) {
+static void py_menuactivate(struct gdmenuitem *mi, PyObject *owner, struct py_menu_data *pmd) {
     PyObject *arglist, *result;
 
     if ( mi->mid==-1 )		/* Submenu */
@@ -282,7 +282,7 @@ static void py_menuactivate(struct gmenuitem *mi, PyObject *owner, struct py_men
 	PyErr_Print();
 }
 
-void cvpy_tllistcheck(GWindow gw,struct gmenuitem *mi,GEvent *e) {
+void cvpy_tllistcheck(GWindow gw,struct gdmenuitem *mi,GEvent *e) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     PyObject *pysc = PySC_From_SC(cv->b.sc);
 
@@ -294,7 +294,7 @@ void cvpy_tllistcheck(GWindow gw,struct gmenuitem *mi,GEvent *e) {
     layer_active_in_ui = ly_fore;
 }
 
-static void cvpy_menuactivate(GWindow gw,struct gmenuitem *mi,GEvent *e) {
+static void cvpy_menuactivate(GWindow gw,struct gdmenuitem *mi,GEvent *e) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     PyObject *pysc = PySC_From_SC(cv->b.sc);
 
@@ -306,7 +306,7 @@ static void cvpy_menuactivate(GWindow gw,struct gmenuitem *mi,GEvent *e) {
     layer_active_in_ui = ly_fore;
 }
 
-void fvpy_tllistcheck(GWindow gw,struct gmenuitem *mi,GEvent *e) {
+void fvpy_tllistcheck(GWindow gw,struct gdmenuitem *mi,GEvent *e) {
     FontViewBase *fv = (FontViewBase *) GDrawGetUserData(gw);
     PyObject *pyfv = PyFF_FontForFV(fv);
 
@@ -316,7 +316,7 @@ void fvpy_tllistcheck(GWindow gw,struct gmenuitem *mi,GEvent *e) {
     fv_active_in_ui = NULL;
 }
 
-static void fvpy_menuactivate(GWindow gw,struct gmenuitem *mi,GEvent *e) {
+static void fvpy_menuactivate(GWindow gw,struct gdmenuitem *mi,GEvent *e) {
     FontViewBase *fv = (FontViewBase *) GDrawGetUserData(gw);
     PyObject *pyfv = PyFF_FontForFV(fv);
 

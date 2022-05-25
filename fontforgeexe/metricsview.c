@@ -2279,7 +2279,7 @@ return( true );
 
 #define MID_Warnings	3000
 
-static void MVMenuOpen(GWindow gw, struct gmenuitem *mi, GEvent *g) {
+static void MVMenuOpen(GWindow gw, struct gdmenuitem *mi, GEvent *g) {
     MetricsView *d = (MetricsView*)GDrawGetUserData(gw);
     FontView *fv = NULL;
     if (d) {
@@ -2288,11 +2288,11 @@ static void MVMenuOpen(GWindow gw, struct gmenuitem *mi, GEvent *g) {
     _FVMenuOpen(fv);
 }
 
-static void MVMenuClose(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVMenuClose(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     GDrawDestroyWindow(gw);
 }
 
-static void MVMenuOpenBitmap(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVMenuOpenBitmap(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     EncMap *map;
     int i;
@@ -2307,12 +2307,12 @@ return;
         BitmapViewCreatePick(map->backmap[mv->glyphs[i].sc->orig_pos],mv->fv);
 }
 
-static void MVMenuMergeKern(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVMenuMergeKern(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     MergeKernInfo(mv->sf,mv->fv->b.map);
 }
 
-static void MVMenuAddWordList(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e))
+static void MVMenuAddWordList(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e))
 {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     MVLoadWordList(mv,-1);
@@ -2326,7 +2326,7 @@ static void MVMenuAddWordList(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *
 }
 
 
-static void MVMenuOpenOutline(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVMenuOpenOutline(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     int i;
 
@@ -2337,37 +2337,37 @@ static void MVMenuOpenOutline(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *
         CharViewCreate(mv->glyphs[i].sc, mv->fv, -1);
 }
 
-static void MVMenuSave(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVMenuSave(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     _FVMenuSave(mv->fv);
 }
 
-static void MVMenuSaveAs(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVMenuSaveAs(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     _FVMenuSaveAs(mv->fv);
 }
 
-static void MVMenuGenerate(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVMenuGenerate(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     _FVMenuGenerate(mv->fv, false);
 }
 
-static void MVMenuGenerateFamily(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVMenuGenerateFamily(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     _FVMenuGenerate(mv->fv, gf_macfamily);
 }
 
-static void MVMenuGenerateTTC(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVMenuGenerateTTC(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     _FVMenuGenerate(mv->fv, gf_ttc);
 }
 
-static void MVMenuPrint(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVMenuPrint(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     PrintFFDlg(NULL, NULL, mv);
 }
 
-static void MVUndo(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVUndo(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     int i;
 
@@ -2384,7 +2384,7 @@ return;
     }
 }
 
-static void MVRedo(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVRedo(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     int i;
 
@@ -2401,7 +2401,7 @@ return;
     }
 }
 
-static void MVClear(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVClear(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     int i;
     SplineChar *sc;
@@ -2443,7 +2443,7 @@ return;
     }
 }
 
-static void MVCut(GWindow gw, struct gmenuitem *mi, GEvent *e) {
+static void MVCut(GWindow gw, struct gdmenuitem *mi, GEvent *e) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     int i;
 
@@ -2460,7 +2460,7 @@ return;
     }
 }
 
-static void MVCopy(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVCopy(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     int i;
 
@@ -2476,7 +2476,7 @@ return;
     }
 }
 
-static void MVMenuCopyRef(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVMenuCopyRef(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     int i;
 
@@ -2490,7 +2490,7 @@ return;
     MVCopyChar(&mv->fv->b, mv->bdf, mv->glyphs[i].sc, ct_reference);
 }
 
-static void MVMenuCopyWidth(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void MVMenuCopyWidth(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     int i;
 
@@ -2508,7 +2508,7 @@ return;
 					 ut_rbearing);
 }
 
-static void MVMenuJoin(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVMenuJoin(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     int i, changed;
     extern float joinsnap;
@@ -2527,7 +2527,7 @@ return;
         SCCharChangedUpdate(mv->glyphs[i].sc, mv->layer);
 }
 
-static void MVPaste(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVPaste(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     int i;
 
@@ -2543,7 +2543,7 @@ return;
     }
 }
 
-static void MVUnlinkRef(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVUnlinkRef(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     int i;
     SplineChar *sc;
@@ -2563,12 +2563,12 @@ return;
     SCCharChangedUpdate(sc, mv->layer);
 }
 
-static void MVSelectAll(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVSelectAll(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     GGadgetActiveGadgetEditCmd(mv->gw, ec_selectall);
 }
 
-static void MVClearSelection(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVClearSelection(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     int i;
 
@@ -2578,12 +2578,12 @@ static void MVClearSelection(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *U
             MVDeselectChar(mv,i);
 }
 
-static void MVMenuFontInfo(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVMenuFontInfo(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     DelayEvent(FontMenuFontInfo, mv->fv);
 }
 
-static void MVMenuCharInfo(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVMenuCharInfo(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     int i;
 
@@ -2594,7 +2594,7 @@ static void MVMenuCharInfo(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNU
         SCCharInfo(mv->glyphs[i].sc, mv->layer, mv->fv->b.map, -1);
 }
 
-static void MVMenuShowDependents(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVMenuShowDependents(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     int i;
 
@@ -2608,7 +2608,7 @@ return;
     SCRefBy(mv->glyphs[i].sc);
 }
 
-static void MVMenuFindProblems(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVMenuFindProblems(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     int i;
 
@@ -2619,7 +2619,7 @@ static void MVMenuFindProblems(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent 
         FindProblems(mv->fv, NULL, mv->glyphs[i].sc);
 }
 
-static void MVMenuBitmaps(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void MVMenuBitmaps(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     int i;
 
@@ -2658,7 +2658,7 @@ static void MVTransFunc(void *_sc, real transform[6], int UNUSED(otype),
     FVTrans( (FontViewBase *)sc->parent->fv, sc, transform, NULL, flags);
 }
 
-static void MVMenuTransform(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVMenuTransform(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     int i;
 
@@ -2670,7 +2670,7 @@ static void MVMenuTransform(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UN
 }
 
 #ifdef FONTFORGE_CONFIG_TILEPATH
-static void MVMenuTilePath(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVMenuTilePath(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     int i;
 
@@ -2699,29 +2699,29 @@ static void _MVMenuOverlap(MetricsView *mv, enum overlap_type ot) {
     }
 }
 
-static void MVMenuOverlap(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void MVMenuOverlap(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     _MVMenuOverlap(mv, mi->mid==MID_RmOverlap ? over_remove :
 		       mi->mid==MID_Intersection ? over_intersect :
 			   over_findinter);
 }
 
-static void MVMenuInline(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVMenuInline(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     OutlineDlg(NULL, NULL, mv, true);
 }
 
-static void MVMenuOutline(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVMenuOutline(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     OutlineDlg(NULL, NULL, mv, false);
 }
 
-static void MVMenuShadow(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVMenuShadow(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     ShadowDlg(NULL, NULL, mv, false);
 }
 
-static void MVMenuWireframe(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVMenuWireframe(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     ShadowDlg(NULL, NULL, mv, true);
 }
@@ -2757,22 +2757,22 @@ return;
     }
 }
 
-static void MVMenuSimplify(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVMenuSimplify(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     MVSimplify(mv, false);
 }
 
-static void MVMenuSimplifyMore(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVMenuSimplifyMore(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     MVSimplify(mv, true);
 }
 
-static void MVMenuCleanup(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVMenuCleanup(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     MVSimplify(mv, -1);
 }
 
-static void MVMenuAddExtrema(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVMenuAddExtrema(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     int i;
     SplineFont *sf = mv->sf;
@@ -2789,7 +2789,7 @@ static void MVMenuAddExtrema(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *U
     }
 }
 
-static void MVMenuAddInflections(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVMenuAddInflections(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     int i;
     for ( i=mv->glyphcnt-1; i>=0; --i )
@@ -2803,7 +2803,7 @@ static void MVMenuAddInflections(GWindow gw, struct gmenuitem *UNUSED(mi), GEven
     }
 }
 
-static void MVMenuRound2Int(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVMenuRound2Int(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     int i;
 
@@ -2816,7 +2816,7 @@ static void MVMenuRound2Int(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UN
     }
 }
 
-static void MVMenuAutotrace(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *e) {
+static void MVMenuAutotrace(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *e) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     int i;
     GCursor ct;
@@ -2833,7 +2833,7 @@ static void MVMenuAutotrace(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *e)
     }
 }
 
-static void MVMenuCorrectDir(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVMenuCorrectDir(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     int i;
 
@@ -2893,12 +2893,12 @@ static void _MVMenuBuildAccent(MetricsView *mv,int onlyaccents) {
     }
 }
 
-static void MVMenuBuildAccent(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVMenuBuildAccent(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     _MVMenuBuildAccent(mv, false);
 }
 
-static void MVMenuBuildComposite(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVMenuBuildComposite(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     _MVMenuBuildAccent(mv, true);
 }
@@ -2919,17 +2919,17 @@ static void MVResetText(MetricsView *mv) {
     free(new );
 }
 
-static void MVMenuLigatures(GWindow gw,struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVMenuLigatures(GWindow gw,struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     SFShowLigatures(mv->sf, NULL);
 }
 
-static void MVMenuKernPairs(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVMenuKernPairs(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     SFShowKernPairs(mv->sf, NULL, NULL, mv->layer);
 }
 
-static void MVMenuAnchorPairs(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void MVMenuAnchorPairs(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     SFShowKernPairs(mv->sf, NULL, mi->ti.userdata, mv->layer);
 }
@@ -2956,12 +2956,12 @@ static void _MVMenuScale( MetricsView *mv, int mid ) {
     MVSetVSb(mv);
 }
 
-static void MVMenuScale(GWindow gw,struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void MVMenuScale(GWindow gw,struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     _MVMenuScale(mv, mi->mid);
 }
 
-static void MVMenuInsertChar(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void MVMenuInsertChar(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     SplineFont *sf = mv->sf;
     int i, j, pos = GotoChar(sf,mv->fv->b.map,NULL);
@@ -3009,7 +3009,7 @@ return;
     MVResetText(mv);
 }
 
-static void MVMenuChangeChar(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void MVMenuChangeChar(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     SplineFont *sf = mv->sf;
     SplineChar *sc;
@@ -3051,7 +3051,7 @@ return;
     }
 }
 
-static void MVMenuFindInFontView(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVMenuFindInFontView(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     int i;
 
@@ -3065,7 +3065,7 @@ static void MVMenuFindInFontView(GWindow gw, struct gmenuitem *UNUSED(mi), GEven
     }
 }
 
-static void MVMenuShowGrid(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void MVMenuShowGrid(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     if ( mi->mid == MID_ShowGrid )
         mv->showgrid = mv_showgrid;
@@ -3080,7 +3080,7 @@ static void MVMenuShowGrid(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) 
     GDrawRequestExpose(mv->v, NULL, false);
 }
 
-static void MVMenuAA(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVMenuAA(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
 
     mv_antialias = mv->antialias = !mv->antialias;
@@ -3093,7 +3093,7 @@ static void MVMenuAA(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)
 }
 
 
-static void MVMenuRenderUsingHinting(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVMenuRenderUsingHinting(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
 
     mv->usehinting = !mv->usehinting;
@@ -3111,7 +3111,7 @@ static char* MVWindowTitle(MetricsView *mv) {
 	                                           _("Metrics For %.50s"), mv->sf->fontname);
 }
 
-static void MVMenuWindowType(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void MVMenuWindowType(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
 
     mv_type = mv->type = mi->mid==MID_KernOnly  ? mv_kernonly :
@@ -3124,7 +3124,7 @@ static void MVMenuWindowType(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)
     GDrawRequestExpose(mv->gw, NULL, false);
 }
 
-static void MVMenuVertical(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVMenuVertical(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
 
     if ( !mv->sf->hasvmetrics ) {
@@ -3136,7 +3136,7 @@ static void MVMenuVertical(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNU
     GDrawRequestExpose(mv->v, NULL, false);
 }
 
-static void MVMenuShowBitmap(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void MVMenuShowBitmap(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     BDFFont *bdf = mi->ti.userdata;
 
@@ -3171,11 +3171,11 @@ static void MVMoveInWordListByOffset( MetricsView *mv, int offset )
     }
 }
 
-static void MVMenuNextLineInWordList(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void MVMenuNextLineInWordList(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     MVMoveInWordListByOffset( mv, 1 );
 }
-static void MVMenuPrevLineInWordList(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void MVMenuPrevLineInWordList(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     MVMoveInWordListByOffset( mv, -1 );
 }
@@ -3245,7 +3245,7 @@ return( false );
 return( true );
 }
 
-static void MVMenuPointSize(GWindow mgw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVMenuPointSize(GWindow mgw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(mgw);
     struct pxsz pxsz;
     GRect pos;
@@ -3356,7 +3356,7 @@ static void MVMenuPointSize(GWindow mgw, struct gmenuitem *UNUSED(mi), GEvent *U
     GDrawDestroyWindow(gw);
 }
 
-static void MVMenuSizeWindow(GWindow mgw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVMenuSizeWindow(GWindow mgw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(mgw);
     mv->pixelsize_set_by_window = true;
     mv->pixelsize = mv_scales[mv->scale_index]*(mv->vheight - 2);
@@ -3373,7 +3373,7 @@ static void MVMenuSizeWindow(GWindow mgw, struct gmenuitem *UNUSED(mi), GEvent *
     MVSetVSb(mv);
 }
 
-static void MVMenuChangePointSize(GWindow mgw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void MVMenuChangePointSize(GWindow mgw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(mgw);
 
     if ( mv->pixelsize_set_by_window )
@@ -3393,7 +3393,7 @@ return;
     MVSetVSb(mv);
 }
 
-static void MVMenuChangeLayer(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void MVMenuChangeLayer(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
 
     mv->layer = mi->mid;
@@ -3404,7 +3404,7 @@ static void MVMenuChangeLayer(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e
     GDrawRequestExpose(mv->v,NULL,false);
 }
 
-static void MVMenuCenter(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e))
+static void MVMenuCenter(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e))
 {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     int i;
@@ -3429,22 +3429,22 @@ static void MVMenuCenter(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e))
     }
 }
 
-static void MVMenuKernByClasses(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVMenuKernByClasses(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     ShowKernClasses(mv->sf, mv, mv->layer, false);
 }
 
-static void MVMenuVKernByClasses(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVMenuVKernByClasses(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     ShowKernClasses(mv->sf, mv, mv->layer, true);
 }
 
-static void MVMenuVKernFromHKern(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVMenuVKernFromHKern(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     FVVKernFromHKern((FontViewBase *) mv->fv);
 }
 
-static void MVMenuKPCloseup(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVMenuKPCloseup(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     SplineChar *sc1=NULL, *sc2=NULL;
     int i;
@@ -3470,11 +3470,11 @@ static GMenuItem2 wnmenu[] = {
     GMENUITEM2_EMPTY
 };
 
-static void MVWindowMenuBuild(GWindow gw,struct gmenuitem *mi,GEvent *e) {
+static void MVWindowMenuBuild(GWindow gw,struct gdmenuitem *mi,GEvent *e) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     int i;
     SplineChar *sc;
-    struct gmenuitem *wmi;
+    struct gdmenuitem *wmi;
 
     WindowMenuBuild(gw,mi,e);
 
@@ -3579,7 +3579,7 @@ static GMenuItem2 balist[] = {
     GMENUITEM2_EMPTY
 };
 
-static void balistcheck(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void balistcheck(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     int i;
     SplineChar *sc;
@@ -3634,7 +3634,7 @@ static GMenuItem2 dummyall[] = {
 };
 
 /* Builds up a menu containing all the anchor classes */
-static void aplistbuild(GWindow base, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void aplistbuild(GWindow base, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(base);
 
     GMenuItemArrayFree(mi->sub);
@@ -3650,7 +3650,7 @@ static GMenuItem2 cblist[] = {
     GMENUITEM2_EMPTY
 };
 
-static void cblistcheck(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void cblistcheck(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     SplineFont *sf = mv->sf;
     int i, anyligs=0, anykerns=0;
@@ -3691,7 +3691,7 @@ static GMenuItem2 lylist[] = {
     GMENUITEM2_EMPTY
 };
 
-static void lylistcheck(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void lylistcheck(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     SplineFont *sf = mv->fv->b.sf;
     int ly;
@@ -3718,7 +3718,7 @@ static GMenuItem2 gdlist[] = {
     GMENUITEM2_EMPTY
 };
 
-static void gdlistcheck(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void gdlistcheck(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
 
     for ( mi = mi->sub; mi->ti.text!=NULL || mi->ti.line ; ++mi ) {
@@ -3780,7 +3780,7 @@ static GMenuItem2 vwlist[] = {
     GMENUITEM2_EMPTY
 };
 
-static void MVMenuContextualHelp(GWindow UNUSED(base), struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVMenuContextualHelp(GWindow UNUSED(base), struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     help("ui/mainviews/metricsview.html", NULL);
 }
 
@@ -3791,7 +3791,7 @@ static GMenuItem2 tylist[] = {
     GMENUITEM2_EMPTY
 };
 
-static void tylistcheck(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void tylistcheck(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
 
     for ( mi = mi->sub; mi->ti.text!=NULL || mi->ti.line ; ++mi ) {
@@ -3811,7 +3811,7 @@ static void tylistcheck(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
 
 
 
-static void MVMenuSetWidth(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void MVMenuSetWidth(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     if ( mi->mid == MID_SetVWidth && !mv->sf->hasvmetrics )
 return;
@@ -3828,14 +3828,14 @@ return;
 		     wt_vwidth);
 }
 
-static void MVMenuRemoveKern(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVMenuRemoveKern(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     SplineChar* sc = getSelectedChar(mv);
     if(!sc)
  	return;
     SCRemoveKern(sc);
 }
-static void MVMenuRemoveVKern(GWindow gw, struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+static void MVMenuRemoveVKern(GWindow gw, struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     SplineChar* sc = getSelectedChar(mv);
     if(!sc)
@@ -3864,7 +3864,7 @@ static GMenuItem2 mtlist[] = {
     GMENUITEM2_EMPTY
 };
 
-static void fllistcheck(GWindow UNUSED(gw), struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void fllistcheck(GWindow UNUSED(gw), struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     /*MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);*/
 
     for ( mi = mi->sub; mi->ti.text!=NULL || mi->ti.line ; ++mi ) {
@@ -3876,7 +3876,7 @@ static void fllistcheck(GWindow UNUSED(gw), struct gmenuitem *mi, GEvent *UNUSED
     }
 }
 
-static void edlistcheck(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void edlistcheck(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     int i;
 
@@ -3909,7 +3909,7 @@ static void edlistcheck(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
     }
 }
 
-static void ellistcheck(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void ellistcheck(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     int i, anybuildable;
     SplineChar *sc;
@@ -3966,7 +3966,7 @@ static void ellistcheck(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
     }
 }
 
-static void vwlistcheck(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void vwlistcheck(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     int i, j, base, aselection;
     BDFFont *bdf;
@@ -4047,7 +4047,7 @@ static void vwlistcheck(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
     mi->sub = GMenuItem2ArrayCopy(vwlist,NULL);
 }
 
-static void mtlistcheck(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e)) {
+static void mtlistcheck(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
     MetricsView *mv = (MetricsView *) GDrawGetUserData(gw);
     SplineChar* sc = getSelectedChar(mv);
 

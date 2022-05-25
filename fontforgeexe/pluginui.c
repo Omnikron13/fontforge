@@ -850,7 +850,7 @@ void _PluginDlg(void) {
     GDrawDestroyWindow(gw);
 }
 
-void MenuPlug(GWindow UNUSED(base), struct gmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
+void MenuPlug(GWindow UNUSED(base), struct gdmenuitem *UNUSED(mi), GEvent *UNUSED(e)) {
     PluginDlg();
 }
 

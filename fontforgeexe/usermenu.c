@@ -49,7 +49,7 @@ GMenuItem2 *cv_menu;
 GMenuItem2 *fv_menu;
 
 static void
-tl2listcheck(struct gmenuitem *mi,
+tl2listcheck(struct gdmenuitem *mi,
              void *owner,
              struct menu_info *menu_data,
              int menu_cnt)
@@ -77,7 +77,7 @@ tl2listcheck(struct gmenuitem *mi,
 }
 
 void
-cv_tl2listcheck(GWindow gw, struct gmenuitem *mi, GEvent *e)
+cv_tl2listcheck(GWindow gw, struct gdmenuitem *mi, GEvent *e)
 {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
 
@@ -91,7 +91,7 @@ cv_tl2listcheck(GWindow gw, struct gmenuitem *mi, GEvent *e)
 }
 
 void
-fv_tl2listcheck(GWindow gw, struct gmenuitem *mi, GEvent *e)
+fv_tl2listcheck(GWindow gw, struct gdmenuitem *mi, GEvent *e)
 {
     FontViewBase *fv = (FontViewBase *) GDrawGetUserData(gw);
 
@@ -104,7 +104,7 @@ fv_tl2listcheck(GWindow gw, struct gmenuitem *mi, GEvent *e)
 }
 
 static void
-menuactivate(struct gmenuitem *mi,
+menuactivate(struct gdmenuitem *mi,
              void *owner,
              MenuInfo *menu_data,
              int menu_cnt)
@@ -122,7 +122,7 @@ menuactivate(struct gmenuitem *mi,
 }
 
 static void
-cv_menuactivate(GWindow gw, struct gmenuitem *mi, GEvent *e)
+cv_menuactivate(GWindow gw, struct gdmenuitem *mi, GEvent *e)
 {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
 
@@ -136,7 +136,7 @@ cv_menuactivate(GWindow gw, struct gmenuitem *mi, GEvent *e)
 }
 
 static void
-fv_menuactivate(GWindow gw, struct gmenuitem *mi, GEvent *e)
+fv_menuactivate(GWindow gw, struct gdmenuitem *mi, GEvent *e)
 {
     FontViewBase *fv = (FontViewBase *) GDrawGetUserData(gw);
 

@@ -809,27 +809,27 @@ extern void FVSetUIToMatch(FontView *destfv,FontView *srcfv);
 extern void FVScrollToChar(FontView *fv,int i);
 extern void FVRegenChar(FontView *fv,SplineChar *sc);
 extern FontView *FontNew(void);
-extern void _MenuWarnings(GWindow gw,struct gmenuitem *mi,GEvent *e);
-extern void MenuPrefs(GWindow base,struct gmenuitem *mi,GEvent *e);
-extern void MenuXRes(GWindow base,struct gmenuitem *mi,GEvent *e);
-extern void MenuPlug(GWindow base,struct gmenuitem *mi,GEvent *e);
-extern void MenuSaveAll(GWindow base,struct gmenuitem *mi,GEvent *e);
-extern void MenuExit(GWindow base,struct gmenuitem *mi,GEvent *e);
-extern void MenuHelp(GWindow base,struct gmenuitem *mi,GEvent *e);
-extern void MenuIndex(GWindow base,struct gmenuitem *mi,GEvent *e);
-extern void MenuAbout(GWindow base,struct gmenuitem *mi,GEvent *e);
-extern void MenuLicense(GWindow base,struct gmenuitem *mi,GEvent *e);
-extern void MenuNew(GWindow gw,struct gmenuitem *mi,GEvent *e);
-extern void WindowMenuBuild(GWindow base,struct gmenuitem *mi,GEvent *);
-extern void MenuRecentBuild(GWindow base,struct gmenuitem *mi,GEvent *);
-extern void MenuScriptsBuild(GWindow base,struct gmenuitem *mi,GEvent *);
+extern void _MenuWarnings(GWindow gw,struct gdmenuitem *mi,GEvent *e);
+extern void MenuPrefs(GWindow base,struct gdmenuitem *mi,GEvent *e);
+extern void MenuXRes(GWindow base,struct gdmenuitem *mi,GEvent *e);
+extern void MenuPlug(GWindow base,struct gdmenuitem *mi,GEvent *e);
+extern void MenuSaveAll(GWindow base,struct gdmenuitem *mi,GEvent *e);
+extern void MenuExit(GWindow base,struct gdmenuitem *mi,GEvent *e);
+extern void MenuHelp(GWindow base,struct gdmenuitem *mi,GEvent *e);
+extern void MenuIndex(GWindow base,struct gdmenuitem *mi,GEvent *e);
+extern void MenuAbout(GWindow base,struct gdmenuitem *mi,GEvent *e);
+extern void MenuLicense(GWindow base,struct gdmenuitem *mi,GEvent *e);
+extern void MenuNew(GWindow gw,struct gdmenuitem *mi,GEvent *e);
+extern void WindowMenuBuild(GWindow base,struct gdmenuitem *mi,GEvent *);
+extern void MenuRecentBuild(GWindow base,struct gdmenuitem *mi,GEvent *);
+extern void MenuScriptsBuild(GWindow base,struct gdmenuitem *mi,GEvent *);
 extern void mb2FreeGetText(GMenuItem2 *mb);
 extern void mb2DoGetText(GMenuItem2 *mb);
 extern void mbFreeGetText(GMenuItem *mb);
 extern void mbDoGetText(GMenuItem *mb);
 extern int RecentFilesAny(void);
-extern void _aplistbuild(struct gmenuitem *mi,SplineFont *sf,
-	void (*func)(GWindow,struct gmenuitem *,GEvent *));
+extern void _aplistbuild(struct gdmenuitem *mi,SplineFont *sf,
+	void (*func)(GWindow,struct gdmenuitem *,GEvent *));
 extern GTextInfo *AddMacFeatures(GTextInfo *opentype,enum possub_type type,SplineFont *sf);
 extern unichar_t *AskNameTag(char *title,unichar_t *def,uint32_t def_tag,uint16_t flags,
 	int script_lang_index, enum possub_type type, SplineFont *sf, SplineChar *default_script,
@@ -1078,7 +1078,7 @@ extern void BitmapViewFinishNonStatic();
 extern BitmapView *BitmapViewCreate(BDFChar *bc, BDFFont *bdf, FontView *fv,int enc);
 extern BitmapView *BitmapViewCreatePick(int enc, FontView *fv);
 extern void BitmapViewFree(BitmapView *bv);
-extern void BVMenuRotateInvoked(GWindow gw,struct gmenuitem *mi, GEvent *e);
+extern void BVMenuRotateInvoked(GWindow gw,struct gdmenuitem *mi, GEvent *e);
 extern void BVRotateBitmap(BitmapView *bv,enum bvtools type );
 extern int  BVColor(BitmapView *bv);
 extern void BCGeneralFunction(BitmapView *bv,
@@ -1126,8 +1126,8 @@ extern void CVMakeParallel(CharView *cv);
 extern void ScriptDlg(FontView *fv,CharView *cv);
 
 # if HANYANG
-extern void MenuNewComposition(GWindow gw, struct gmenuitem *, GEvent *);
-extern void CVDisplayCompositions(GWindow gw, struct gmenuitem *, GEvent *);
+extern void MenuNewComposition(GWindow gw, struct gdmenuitem *, GEvent *);
+extern void CVDisplayCompositions(GWindow gw, struct gdmenuitem *, GEvent *);
 extern void Disp_DoFinish(struct jamodisplay *d, int cancel);
 extern void Disp_RefreshChar(SplineFont *sf,SplineChar *sc);
 extern void Disp_DefaultTemplate(CharView *cv);
@@ -1268,12 +1268,12 @@ extern void MathInit(void);
 extern void SFMathDlg(SplineFont *sf,int def_layer);
 
 extern GMenuItem2 *cvpy_menu, *fvpy_menu;
-extern void cvpy_tllistcheck(GWindow gw,struct gmenuitem *mi,GEvent *e);
-extern void fvpy_tllistcheck(GWindow gw,struct gmenuitem *mi,GEvent *e);
+extern void cvpy_tllistcheck(GWindow gw,struct gdmenuitem *mi,GEvent *e);
+extern void fvpy_tllistcheck(GWindow gw,struct gdmenuitem *mi,GEvent *e);
 
 extern GMenuItem2 *cv_menu, *fv_menu;
-extern void cv_tl2listcheck(GWindow gw,struct gmenuitem *mi,GEvent *e);
-extern void fv_tl2listcheck(GWindow gw,struct gmenuitem *mi,GEvent *e);
+extern void cv_tl2listcheck(GWindow gw,struct gdmenuitem *mi,GEvent *e);
+extern void fv_tl2listcheck(GWindow gw,struct gdmenuitem *mi,GEvent *e);
 
 extern void SFValidationWindow(SplineFont *sf,int layer, enum fontformat format);
 extern void ValidationDestroy(SplineFont *sf);
@@ -1486,7 +1486,7 @@ extern bool CVShouldInterpolateCPsOnMotion( CharView* cv );
 extern int CVNearRBearingLine( CharView* cv, real x, real fudge );
 extern int CVNearLBearingLine( CharView* cv, real x, real fudge );
 
-extern void CVMenuConstrain(GWindow gw, struct gmenuitem *mi, GEvent *UNUSED(e));
+extern void CVMenuConstrain(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e));
 
 
 

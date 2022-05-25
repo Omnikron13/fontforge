@@ -257,7 +257,7 @@ static void MouseToPos(GEvent *event,int *_l, int *_c) {
     *_c = c < 0 ? 0 : c;
 }
 
-static void WarnMenuCopy(GWindow gw,struct gmenuitem *mi,GEvent *e) {
+static void WarnMenuCopy(GWindow gw,struct gdmenuitem *mi,GEvent *e) {
     GDrawGrabSelection(gw,sn_clipboard);
     GDrawAddSelectionType(gw,sn_clipboard,"UTF8_STRING",&errdata,1,
 	    sizeof(char),
@@ -267,7 +267,7 @@ static void WarnMenuCopy(GWindow gw,struct gmenuitem *mi,GEvent *e) {
 	    genutf8data,noop);
 }
 
-static void WarnMenuClear(GWindow gw,struct gmenuitem *mi,GEvent *e) {
+static void WarnMenuClear(GWindow gw,struct gdmenuitem *mi,GEvent *e) {
     int i;
 
     for ( i=0; i<errdata.cnt; ++i ) {

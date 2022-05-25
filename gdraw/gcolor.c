@@ -465,7 +465,7 @@ return( false );
 return( true );
 }
 
-static void do_popup_color(GWindow gw,struct gmenuitem *mi,GEvent *e) {
+static void do_popup_color(GWindow gw,struct gdmenuitem *mi,GEvent *e) {
     struct gcol_data *d = GDrawGetUserData(gw);
     const struct hslrgba *col = mi->ti.userdata;
 

@@ -20,8 +20,8 @@ enum {
     menu_cv = 0x02
 };
 
-void cv_tl2listcheck(GWindow gw, struct gmenuitem *mi, GEvent *e);
-void fv_tl2listcheck(GWindow gw, struct gmenuitem *mi, GEvent *e);
+void cv_tl2listcheck(GWindow gw, struct gdmenuitem *mi, GEvent *e);
+void fv_tl2listcheck(GWindow gw, struct gdmenuitem *mi, GEvent *e);
 void RegisterMenuItem(menu_info_func func, menu_info_check check,
                       menu_info_data data, int flags,
                       char *shortcut_str, char **submenu_names);

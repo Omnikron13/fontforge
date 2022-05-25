@@ -249,7 +249,7 @@ return;
     GDrawRaise(palette);
 }
 
-static void CVMenuTool(GWindow gw,struct gmenuitem *mi,GEvent *e) {
+static void CVMenuTool(GWindow gw,struct gdmenuitem *mi,GEvent *e) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     cv->b1_tool = mi->mid;
     if ( cvtools!=NULL )
@@ -258,12 +258,12 @@ static void CVMenuTool(GWindow gw,struct gmenuitem *mi,GEvent *e) {
 }
 
 static void CVChangeSpiroMode(CharView *cv);
-static void CVMenuSpiroSet(GWindow gw,struct gmenuitem *mi,GEvent *e) {
+static void CVMenuSpiroSet(GWindow gw,struct gdmenuitem *mi,GEvent *e) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     CVChangeSpiroMode(cv);
 }
 
-void cvtoollist_check(GWindow gw,struct gmenuitem *mi,GEvent *e) {
+void cvtoollist_check(GWindow gw,struct gdmenuitem *mi,GEvent *e) {
     CharView *cv = (CharView *) GDrawGetUserData(gw);
     int order2 = cv->b.layerheads[cv->b.drawmode]->order2;
 

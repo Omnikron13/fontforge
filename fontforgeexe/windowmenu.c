@@ -34,7 +34,7 @@
 #include "splinefont.h"
 #include "ustring.h"
 
-static void WindowSelect(GWindow base,struct gmenuitem *mi,GEvent *e) {
+static void WindowSelect(GWindow base,struct gdmenuitem *mi,GEvent *e) {
     GDrawRaise(mi->ti.userdata);
 }
 
@@ -52,7 +52,7 @@ static void AddMI(GMenuItem *mi,GWindow gw,int changed, int top) {
 }
 
 /* Builds up a menu containing the titles of all the major windows */
-void WindowMenuBuild(GWindow basew,struct gmenuitem *mi,GEvent *e) {
+void WindowMenuBuild(GWindow basew,struct gdmenuitem *mi,GEvent *e) {
     int i, cnt, precnt;
     FontViewBase *fv;
     CharViewBase *cv;
@@ -84,7 +84,7 @@ void WindowMenuBuild(GWindow basew,struct gmenuitem *mi,GEvent *e) {
 return;
     }
     sub = calloc(cnt+1,sizeof(GMenuItem));
-    memcpy(sub,mi->sub,precnt*sizeof(struct gmenuitem));
+    memcpy(sub,mi->sub,precnt*sizeof(struct gdmenuitem));
     for ( i=0; i<precnt; ++i )
 	mi->sub[i].ti.text = NULL;
     GMenuItemArrayFree(mi->sub);
@@ -119,12 +119,12 @@ return;
     }
 }
 
-static void RecentSelect(GWindow base,struct gmenuitem *mi,GEvent *e) {
+static void RecentSelect(GWindow base,struct gdmenuitem *mi,GEvent *e) {
     ViewPostScriptFont((char *) (mi->ti.userdata),0);
 }
 
 /* Builds up a menu containing the titles of all the unused recent files */
-void MenuRecentBuild(GWindow base,struct gmenuitem *mi,GEvent *e) {
+void MenuRecentBuild(GWindow base,struct gdmenuitem *mi,GEvent *e) {
     int i, cnt, cnt1;
     FontViewBase *fv;
     GMenuItem *sub;
@@ -180,7 +180,7 @@ return( false );
 }
 
 #if !defined(_NO_FFSCRIPT) || !defined(_NO_PYTHON)
-static void ScriptSelect(GWindow base,struct gmenuitem *mi,GEvent *e) {
+static void ScriptSelect(GWindow base,struct gdmenuitem *mi,GEvent *e) {
     int index = (intptr_t) (mi->ti.userdata);
     FontView *fv = (FontView *) GDrawGetUserData(base);
 
@@ -193,7 +193,7 @@ return;
 }
 
 /* Builds up a menu containing any user defined scripts */
-void MenuScriptsBuild(GWindow base,struct gmenuitem *mi,GEvent *e) {
+void MenuScriptsBuild(GWindow base,struct gdmenuitem *mi,GEvent *e) {
     int i;
     GMenuItem *sub;
 
@@ -222,8 +222,8 @@ return;
 #endif
 
 /* Builds up a menu containing all the anchor classes */
-void _aplistbuild(struct gmenuitem *top,SplineFont *sf,
-	void (*func)(GWindow,struct gmenuitem *,GEvent *)) {
+void _aplistbuild(struct gdmenuitem *top,SplineFont *sf,
+	void (*func)(GWindow,struct gdmenuitem *,GEvent *)) {
     int cnt;
     GMenuItem *mi, *sub;
     AnchorClass *ac;

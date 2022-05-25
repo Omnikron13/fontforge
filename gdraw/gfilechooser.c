@@ -773,7 +773,7 @@ return(true);
 return( true );
 }
 
-static void GFCHideToggle(GWindow gw,struct gmenuitem *mi,GEvent *e) {
+static void GFCHideToggle(GWindow gw,struct gdmenuitem *mi,GEvent *e) {
     GFileChooser *gfc = (GFileChooser *) (mi->ti.userdata);
     unichar_t *dir;
 
@@ -794,7 +794,7 @@ static void GFCRemetric(GFileChooser *gfc) {
     GGadgetResize(&gfc->topbox->g,size.width,size.height);
 }
 
-static void GFCDirsAmidToggle(GWindow gw,struct gmenuitem *mi,GEvent *e) {
+static void GFCDirsAmidToggle(GWindow gw,struct gdmenuitem *mi,GEvent *e) {
     GFileChooser *gfc = (GFileChooser *) (mi->ti.userdata);
     unichar_t *dir;
 
@@ -812,7 +812,7 @@ static void GFCDirsAmidToggle(GWindow gw,struct gmenuitem *mi,GEvent *e) {
 	(prefs_changed)(prefs_changed_data);
 }
 
-static void GFCDirsFirstToggle(GWindow gw,struct gmenuitem *mi,GEvent *e) {
+static void GFCDirsFirstToggle(GWindow gw,struct gdmenuitem *mi,GEvent *e) {
     GFileChooser *gfc = (GFileChooser *) (mi->ti.userdata);
     unichar_t *dir;
 
@@ -830,7 +830,7 @@ static void GFCDirsFirstToggle(GWindow gw,struct gmenuitem *mi,GEvent *e) {
 	(prefs_changed)(prefs_changed_data);
 }
 
-static void GFCDirsSeparateToggle(GWindow gw,struct gmenuitem *mi,GEvent *e) {
+static void GFCDirsSeparateToggle(GWindow gw,struct gdmenuitem *mi,GEvent *e) {
     GFileChooser *gfc = (GFileChooser *) (mi->ti.userdata);
     unichar_t *dir;
 
@@ -848,7 +848,7 @@ static void GFCDirsSeparateToggle(GWindow gw,struct gmenuitem *mi,GEvent *e) {
 	(prefs_changed)(prefs_changed_data);
 }
 
-static void GFCRefresh(GWindow gw,struct gmenuitem *mi,GEvent *e) {
+static void GFCRefresh(GWindow gw,struct gdmenuitem *mi,GEvent *e) {
     GFileChooser *gfc = (GFileChooser *) (mi->ti.userdata);
     GFileChooserRefresh(gfc);
 }
@@ -930,7 +930,7 @@ static int GFileChooserConfigure(GGadget *g, GEvent *e) {
 return( true );
 }
 
-static void GFCBack(GWindow gw,struct gmenuitem *mi,GEvent *e) {
+static void GFCBack(GWindow gw,struct gdmenuitem *mi,GEvent *e) {
     GFileChooser *gfc = (GFileChooser *) (mi->ti.userdata);
 
     if ( gfc->hpos<=0 )
@@ -939,7 +939,7 @@ return;
     GFileChooserScanDir(gfc,gfc->history[gfc->hpos]);
 }
 
-static void GFCForward(GWindow gw,struct gmenuitem *mi,GEvent *e) {
+static void GFCForward(GWindow gw,struct gdmenuitem *mi,GEvent *e) {
     GFileChooser *gfc = (GFileChooser *) (mi->ti.userdata);
 
     if ( gfc->hpos+1>=gfc->hcnt )
@@ -948,7 +948,7 @@ return;
     GFileChooserScanDir(gfc,gfc->history[gfc->hpos]);
 }
 
-static void GFCAddCur(GWindow gw,struct gmenuitem *mi,GEvent *e) {
+static void GFCAddCur(GWindow gw,struct gdmenuitem *mi,GEvent *e) {
     GFileChooser *gfc = (GFileChooser *) (mi->ti.userdata);
     unichar_t *dir;
     int bcnt;
@@ -965,7 +965,7 @@ static void GFCAddCur(GWindow gw,struct gmenuitem *mi,GEvent *e) {
 	(prefs_changed)(prefs_changed_data);
 }
 
-static void GFCRemoveBook(GWindow gw,struct gmenuitem *mi,GEvent *e) {
+static void GFCRemoveBook(GWindow gw,struct gdmenuitem *mi,GEvent *e) {
     int i,bcnt;
     char **books;
     char *sel;
@@ -1001,7 +1001,7 @@ return;		/* All gone */
     free(sel);
 }
 
-static void GFCBookmark(GWindow gw,struct gmenuitem *mi,GEvent *e) {
+static void GFCBookmark(GWindow gw,struct gdmenuitem *mi,GEvent *e) {
     GFileChooser *gfc = (GFileChooser *) (mi->ti.userdata);
     char *home;
 
@@ -1017,7 +1017,7 @@ static void GFCBookmark(GWindow gw,struct gmenuitem *mi,GEvent *e) {
 	GFileChooserScanDir(gfc,bookmarks[mi->mid]);
 }
 
-static void GFCPath(GWindow gw,struct gmenuitem *mi,GEvent *e) {
+static void GFCPath(GWindow gw,struct gdmenuitem *mi,GEvent *e) {
     GFileChooser *gfc = (GFileChooser *) (mi->ti.userdata);
     char *home;
 

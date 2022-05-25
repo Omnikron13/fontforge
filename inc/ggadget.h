@@ -102,13 +102,13 @@ typedef struct gtextinfo2 {
 #define GTEXTINFO2_EMPTY { NULL, NULL, 0x000000, 0x000000, NULL, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '\0' }
 
 
-typedef struct gmenuitem {
+typedef struct gdmenuitem {
     GTextInfo ti;
     unichar_t shortcut;
     short short_mask;
-    struct gmenuitem *sub;
-    void (*moveto)(struct gwindow *base,struct gmenuitem *mi,GEvent *);	/* called before creating submenu */
-    void (*invoke)(struct gwindow *base,struct gmenuitem *mi,GEvent *);	/* called on mouse release */
+    struct gdmenuitem *sub;
+    void (*moveto)(struct gwindow *base,struct gdmenuitem *mi,GEvent *);	/* called before creating submenu */
+    void (*invoke)(struct gwindow *base,struct gdmenuitem *mi,GEvent *);	/* called on mouse release */
     int mid;
 } GMenuItem;
 
@@ -116,12 +116,12 @@ typedef struct gmenuitem {
 #define GMENUITEM_EMPTY { GTEXTINFO_EMPTY, '\0', 0, NULL, NULL, NULL, 0 }
 
 
-typedef struct gmenuitem2 {
+typedef struct gdmenuitem2 {
     GTextInfo ti;
     char *shortcut;
-    struct gmenuitem2 *sub;
-    void (*moveto)(struct gwindow *base,struct gmenuitem *mi,GEvent *);	/* called before creating submenu */
-    void (*invoke)(struct gwindow *base,struct gmenuitem *mi,GEvent *);	/* called on mouse release */
+    struct gdmenuitem2 *sub;
+    void (*moveto)(struct gwindow *base,struct gdmenuitem *mi,GEvent *);	/* called before creating submenu */
+    void (*invoke)(struct gwindow *base,struct gdmenuitem *mi,GEvent *);	/* called on mouse release */
     int mid;
 } GMenuItem2;
 

@@ -250,9 +250,9 @@
 
 #define MID_Warnings	3000
 
-extern void CVMenuPointType(GWindow gw, struct gmenuitem *mi, GEvent *e);
-extern void CVMerge(GWindow gw,struct gmenuitem *mi,GEvent *e);
-extern void CVMergeToLine(GWindow gw,struct gmenuitem *mi,GEvent *e);
+extern void CVMenuPointType(GWindow gw, struct gdmenuitem *mi, GEvent *e);
+extern void CVMerge(GWindow gw,struct gdmenuitem *mi,GEvent *e);
+extern void CVMergeToLine(GWindow gw,struct gdmenuitem *mi,GEvent *e);
 extern void CVLSelectLayer(CharView *cv, int layer);
 
 
