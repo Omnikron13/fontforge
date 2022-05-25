@@ -6918,7 +6918,7 @@ static GMenuItem lookuppopupmenu[] = {
     { { (unichar_t *) N_("_Revert All"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 0, 0, 0, 0, 0, 1, 1, 0, 'o' }, '\0', ksm_control, NULL, NULL, lookupmenu_dispatch, CID_RevertLookups },
     { { (unichar_t *) N_("_Import..."), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 0, 0, 0, 0, 0, 1, 1, 0, 'o' }, '\0', ksm_control, NULL, NULL, lookupmenu_dispatch, CID_ImportLookups },
     { { (unichar_t *) N_("S_ave Feature File..."), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 0, 0, 0, 0, 0, 1, 1, 0, 'o' }, '\0', ksm_control, NULL, NULL, lookupmenu_dispatch, CID_SaveFeat },
-    GMENUITEM_EMPTY
+    GDMENUITEM_EMPTY
 };
 
 static void LookupMenu(struct gfi_data *gfi,struct lkdata *lk,int isgpos, GEvent *event) {

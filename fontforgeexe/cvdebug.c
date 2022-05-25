@@ -881,7 +881,7 @@ static GMenuItem popupwindowlist[] = {
     { { (unichar_t *) N_("Cvt"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 0, 1, 0, 0, 0, 1, 0, 0, '\0' }, '\0', 0, NULL, NULL, DVMenuCreate, MID_Cvt },
     { { (unichar_t *) N_("Raster"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 0, 1, 0, 0, 0, 1, 0, 0, '\0' }, '\0', 0, NULL, NULL, DVMenuCreate, MID_Raster },
     { { (unichar_t *) N_("Gloss"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 0, 1, 0, 0, 0, 1, 0, 0, '\0' }, '\0', 0, NULL, NULL, DVMenuCreate, MID_Gloss },
-    GMENUITEM_EMPTY
+    GDMENUITEM_EMPTY
 };
 
 static int DV_WindowMenu(GGadget *g, GEvent *e) {

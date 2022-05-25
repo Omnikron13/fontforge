@@ -4804,7 +4804,7 @@ static GMenuItem vw_subselect[] = {
     { { (unichar_t *) N_("problselect|Bad Direction"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0 }, '\0', 0, NULL, NULL, VWMenuSelect, MID_SelectDir },
     { { (unichar_t *) N_("problselect|Self Intersections"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0 }, '\0', 0, NULL, NULL, VWMenuSelect, MID_SelectRO },
     { { (unichar_t *) N_("problselect|Missing Extrema"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0 }, '\0', 0, NULL, NULL, VWMenuSelect, MID_SelectExtr },
-    GMENUITEM_EMPTY
+    GDMENUITEM_EMPTY
 };
 
 static void VWMenuManyConnect(GWindow gw,struct gdmenuitem *mi,GEvent *e) {
@@ -5005,7 +5005,7 @@ static GMenuItem vw_subfixup[] = {
     { { (unichar_t *) N_("problfixup|Missing Extrema (cautiously)"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, true, 0, 0, 0, 0, 1, 1, 0, 0 }, '\0', 0, NULL, NULL, VWMenuManyGoodExtrema, 0 },
     { { (unichar_t *) N_("problfixup|Missing Extrema"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, true, 0, 0, 0, 0, 1, 1, 0, 0 }, '\0', 0, NULL, NULL, VWMenuManyAllExtrema, 0 },
     { { (unichar_t *) N_("problfixup|Too Many Points"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, true, 0, 0, 0, 0, 1, 1, 0, 0 }, '\0', 0, NULL, NULL, VWMenuManySimplify, 0 },
-    GMENUITEM_EMPTY
+    GDMENUITEM_EMPTY
 };
 
 static GMenuItem vw_popuplist[] = {
@@ -5027,7 +5027,7 @@ static GMenuItem vw_popuplist[] = {
     { { NULL, NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 0, 0, 0, 0, 1, 0, 0, 0, '\0' }, '\0', 0, NULL, NULL, NULL, 0 }, /* line */
     { { (unichar_t *) N_("Select Glyphs With"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0 }, '\0', 0, vw_subselect, NULL, NULL, 0 },
     { { (unichar_t *) N_("Try To Fix Glyphs With"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0 }, '\0', 0, vw_subfixup, NULL, NULL, 0 },
-    GMENUITEM_EMPTY
+    GDMENUITEM_EMPTY
 };
 
 static void VWMouse(struct val_data *vw, GEvent *e) {

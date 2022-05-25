@@ -319,7 +319,7 @@ GMenuItem2 cvtoollist[] = {
     { { (unichar_t *) N_("Pol_ygon"), (GImage *) "toolspolygon.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 1, 0, 0, 0, 1, 1, 0, 'T' }, H_("Polygon|No Shortcut"), NULL, NULL, CVMenuTool, cvt_poly },
     { { (unichar_t *) N_("Ellipse"), (GImage *) "toolselipse.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 1, 0, 0, 0, 1, 1, 0, 'T' }, H_("Ellipse|No Shortcut"), NULL, NULL, CVMenuTool, cvt_elipse },
     { { (unichar_t *) N_("Star"), (GImage *) "toolsstar.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 1, 0, 0, 0, 1, 1, 0, 'T' }, H_("Star|No Shortcut"), NULL, NULL, CVMenuTool, cvt_star },
-    GMENUITEM2_EMPTY
+    GDMENUITEM2_EMPTY
 };
 GMenuItem2 cvspirotoollist[] = {
     { { (unichar_t *) N_("_Pointer"), (GImage *) "toolspointer.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 1, 0, 0, 0, 1, 1, 0, 'C' }, H_("Pointer|No Shortcut"), NULL, NULL, CVMenuTool, cvt_pointer },
@@ -351,7 +351,7 @@ GMenuItem2 cvspirotoollist[] = {
     { { (unichar_t *) N_("Pol_ygon"), (GImage *) "toolspolygon.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 1, 0, 0, 0, 1, 1, 0, 'T' }, H_("Polygon|No Shortcut"), NULL, NULL, CVMenuTool, cvt_poly },
     { { (unichar_t *) N_("Ellipse"), (GImage *) "toolselipse.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 1, 0, 0, 0, 1, 1, 0, 'T' }, H_("Ellipse|No Shortcut"), NULL, NULL, CVMenuTool, cvt_elipse },
     { { (unichar_t *) N_("Star"), (GImage *) "toolsstar.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 1, 0, 0, 0, 1, 1, 0, 'T' }, H_("Star|No Shortcut"), NULL, NULL, CVMenuTool, cvt_star },
-    GMENUITEM2_EMPTY
+    GDMENUITEM2_EMPTY
 };
 
 static char *editablelayers[] = {

@@ -1032,7 +1032,7 @@ static GMenuItem gtf_popuplist[] = {
     { { (unichar_t *) "_Save in UTF8", NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 0, 0, 0, 0, 0, 1, 1, 0, '\0' }, 'S', ksm_control, NULL, NULL, GTFPopupInvoked, MID_Save },
     { { (unichar_t *) "Save in _UCS2", NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 0, 0, 0, 0, 0, 1, 1, 0, '\0' }, '\0', ksm_control, NULL, NULL, GTFPopupInvoked, MID_SaveUCS2 },
     { { (unichar_t *) "_Import", NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 0, 0, 0, 0, 0, 1, 1, 0, '\0' }, 'I', ksm_control, NULL, NULL, GTFPopupInvoked, MID_Import },
-    GMENUITEM_EMPTY
+    GDMENUITEM_EMPTY
 };
 static int first = true;
 

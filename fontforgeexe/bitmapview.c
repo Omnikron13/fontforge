@@ -2149,7 +2149,7 @@ static GMenuItem2 wnmenu[] = {
     { { NULL, NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 1, 0, 0, 0, '\0' }, NULL, NULL, NULL, NULL, 0 }, /* line */
     { { (unichar_t *) N_("Warnings"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'M' }, H_("Warnings|No Shortcut"), NULL, NULL, _MenuWarnings, MID_Warnings },
     { { NULL, NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 1, 0, 0, 0, '\0' }, NULL, NULL, NULL, NULL, 0 }, /* line */
-    GMENUITEM2_EMPTY
+    GDMENUITEM2_EMPTY
 };
 
 static void BVWindowMenuBuild(GWindow gw,struct gdmenuitem *mi,GEvent *e) {
@@ -2178,7 +2178,7 @@ char *BVFlipNames[] = { N_("Flip Horizontally"), N_("Flip Vertically"),
 
 static GMenuItem2 dummyitem[] = {
     { { (unichar_t *) N_("Font|_New"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'N' }, NULL, NULL, NULL, NULL, 0 },
-    GMENUITEM2_EMPTY
+    GDMENUITEM2_EMPTY
 };
 static GMenuItem2 fllist[] = {
     { { (unichar_t *) N_("Font|_New"), (GImage *) "filenew.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'N' }, H_("New|Ctl+N"), NULL, NULL, MenuNew, 0 },
@@ -2203,7 +2203,7 @@ static GMenuItem2 fllist[] = {
 #endif
     { { NULL, NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 1, 0, 0, 0, '\0' }, NULL, NULL, NULL, NULL, 0 }, /* line */
     { { (unichar_t *) N_("_Quit"), (GImage *) "filequit.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'Q' }, H_("Quit|Ctl+Q"), NULL, NULL, MenuExit, 0 },
-    GMENUITEM2_EMPTY
+    GDMENUITEM2_EMPTY
 };
 
 static GMenuItem2 edlist[] = {
@@ -2221,7 +2221,7 @@ static GMenuItem2 edlist[] = {
     { { (unichar_t *) N_("Remo_ve Undoes"), (GImage *) "menuempty.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'e' }, H_("Remove Undoes|No Shortcut"), NULL, NULL, BVRemoveUndoes, MID_RemoveUndoes },
     { { NULL, NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 1, 0, 0, 0, '\0' }, NULL, NULL, NULL, NULL, 0 }, /* line */
     { { (unichar_t *) N_("U_nlink Reference"), (GImage *) "editunlink.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'U' }, H_("Unlink Reference|Ctl+U"), NULL, NULL, BVUnlinkRef, MID_UnlinkRef },
-    GMENUITEM2_EMPTY
+    GDMENUITEM2_EMPTY
 };
 
 static GMenuItem2 trlist[] = {
@@ -2231,7 +2231,7 @@ static GMenuItem2 trlist[] = {
     { { (unichar_t *) NU_("Rotate _90° CCW"), (GImage *) "transformrotateccw.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, '9' }, H_("Rotate 90 CCW|No Shortcut"), NULL, NULL, BVMenuRotateInvoked, bvt_rotate90ccw },
     { { (unichar_t *) NU_("Rotate _180°"), (GImage *) "transformrotate180.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, '1' }, H_("Rotate 180|No Shortcut"), NULL, NULL, BVMenuRotateInvoked, bvt_rotate180 },
     { { (unichar_t *) N_("_Skew..."), (GImage *) "transformskew.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'S' }, H_("Skew...|No Shortcut"), NULL, NULL, BVMenuRotateInvoked, bvt_skew },
-    GMENUITEM2_EMPTY
+    GDMENUITEM2_EMPTY
 };
 
 static GMenuItem2 ellist[] = {
@@ -2244,7 +2244,7 @@ static GMenuItem2 ellist[] = {
     { { (unichar_t *) N_("Remove This Glyph"), (GImage *) "elementremovebitmaps.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'B' }, H_("Remove This Glyph|No Shortcut"), NULL, NULL, BVMenuRmGlyph, 0 },
     { { NULL, NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 1, 0, 0, 0, '\0' }, NULL, NULL, NULL, NULL, 0 }, /* line */
     { { (unichar_t *) N_("_Transformations"), (GImage *) "elementtransform.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'T' }, NULL, trlist, NULL, NULL, 0 },
-    GMENUITEM2_EMPTY
+    GDMENUITEM2_EMPTY
 };
 
 static GMenuItem2 pllist[] = {
@@ -2253,7 +2253,7 @@ static GMenuItem2 pllist[] = {
     { { (unichar_t *) N_("_Shades"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 1, 0, 0, 0, 1, 1, 0, 'S' }, H_("Shades|No Shortcut"), NULL, NULL, BVMenuPaletteShow, MID_Shades },
     { { NULL, NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 1, 0, 0, 0, '\0' }, NULL, NULL, NULL, NULL, 0 }, /* line */
     { { (unichar_t *) N_("_Docked Palettes"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 1, 0, 0, 0, 1, 1, 0, 'D' }, H_("Docked Palettes|No Shortcut"), NULL, NULL, BVMenuPalettesDock, MID_DockPalettes },
-    GMENUITEM2_EMPTY
+    GDMENUITEM2_EMPTY
 };
 
 static GMenuItem2 vwlist[] = {
@@ -2272,13 +2272,13 @@ static GMenuItem2 vwlist[] = {
     { { (unichar_t *) N_("_Smaller Pixel Size"), (GImage *) "viewsmallersize.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'S' }, H_("Smaller Pixel Size|Ctl+-"), NULL, NULL, BVMenuChangePixelSize, MID_Smaller },
     { { NULL, NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 1, 0, 0, 0, '\0' }, NULL, NULL, NULL, NULL, 0 }, /* line */
     { { (unichar_t *) N_("_Palettes"), (GImage *) "viewpalettes.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'l' }, NULL, pllist, pllistcheck, NULL, 0 },
-    GMENUITEM2_EMPTY
+    GDMENUITEM2_EMPTY
 };
 
 static GMenuItem2 mtlist[] = {
     { { (unichar_t *) N_("Set _Width..."), (GImage *) "metricssetwidth.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'W' }, H_("Set Width...|Ctl+Shft+L"), NULL, NULL, BVMenuSetWidth, MID_SetWidth },
     { { (unichar_t *) N_("Set _Vertical Width..."), (GImage *) "metricssetvwidth.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'W' }, H_("Set Vertical Width...|Ctl+Shft+L"), NULL, NULL, BVMenuSetWidth, MID_SetVWidth },
-    GMENUITEM2_EMPTY
+    GDMENUITEM2_EMPTY
 };
 
 static GMenuItem2 mblist[] = {
@@ -2289,7 +2289,7 @@ static GMenuItem2 mblist[] = {
     { { (unichar_t *) N_("_Metrics"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'M' }, NULL, mtlist, mtlistcheck, NULL, 0 },
     { { (unichar_t *) N_("_Window"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'W' }, NULL, wnmenu, BVWindowMenuBuild, NULL, 0 },
     { { (unichar_t *) N_("_Help"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'H' }, NULL, helplist, NULL, NULL, 0 },
-    GMENUITEM2_EMPTY
+    GDMENUITEM2_EMPTY
 };
 
 #define bitmap_width 16

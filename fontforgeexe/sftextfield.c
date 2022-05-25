@@ -938,7 +938,7 @@ static GMenuItem sftf_popuplist[] = {
     { { (unichar_t *) N_("_Insert Random Text..."), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 0, 0, 0, 0, 0, 1, 1, 0, 'I' }, 'T', ksm_control, NULL, NULL, SFTFPopupInvoked, MID_Insert },
     { { NULL, NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 0, 0, 0, 0, 1, 0, 0, 0, '\0' }, '\0', 0, NULL, NULL, NULL, 0 }, /* line */
     { { (unichar_t *) N_("Save As _Image..."), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 0, 0, 0, 0, 0, 1, 1, 0, 'S' }, 'S', ksm_control|ksm_shift, NULL, NULL, SFTFPopupInvoked, MID_SaveImage },
-    GMENUITEM_EMPTY
+    GDMENUITEM_EMPTY
 };
 
 void SFTFPopupMenu(SFTextArea *st, GEvent *event) {

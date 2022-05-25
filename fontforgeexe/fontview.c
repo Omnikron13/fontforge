@@ -4418,7 +4418,7 @@ static void infolistcheck(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) 
 
 static GMenuItem2 dummyitem[] = {
     { { (unichar_t *) N_("Font|_New"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'N' }, NULL, NULL, NULL, NULL, 0 },
-    GMENUITEM2_EMPTY
+    GDMENUITEM2_EMPTY
 };
 
 static GMenuItem2 fllist[] = {
@@ -4465,7 +4465,7 @@ static GMenuItem2 fllist[] = {
     { { NULL, NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 1, 0, 0, 0, '\0' }, NULL, NULL, NULL, NULL, 0 }, /* line */
     { { (unichar_t *) N_("_Quit"), (GImage *) "filequit.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'Q' }, H_("Quit|Ctl+Q"), /* WARNING: THIS BINDING TO PROPERLY INITIALIZE KEYBOARD INPUT */
       NULL, NULL, FVMenuExit, 0 },
-    GMENUITEM2_EMPTY
+    GDMENUITEM2_EMPTY
 };
 
 static GMenuItem2 cflist[] = {
@@ -4475,7 +4475,7 @@ static GMenuItem2 cflist[] = {
     { { (unichar_t *) N_("Glyph _Metadata"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 1, 0, 0, 0, 1, 1, 0, 'N' }, H_("Glyph Metadata|No Shortcut"), NULL, NULL, FVMenuCopyFrom, MID_CharName },
     { { NULL, NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 1, 0, 0, 0, '\0' }, NULL, NULL, NULL, NULL, 0 }, /* line */
     { { (unichar_t *) N_("_TrueType Instructions"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 1, 0, 0, 0, 1, 1, 0, 'N' }, H_("TrueType Instructions|No Shortcut"), NULL, NULL, FVMenuCopyFrom, MID_TTFInstr },
-    GMENUITEM2_EMPTY
+    GDMENUITEM2_EMPTY
 };
 
 static GMenuItem2 sclist[] = {
@@ -4488,7 +4488,7 @@ static GMenuItem2 sclist[] = {
     { { NULL, &yellow_image, COLOR_DEFAULT, COLOR_DEFAULT, (void *) 0xffff00, NULL, 0, 1, 0, 0, 0, 0, 0, 0, 0, '\0' }, NULL, NULL, NULL, FVMenuSelectColor, 0 },
     { { NULL, &cyan_image, COLOR_DEFAULT, COLOR_DEFAULT, (void *) 0x00ffff, NULL, 0, 1, 0, 0, 0, 0, 0, 0, 0, '\0' }, NULL, NULL, NULL, FVMenuSelectColor, 0 },
     { { NULL, &magenta_image, COLOR_DEFAULT, COLOR_DEFAULT, (void *) 0xff00ff, NULL, 0, 1, 0, 0, 0, 0, 0, 0, 0, '\0' }, NULL, NULL, NULL, FVMenuSelectColor, 0 },
-    GMENUITEM2_EMPTY
+    GDMENUITEM2_EMPTY
 };
 
 static GMenuItem2 sllist[] = {
@@ -4513,7 +4513,7 @@ static GMenuItem2 sllist[] = {
     { { (unichar_t *) N_("Hold [Control] key to restrict"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 1, 1, 0, 0, 0, 0, 1, 1, 0, '\0' }, NULL, NULL, NULL, NULL, 0 },
     { { NULL, NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 1, 0, 0, 0, '\0' }, NULL, NULL, NULL, NULL, 0 }, /* line */
     { { (unichar_t *) N_("Selec_t By Lookup Subtable..."), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'T' }, H_("Select By Lookup Subtable...|No Shortcut"), NULL, NULL, FVMenuSelectByPST, 0 },
-    GMENUITEM2_EMPTY
+    GDMENUITEM2_EMPTY
 };
 
 static GMenuItem2 edlist[] = {
@@ -4549,7 +4549,7 @@ static GMenuItem2 edlist[] = {
     { { (unichar_t *) N_("Copy _From"), (GImage *) "menuempty.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'F' }, H_("Copy From|No Shortcut"), cflist, cflistcheck, NULL, 0 },
     { { NULL, NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 1, 0, 0, 0, '\0' }, NULL, NULL, NULL, NULL, 0 }, /* line */
     { { (unichar_t *) N_("Remo_ve Undoes"), (GImage *) "editrmundoes.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'e' }, H_("Remove Undoes|No Shortcut"), NULL, NULL, FVMenuRemoveUndoes, MID_RemoveUndoes },
-    GMENUITEM2_EMPTY
+    GDMENUITEM2_EMPTY
 };
 
 static GMenuItem2 smlist[] = {
@@ -4558,14 +4558,14 @@ static GMenuItem2 smlist[] = {
     { { (unichar_t *) N_("Clea_nup Glyph"), (GImage *) "menuempty.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'n' }, H_("Cleanup Glyph|No Shortcut"), NULL, NULL, FVMenuCleanup, MID_CleanupGlyph },
     { { (unichar_t *) N_("Canonical Start _Point"), (GImage *) "menuempty.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'n' }, H_("Canonical Start Point|No Shortcut"), NULL, NULL, FVMenuCanonicalStart, MID_CanonicalStart },
     { { (unichar_t *) N_("Canonical _Contours"), (GImage *) "menuempty.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'n' }, H_("Canonical Contours|No Shortcut"), NULL, NULL, FVMenuCanonicalContours, MID_CanonicalContours },
-    GMENUITEM2_EMPTY
+    GDMENUITEM2_EMPTY
 };
 
 static GMenuItem2 rmlist[] = {
     { { (unichar_t *) N_("_Remove Overlap"), (GImage *) "overlaprm.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, true, 0, 0, 0, 0, 1, 1, 0, 'O' }, H_("Remove Overlap|No Shortcut"), NULL, NULL, FVMenuOverlap, MID_RmOverlap },
     { { (unichar_t *) N_("_Intersect"), (GImage *) "overlapintersection.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, true, 0, 0, 0, 0, 1, 1, 0, 'I' }, H_("Intersect|No Shortcut"), NULL, NULL, FVMenuOverlap, MID_Intersection },
     { { (unichar_t *) N_("_Find Intersections"), (GImage *) "overlapfindinter.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, true, 0, 0, 0, 0, 1, 1, 0, 'O' }, H_("Find Intersections|No Shortcut"), NULL, NULL, FVMenuOverlap, MID_FindInter },
-    GMENUITEM2_EMPTY
+    GDMENUITEM2_EMPTY
 };
 
 static GMenuItem2 eflist[] = {
@@ -4583,7 +4583,7 @@ static GMenuItem2 eflist[] = {
     { { (unichar_t *) N_("_Outline..."), (GImage *) "stylesoutline.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, true, 0, 0, 0, 0, 1, 1, 0, '\0' }, H_("Outline...|No Shortcut"), NULL, NULL, FVMenuOutline, 0 },
     { { (unichar_t *) N_("S_hadow..."), (GImage *) "stylesshadow.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, true, 0, 0, 0, 0, 1, 1, 0, '\0' }, H_("Shadow...|No Shortcut"), NULL, NULL, FVMenuShadow, 0 },
     { { (unichar_t *) N_("_Wireframe..."), (GImage *) "styleswireframe.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, true, 0, 0, 0, 0, 1, 1, 0, '\0' }, H_("Wireframe...|No Shortcut"), NULL, NULL, FVMenuWireframe, 0 },
-    GMENUITEM2_EMPTY
+    GDMENUITEM2_EMPTY
 };
 
 static GMenuItem2 balist[] = {
@@ -4594,27 +4594,27 @@ static GMenuItem2 balist[] = {
     { { NULL, NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 1, 0, 0, 0, '\0' }, NULL, NULL, NULL, NULL, 0 }, /* line */
     { { (unichar_t *) _STR_ShowGrp, NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'B' }, NULL, NULL, NULL, FVMenuShowGroup },
 #endif
-    GMENUITEM2_EMPTY
+    GDMENUITEM2_EMPTY
 };
 
 static GMenuItem2 delist[] = {
     { { (unichar_t *) N_("_References..."), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'u' }, H_("References...|No Shortcut"), NULL, NULL, FVMenuShowDependentRefs, MID_ShowDependentRefs },
     { { (unichar_t *) N_("_Substitutions..."), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'B' }, H_("Substitutions...|No Shortcut"), NULL, NULL, FVMenuShowDependentSubs, MID_ShowDependentSubs },
-    GMENUITEM2_EMPTY
+    GDMENUITEM2_EMPTY
 };
 
 static GMenuItem2 trlist[] = {
     { { (unichar_t *) N_("_Transform..."), (GImage *) "elementtransform.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'T' }, H_("Transform...|No Shortcut"), NULL, NULL, FVMenuTransform, MID_Transform },
     { { (unichar_t *) N_("_Point of View Projection..."), (GImage *) "menuempty.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'T' }, H_("Point of View Projection...|No Shortcut"), NULL, NULL, FVMenuPOV, MID_POV },
     { { (unichar_t *) N_("_Non Linear Transform..."), (GImage *) "menuempty.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'T' }, H_("Non Linear Transform...|No Shortcut"), NULL, NULL, FVMenuNLTransform, MID_NLTransform },
-    GMENUITEM2_EMPTY
+    GDMENUITEM2_EMPTY
 };
 
 static GMenuItem2 rndlist[] = {
     { { (unichar_t *) N_("To _Int"), (GImage *) "elementround.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'I' }, H_("To Int|No Shortcut"), NULL, NULL, FVMenuRound2Int, MID_Round },
     { { (unichar_t *) N_("To _Hundredths"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'I' }, H_("To Hundredths|No Shortcut"), NULL, NULL, FVMenuRound2Hundredths, 0 },
     { { (unichar_t *) N_("_Cluster"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'I' }, H_("Cluster|No Shortcut"), NULL, NULL, FVMenuCluster, 0 },
-    GMENUITEM2_EMPTY
+    GDMENUITEM2_EMPTY
 };
 
 static GMenuItem2 scollist[] = {
@@ -4627,7 +4627,7 @@ static GMenuItem2 scollist[] = {
     { { NULL, &yellow_image, COLOR_DEFAULT, COLOR_DEFAULT, (void *) 0xffff00, NULL, 0, 1, 0, 0, 0, 0, 0, 0, 0, '\0' }, NULL, NULL, NULL, FVMenuSetColor, 0 },
     { { NULL, &cyan_image, COLOR_DEFAULT, COLOR_DEFAULT, (void *) 0x00ffff, NULL, 0, 1, 0, 0, 0, 0, 0, 0, 0, '\0' }, NULL, NULL, NULL, FVMenuSetColor, 0 },
     { { NULL, &magenta_image, COLOR_DEFAULT, COLOR_DEFAULT, (void *) 0xff00ff, NULL, 0, 1, 0, 0, 0, 0, 0, 0, 0, '\0' }, NULL, NULL, NULL, FVMenuSetColor, 0 },
-    GMENUITEM2_EMPTY
+    GDMENUITEM2_EMPTY
 };
 
 static GMenuItem2 infolist[] = {
@@ -4639,7 +4639,7 @@ static GMenuItem2 infolist[] = {
     { { (unichar_t *) N_("Show _Dependent"), (GImage *) "elementshowdep.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, '\0' }, H_("Show Dependent|No Shortcut"), delist, delistcheck, NULL, 0 },
     { { (unichar_t *) N_("Mass Glyph _Rename..."), (GImage *) "elementrenameglyph.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, '\0' }, H_("Mass Glyph Rename...|No Shortcut"), NULL, NULL, FVMenuMassRename, MID_MassRename },
     { { (unichar_t *) N_("Set _Color"), (GImage *) "menuempty.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, '\0' }, H_("Set Color|No Shortcut"), scollist, NULL, NULL, MID_SetColor },
-    GMENUITEM2_EMPTY
+    GDMENUITEM2_EMPTY
 };
 
 static GMenuItem2 validlist[] = {
@@ -4647,7 +4647,7 @@ static GMenuItem2 validlist[] = {
     { { (unichar_t *) N_("_Validate..."), (GImage *) "elementvalidate.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'o' }, H_("Validate...|No Shortcut"), NULL, NULL, FVMenuValidate, MID_Validate },
     { { NULL, NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 1, 0, 0, 0, '\0' }, NULL, NULL, NULL, NULL, 0 }, /* line */
     { { (unichar_t *) N_("Set E_xtremum Bound..."), (GImage *) "menuempty.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'o' }, H_("Set Extremum Bound...|No Shortcut"), NULL, NULL, FVMenuSetExtremumBound, MID_SetExtremumBound },
-    GMENUITEM2_EMPTY
+    GDMENUITEM2_EMPTY
 };
 
 static GMenuItem2 ellist[] = {
@@ -4684,12 +4684,12 @@ static GMenuItem2 ellist[] = {
     { { (unichar_t *) N_("Interpo_late Fonts..."), (GImage *) "elementinterpolatefonts.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'p' }, H_("Interpolate Fonts...|No Shortcut"), NULL, NULL, FVMenuInterpFonts, MID_InterpolateFonts },
     { { (unichar_t *) N_("Compare Fonts..."), (GImage *) "elementcomparefonts.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'p' }, H_("Compare Fonts...|No Shortcut"), NULL, NULL, FVMenuCompareFonts, MID_FontCompare },
     { { (unichar_t *) N_("Compare Layers..."), (GImage *) "elementcomparelayers.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'p' }, H_("Compare Layers...|No Shortcut"), NULL, NULL, FVMenuCompareL2L, 0 },
-    GMENUITEM2_EMPTY
+    GDMENUITEM2_EMPTY
 };
 
 static GMenuItem2 dummyall[] = {
     { { (unichar_t *) N_("All"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 1, 0, 0, 0, 0, 0, 1, 1, 0, 'K' }, H_("All|No Shortcut"), NULL, NULL, NULL, 0 },
-    GMENUITEM2_EMPTY
+    GDMENUITEM2_EMPTY
 };
 
 /* Builds up a menu containing all the anchor classes */
@@ -4706,7 +4706,7 @@ static GMenuItem2 cblist[] = {
     { { (unichar_t *) N_("_Kern Pairs"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'K' }, H_("Kern Pairs|No Shortcut"), NULL, NULL, FVMenuKernPairs, MID_KernPairs },
     { { (unichar_t *) N_("_Anchored Pairs"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'K' }, H_("Anchored Pairs|No Shortcut"), dummyall, aplistbuild, NULL, MID_AnchorPairs },
     { { (unichar_t *) N_("_Ligatures"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'L' }, H_("Ligatures|No Shortcut"), NULL, NULL, FVMenuLigatures, MID_Ligatures },
-    GMENUITEM2_EMPTY
+    GDMENUITEM2_EMPTY
 };
 
 static void cblistcheck(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
@@ -4752,7 +4752,7 @@ static GMenuItem2 gllist[] = {
     { { (unichar_t *) N_("_Name"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 1, 0, 0, 0, 1, 1, 0, 'K' }, H_("Name|No Shortcut"), NULL, NULL, FVMenuGlyphLabel, gl_name },
     { { (unichar_t *) N_("_Unicode"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 1, 0, 0, 0, 1, 1, 0, 'L' }, H_("Unicode|No Shortcut"), NULL, NULL, FVMenuGlyphLabel, gl_unicode },
     { { (unichar_t *) N_("_Encoding Hex"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 1, 0, 0, 0, 1, 1, 0, 'L' }, H_("Encoding Hex|No Shortcut"), NULL, NULL, FVMenuGlyphLabel, gl_encoding },
-    GMENUITEM2_EMPTY
+    GDMENUITEM2_EMPTY
 };
 
 static void gllistcheck(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
@@ -4765,7 +4765,7 @@ static void gllistcheck(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
 
 static GMenuItem2 emptymenu[] = {
     { { NULL, NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 1, 0, 0, 0, '\0' }, NULL, NULL, NULL, NULL, 0},
-    GMENUITEM2_EMPTY
+    GDMENUITEM2_EMPTY
 };
 
 static void FVEncodingMenuBuild(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
@@ -5067,7 +5067,7 @@ static GMenuItem2 enlist[] = {
     { { (unichar_t *) N_("L_oad Namelist..."), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'C' }, H_("Load Namelist...|No Shortcut"), NULL, NULL, FVMenuLoadNamelist, 0 },
     { { (unichar_t *) N_("Rename Gl_yphs..."), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'C' }, H_("Rename Glyphs...|No Shortcut"), NULL, NULL, FVMenuRenameByNamelist, MID_RenameGlyphs },
     { { (unichar_t *) N_("Cre_ate Named Glyphs..."), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'C' }, H_("Create Named Glyphs...|No Shortcut"), NULL, NULL, FVMenuNameGlyphs, MID_NameGlyphs },
-    GMENUITEM2_EMPTY
+    GDMENUITEM2_EMPTY
 };
 
 static void enlistcheck(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
@@ -5118,7 +5118,7 @@ static void enlistcheck(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
 
 static GMenuItem2 lylist[] = {
     { { (unichar_t *) N_("Layer|Foreground"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 1, 0, 1, 1, 0, 0, 1, 1, 0, '\0' }, NULL, NULL, NULL, FVMenuChangeLayer, ly_fore },
-    GMENUITEM2_EMPTY
+    GDMENUITEM2_EMPTY
 };
 
 static void lylistcheck(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
@@ -5172,11 +5172,11 @@ static GMenuItem2 vwlist[] = {
     { { (unichar_t *) N_("_Fit to font bounding box"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 1, 0, 0, 0, 1, 1, 0, 'F' }, H_("Fit to font bounding box|No Shortcut"), NULL, NULL, FVMenuSize, MID_FitToBbox },
     { { NULL, NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 1, 0, 0, 0, '\0' }, NULL, NULL, NULL, NULL, 0 }, /* line */
     { { (unichar_t *) N_("Bitmap _Magnification..."), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 1, 0, 0, 0, 1, 1, 0, 'F' }, H_("Bitmap Magnification...|No Shortcut"), NULL, NULL, FVMenuMagnify, MID_BitmapMag },
-    GMENUITEM2_EMPTY,			/* Some extra room to show bitmaps */
-    GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY,
-    GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY,
-    GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY,
-    GMENUITEM2_EMPTY
+    GDMENUITEM2_EMPTY,			/* Some extra room to show bitmaps */
+    GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY,
+    GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY,
+    GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY,
+    GDMENUITEM2_EMPTY
 };
 
 static void vwlistcheck(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
@@ -5308,7 +5308,7 @@ static GMenuItem2 histlist[] = {
     { { (unichar_t *) N_("_HStem"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'H' }, H_("HStem|No Shortcut"), NULL, NULL, FVMenuHistograms, MID_HStemHist },
     { { (unichar_t *) N_("_VStem"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'V' }, H_("VStem|No Shortcut"), NULL, NULL, FVMenuHistograms, MID_VStemHist },
     { { (unichar_t *) N_("BlueValues"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'B' }, H_("BlueValues|No Shortcut"), NULL, NULL, FVMenuHistograms, MID_BlueValuesHist },
-    GMENUITEM2_EMPTY
+    GDMENUITEM2_EMPTY
 };
 
 static GMenuItem2 htlist[] = {
@@ -5330,7 +5330,7 @@ static GMenuItem2 htlist[] = {
     { { (unichar_t *) N_("Clear Instructions"), (GImage *) "menuempty.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'C' }, H_("Clear Instructions|No Shortcut"), NULL, NULL, FVMenuClearInstrs, MID_ClearInstrs },
     { { NULL, NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 1, 0, 0, 0, '\0' }, NULL, NULL, NULL, NULL, 0 }, /* line */
     { { (unichar_t *) N_("Histograms"), (GImage *) "menuempty.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, '\0' }, H_("Histograms|No Shortcut"), histlist, NULL, NULL, 0 },
-    GMENUITEM2_EMPTY
+    GDMENUITEM2_EMPTY
 };
 
 static GMenuItem2 mtlist[] = {
@@ -5353,7 +5353,7 @@ static GMenuItem2 mtlist[] = {
     { { (unichar_t *) N_("VKern By Classes..."), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'K' }, H_("VKern By Classes...|No Shortcut"), NULL, NULL, FVMenuVKernByClasses, MID_VKernByClass },
     { { (unichar_t *) N_("VKern From HKern"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'P' }, H_("VKern From HKern|No Shortcut"), NULL, NULL, FVMenuVKernFromHKern, MID_VKernFromH },
     { { (unichar_t *) N_("Remove All VKern Pairs"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'P' }, H_("Remove All VKern Pairs|No Shortcut"), NULL, NULL, FVMenuRemoveVKern, MID_RmVKern },
-    GMENUITEM2_EMPTY
+    GDMENUITEM2_EMPTY
 };
 
 static GMenuItem2 cdlist[] = {
@@ -5369,40 +5369,40 @@ static GMenuItem2 cdlist[] = {
     { { NULL, NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 1, 0, 0, 0, '\0' }, NULL, NULL, NULL, NULL, 0 }, /* line */
     { { (unichar_t *) N_("_Change Supplement..."), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'I' }, H_("Change Supplement...|No Shortcut"), NULL, NULL, FVMenuChangeSupplement, MID_ChangeSupplement },
     { { (unichar_t *) N_("C_ID Font Info..."), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'I' }, H_("CID Font Info...|No Shortcut"), NULL, NULL, FVMenuCIDFontInfo, MID_CIDFontInfo },
-    GMENUITEM2_EMPTY,				/* Extra room to show sub-font names */
-    GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY,
-    GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY,
-    GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY,
-    GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY,
-    GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY,
-    GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY,
-    GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY,
-    GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY,
-    GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY,
-    GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY,
-    GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY,
-    GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY,
-    GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY,
-    GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY,
-    GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY,
-    GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY,
-    GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY,
-    GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY,
-    GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY,
-    GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY,
-    GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY,
-    GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY,
-    GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY,
-    GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY,
-    GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY,
-    GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY,
-    GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY,
-    GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY,
-    GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY,
-    GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY,
-    GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY,
-    GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY, GMENUITEM2_EMPTY,
-    GMENUITEM2_EMPTY
+    GDMENUITEM2_EMPTY,				/* Extra room to show sub-font names */
+    GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY,
+    GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY,
+    GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY,
+    GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY,
+    GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY,
+    GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY,
+    GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY,
+    GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY,
+    GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY,
+    GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY,
+    GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY,
+    GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY,
+    GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY,
+    GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY,
+    GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY,
+    GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY,
+    GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY,
+    GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY,
+    GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY,
+    GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY,
+    GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY,
+    GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY,
+    GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY,
+    GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY,
+    GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY,
+    GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY,
+    GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY,
+    GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY,
+    GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY,
+    GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY,
+    GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY,
+    GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY, GDMENUITEM2_EMPTY,
+    GDMENUITEM2_EMPTY
 };
 
 static void cdlistcheck(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
@@ -5464,7 +5464,7 @@ static GMenuItem2 mmlist[] = {
     { { (unichar_t *) N_("MM _Info..."), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'I' }, H_("MM Info...|No Shortcut"), NULL, NULL, FVMenuMMInfo, MID_MMInfo },
     { { (unichar_t *) N_("_Blend to New Font..."), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'I' }, H_("Blend to New Font...|No Shortcut"), NULL, NULL, FVMenuBlendToNew, MID_BlendToNew },
     { { (unichar_t *) N_("MM Change Default _Weights..."), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'I' }, H_("MM Change Default Weights...|No Shortcut"), NULL, NULL, FVMenuChangeMMBlend, MID_ChangeMMBlend },
-    GMENUITEM2_EMPTY,				/* Extra room to show sub-font names */
+    GDMENUITEM2_EMPTY,				/* Extra room to show sub-font names */
 };
 
 static void mmlistcheck(GWindow gw, struct gdmenuitem *mi, GEvent *UNUSED(e)) {
@@ -5526,7 +5526,7 @@ static GMenuItem2 wnmenu[] = {
     { { NULL, NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 1, 0, 0, 0, '\0' }, NULL, NULL, NULL, NULL, 0 }, /* line */
     { { (unichar_t *) N_("Warnings"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'M' }, H_("Warnings|No Shortcut"), NULL, NULL, _MenuWarnings, MID_Warnings },
     { { NULL, NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 1, 0, 0, 0, '\0' }, NULL, NULL, NULL, NULL, 0 }, /* line */
-    GMENUITEM2_EMPTY
+    GDMENUITEM2_EMPTY
 };
 
 static void FVWindowMenuBuild(GWindow gw, struct gdmenuitem *mi, GEvent *e) {
@@ -5560,12 +5560,12 @@ GMenuItem2 helplist[] = {
     { { (unichar_t *) N_("_Index"), (GImage *) "helpindex.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'I' }, H_("Index|No Shortcut"), NULL, NULL, MenuIndex, 0 },
     { { (unichar_t *) N_("_About..."), (GImage *) "helpabout.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'A' }, H_("About...|No Shortcut"), NULL, NULL, MenuAbout, 0 },
     { { (unichar_t *) N_("_License..."), (GImage *) "menuempty.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'A' }, H_("License...|No Shortcut"), NULL, NULL, MenuLicense, 0 },
-    GMENUITEM2_EMPTY
+    GDMENUITEM2_EMPTY
 };
 
 GMenuItem fvpopupmenu[] = {
     { { (unichar_t *) N_("New O_utline Window"), 0, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'u' }, '\0', ksm_control, NULL, NULL, FVMenuOpenOutline, MID_OpenOutline },
-    GMENUITEM_LINE,
+    GDMENUITEM_LINE,
     { { (unichar_t *) N_("Cu_t"), (GImage *) "editcut.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 't' }, '\0', ksm_control, NULL, NULL, FVMenuCut, MID_Cut },
     { { (unichar_t *) N_("_Copy"), (GImage *) "editcopy.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'C' }, '\0', ksm_control, NULL, NULL, FVMenuCopy, MID_Copy },
     { { (unichar_t *) N_("C_opy Reference"), (GImage *) "editcopyref.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'o' }, '\0', ksm_control, NULL, NULL, FVMenuCopyRef, MID_CopyRef },
@@ -5586,7 +5586,7 @@ GMenuItem fvpopupmenu[] = {
     { { (unichar_t *) N_("_Center in Width"), (GImage *) "metricscenter.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'C' }, '\0', ksm_control, NULL, NULL, FVMenuCenter, MID_Center },
     { { (unichar_t *) N_("Set _Width..."), (GImage *) "metricssetwidth.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'W' }, '\0', ksm_control|ksm_shift, NULL, NULL, FVMenuSetWidth, MID_SetWidth },
     { { (unichar_t *) N_("Set _Vertical Advance..."), (GImage *) "metricssetvwidth.png", COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'V' }, '\0', ksm_control|ksm_shift, NULL, NULL, FVMenuSetWidth, MID_SetVWidth },
-    GMENUITEM_EMPTY
+    GDMENUITEM_EMPTY
 };
 
 static GMenuItem2 mblist[] = {
@@ -5605,7 +5605,7 @@ static GMenuItem2 mblist[] = {
     { { (unichar_t *) N_("MM"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, '\0' }, H_("MM|No Shortcut"), mmlist, mmlistcheck, NULL, 0 },
     { { (unichar_t *) N_("_Window"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'W' }, H_("Window|No Shortcut"), wnmenu, FVWindowMenuBuild, NULL, 0 },
     { { (unichar_t *) N_("_Help"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 1, 0, 'H' }, H_("Help|No Shortcut"), helplist, NULL, NULL, 0 },
-    GMENUITEM2_EMPTY
+    GDMENUITEM2_EMPTY
 };
 
 void FVRefreshChar(FontView *fv,int gid) {

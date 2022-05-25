@@ -886,7 +886,7 @@ static GMenuItem gfcpopupmenu[] = {
     { { (unichar_t *) N_("Directories First"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 0, 1, 0, 0, 0, 1, 0, 0, 'H' }, '\0', ksm_control, NULL, NULL, GFCDirsFirstToggle, 0 },
     { { (unichar_t *) N_("Directories Separate"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 0, 1, 0, 0, 0, 1, 0, 0, 'H' }, '\0', ksm_control, NULL, NULL, GFCDirsSeparateToggle, 0 },
     { { (unichar_t *) N_("Refresh File List"), NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 0, 0, 0, 0, 0, 1, 0, 0, 'H' }, '\0', ksm_control, NULL, NULL, GFCRefresh, 0 },
-    GMENUITEM_EMPTY
+    GDMENUITEM_EMPTY
 };
 static int gotten=false;
 
@@ -1040,7 +1040,7 @@ static GMenuItem gfcbookmarkmenu[] = {
     { { (unichar_t *) N_("Bookmark Current Dir"), &_GIcon_bookmark, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 0, 0, '\0' }, '\0', ksm_control, NULL, NULL, GFCAddCur, 0 },
     { { (unichar_t *) N_("Remove Bookmark..."), &_GIcon_nobookmark, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 1, 0, 0, 0, 0, 1, 0, 0, '\0' }, '\0', ksm_control, NULL, NULL, GFCRemoveBook, 0 },
     { { NULL, NULL, COLOR_DEFAULT, COLOR_DEFAULT, NULL, NULL, 0, 0, 0, 0, 0, 1, 0, 0, 0, '\0' }, '\0', 0, NULL, NULL, NULL, 0 }, /* line */
-    GMENUITEM_EMPTY
+    GDMENUITEM_EMPTY
 };
 static int bgotten=false;
 
