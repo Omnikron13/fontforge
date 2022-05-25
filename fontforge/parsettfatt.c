@@ -325,13 +325,13 @@ struct valuerecord {
 static uint16_t *getClassDefTable(FILE *ttf, int classdef_offset, struct ttfinfo *info) {
     int format, i, j;
     uint16_t start, glyphcnt, rangecnt, end, class;
-    uint16_t *glist=NULL;
+    uint16_t *glyphlist=NULL;
     int warned = false;
     int cnt = info->glyph_cnt;
     uint32_t g_bounds = info->g_bounds;
 
     fseek(ttf, classdef_offset, SEEK_SET);
-    glist = calloc(cnt,sizeof(uint16_t));	/* Class 0 is default */
+    glyphlist = calloc(cnt,sizeof(uint16_t));	/* Class 0 is default */
     format = getushort(ttf);
     if ( format==1 ) {
 	start = getushort(ttf);
@@ -347,7 +347,7 @@ static uint16_t *getClassDefTable(FILE *ttf, int classdef_offset, struct ttfinfo
 	    glyphcnt = cnt-start;
 	}
 	for ( i=0; i<glyphcnt; ++i )
-	    glist[start+i] = getushort(ttf);
+	    glyphlist[start+i] = getushort(ttf);
     } else if ( format==2 ) {
 	rangecnt = getushort(ttf);
 	if ( ftell(ttf)+6*rangecnt > g_bounds ) {
@@ -364,7 +364,7 @@ static uint16_t *getClassDefTable(FILE *ttf, int classdef_offset, struct ttfinfo
 	    }
 	    class = getushort(ttf);
 	    for ( j=start; j<=end; ++j ) if ( j<cnt )
-		glist[j] = class;
+		glyphlist[j] = class;
 	}
     } else {
 	LogError( _("Unknown class table format: %d\n"), format );
@@ -374,18 +374,18 @@ static uint16_t *getClassDefTable(FILE *ttf, int classdef_offset, struct ttfinfo
 
     /* Do another validity test */
     for ( i=0; i<cnt; ++i ) {
-	if ( glist[i]>=cnt+1 ) {
+	if ( glyphlist[i]>=cnt+1 ) {
 	    if ( !warned ) {
 		LogError( _("Nonsensical class assigned to a glyph-- class=%d is too big. Glyph=%d\n"),
-			glist[i], i );
+			glyphlist[i], i );
 		info->bad_ot = true;
 		warned = true;
 	    }
-	    glist[i] = 0;
+	    glyphlist[i] = 0;
 	}
     }
 
-return glist;
+return glyphlist;
 }
 
 static void readvaluerecord(struct valuerecord *vr,int vf,FILE *ttf) {

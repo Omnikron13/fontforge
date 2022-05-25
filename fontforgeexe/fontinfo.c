@@ -2511,7 +2511,7 @@ static struct otfname *OtfNameFromStyleNames(GGadget *me) {
 return( head );
 }
 
-void GListDelSelected(GGadget *list) {
+void GlyphListDelSelected(GGadget *list) {
     int32_t len; int i,j;
     GTextInfo **old, **new;
 
@@ -2527,7 +2527,7 @@ void GListDelSelected(GGadget *list) {
     GGadgetSetList(list,new,false);
 }
 
-GTextInfo *GListChangeLine(GGadget *list,int pos, const unichar_t *line) {
+GTextInfo *GlyphListChangeLine(GGadget *list,int pos, const unichar_t *line) {
     GTextInfo **old, **new;
     int32_t i,len;
 
@@ -2547,7 +2547,7 @@ GTextInfo *GListChangeLine(GGadget *list,int pos, const unichar_t *line) {
 return( new[pos]);
 }
 
-GTextInfo *GListAppendLine(GGadget *list,const unichar_t *line,int select) {
+GTextInfo *GlyphListAppendLine(GGadget *list,const unichar_t *line,int select) {
     GTextInfo **old, **new;
     int32_t i,len;
 
@@ -2570,7 +2570,7 @@ GTextInfo *GListAppendLine(GGadget *list,const unichar_t *line,int select) {
 return( new[i]);
 }
 
-GTextInfo *GListChangeLine8(GGadget *list,int pos, const char *line) {
+GTextInfo *GlyphListChangeLine8(GGadget *list,int pos, const char *line) {
     GTextInfo **old, **new;
     int32_t i,len;
 
@@ -2590,7 +2590,7 @@ GTextInfo *GListChangeLine8(GGadget *list,int pos, const char *line) {
 return( new[pos]);
 }
 
-GTextInfo *GListAppendLine8(GGadget *list,const char *line,int select) {
+GTextInfo *GlyphListAppendLine8(GGadget *list,const char *line,int select) {
     GTextInfo **old, **new;
     int32_t i,len;
 
@@ -6388,7 +6388,7 @@ static int GFI_LookupImportLookup(GGadget *g, GEvent *e) {
 	gcd[i].gd.pos.height = 12*12+6;
 	gcd[i].gd.flags = gg_enabled|gg_visible|gg_list_multiplesel;
 	gcd[i].gd.u.list = ti;
-	gcd[i].creator = GListCreate;
+	gcd[i].creator = GlyphListCreate;
 	varray[2] = &gcd[i++]; varray[3] = NULL;
 
 	gcd[i].gd.flags = gg_visible | gg_enabled | gg_but_default;
@@ -7864,7 +7864,7 @@ return;
     psgcd[5].gd.cid = CID_Em;
     psgcd[5].gd.u.list = emsizes;
     psgcd[5].gd.handle_controlevent = GFI_EmChanged;
-    psgcd[5].creator = GListFieldCreate;
+    psgcd[5].creator = GlyphListFieldCreate;
 
     psgcd[6].gd.pos.x = psgcd[2].gd.pos.x; psgcd[6].gd.pos.y = psgcd[4].gd.pos.y-4;
     psgcd[6].gd.flags = gg_visible | gg_enabled | gg_cb_on;
@@ -7973,7 +7973,7 @@ return;
     psgcd[k].gd.flags = gg_visible | gg_enabled;
     psgcd[k].gd.u.list = interpretations;
     psgcd[k].gd.cid = CID_Interpretation;
-    psgcd[k].creator = GListButtonCreate;
+    psgcd[k].creator = GlyphListButtonCreate;
     for ( i=0; interpretations[i].text!=NULL || interpretations[i].line; ++i ) {
 	if ( (void *) (sf->uni_interp)==interpretations[i].userdata &&
 		interpretations[i].text!=NULL ) {
@@ -7995,7 +7995,7 @@ return;
     psgcd[k].gd.pos.x = psgcd[k-2].gd.pos.x; psgcd[k].gd.pos.y = psgcd[k-1].gd.pos.y-6;
     psgcd[k].gd.flags = gg_visible | gg_enabled;
     psgcd[k].gd.cid = CID_Namelist;
-    psgcd[k].creator = GListButtonCreate;
+    psgcd[k].creator = GlyphListButtonCreate;
     nlnames = AllNamelistNames();
     for ( i=0; nlnames[i]!=NULL; ++i);
     namelistnames = calloc(i+1,sizeof(GTextInfo));
@@ -8301,7 +8301,7 @@ return;
     vgcd[1].gd.flags = gg_visible | gg_enabled;
     vgcd[1].gd.cid = CID_WeightClass;
     vgcd[1].gd.u.list = weightclass;
-    vgcd[1].creator = GListFieldCreate;
+    vgcd[1].creator = GlyphListFieldCreate;
 
     vgcd[2].gd.pos.x = 10; vgcd[2].gd.pos.y = vgcd[1].gd.pos.y+26+6;
     vlabel[2].text = (unichar_t *) _("Width _Class");
@@ -8315,7 +8315,7 @@ return;
     vgcd[3].gd.flags = gg_visible | gg_enabled;
     vgcd[3].gd.cid = CID_WidthClass;
     vgcd[3].gd.u.list = widthclass;
-    vgcd[3].creator = GListButtonCreate;
+    vgcd[3].creator = GlyphListButtonCreate;
 
     vgcd[4].gd.pos.x = 10; vgcd[4].gd.pos.y = vgcd[3].gd.pos.y+26+6;
     vlabel[4].text = (unichar_t *) _("P_FM Family");
@@ -8329,7 +8329,7 @@ return;
     vgcd[5].gd.flags = gg_visible | gg_enabled;
     vgcd[5].gd.cid = CID_PFMFamily;
     vgcd[5].gd.u.list = pfmfamily;
-    vgcd[5].creator = GListButtonCreate;
+    vgcd[5].creator = GlyphListButtonCreate;
 
     vgcd[6].gd.pos.x = 10; vgcd[6].gd.pos.y = vgcd[5].gd.pos.y+26+6;
     vlabel[6].text = (unichar_t *) _("_Embeddable");
@@ -8346,7 +8346,7 @@ return;
     vgcd[7].gd.cid = CID_FSType;
     vgcd[7].gd.u.list = fstype;
     vgcd[7].gd.popup_msg = vgcd[6].gd.popup_msg;
-    vgcd[7].creator = GListButtonCreate;
+    vgcd[7].creator = GlyphListButtonCreate;
     fstype[0].selected = fstype[1].selected =
 	    fstype[2].selected = fstype[3].selected = false;
     if ( sf->pfminfo.fstype == -1 )
@@ -8410,7 +8410,7 @@ return;
     vgcd[13].gd.flags = gg_visible | gg_enabled;
     vgcd[13].gd.cid = CID_IBMFamily;
     vgcd[13].gd.u.list = ibmfamily;
-    vgcd[13].creator = GListButtonCreate;
+    vgcd[13].creator = GlyphListButtonCreate;
 
     vgcd[15].gd.pos.x = 10; vgcd[15].gd.pos.y = vgcd[11].gd.pos.y+24+6;
     vlabel[15].text = (unichar_t *) _("_OS/2 Version");
@@ -8425,7 +8425,7 @@ return;
     vgcd[16].gd.flags = gg_visible | gg_enabled;
     vgcd[16].gd.cid = CID_OS2Version;
     vgcd[16].gd.u.list = os2versions;
-    vgcd[16].creator = GListFieldCreate;
+    vgcd[16].creator = GlyphListFieldCreate;
     
     vgcd[17].gd.pos.x = 10; vgcd[17].gd.pos.y = vgcd[13].gd.pos.y+26+6;
     vlabel[17].text = (unichar_t *) _("Style Map:");
@@ -8439,7 +8439,7 @@ return;
     vgcd[18].gd.flags = gg_visible | gg_enabled;
     vgcd[18].gd.cid = CID_StyleMap;
     vgcd[18].gd.u.list = stylemap;
-    vgcd[18].creator = GListButtonCreate;
+    vgcd[18].creator = GlyphListButtonCreate;
     stylemap[0].selected = stylemap[1].selected =
 	    stylemap[2].selected = stylemap[3].selected =
         stylemap[4].selected = stylemap[5].selected = false;
@@ -9100,7 +9100,7 @@ return;
     pangcd[i].gd.u.list = panfamily;
     panarray[j++] = &pangcd[i];
     pangcd[i].gd.handle_controlevent = GFI_ChangePanoseFamily;
-    pangcd[i++].creator = GListButtonCreate;
+    pangcd[i++].creator = GlyphListButtonCreate;
     panarray[j++] = NULL;
 
     pangcd[i].gd.pos.x = 20; pangcd[i].gd.pos.y = pangcd[i-1].gd.pos.y+26+5;
@@ -9118,7 +9118,7 @@ return;
     pangcd[i].gd.cid = CID_PanSerifs;
     pangcd[i].gd.u.list = panserifs;
     panarray[j++] = &pangcd[i];
-    pangcd[i++].creator = GListButtonCreate;
+    pangcd[i++].creator = GlyphListButtonCreate;
     panarray[j++] = NULL;
 
     pangcd[i].gd.pos.x = 20; pangcd[i].gd.pos.y = pangcd[i-1].gd.pos.y+26+5;
@@ -9136,7 +9136,7 @@ return;
     pangcd[i].gd.cid = CID_PanWeight;
     pangcd[i].gd.u.list = panweight;
     panarray[j++] = &pangcd[i];
-    pangcd[i++].creator = GListButtonCreate;
+    pangcd[i++].creator = GlyphListButtonCreate;
     panarray[j++] = NULL;
 
     pangcd[i].gd.pos.x = 20; pangcd[i].gd.pos.y = pangcd[i-1].gd.pos.y+26+5;
@@ -9154,7 +9154,7 @@ return;
     pangcd[i].gd.cid = CID_PanProp;
     pangcd[i].gd.u.list = panprop;
     panarray[j++] = &pangcd[i];
-    pangcd[i++].creator = GListButtonCreate;
+    pangcd[i++].creator = GlyphListButtonCreate;
     panarray[j++] = NULL;
 
     pangcd[i].gd.pos.x = 20; pangcd[i].gd.pos.y = pangcd[i-1].gd.pos.y+26+5;
@@ -9172,7 +9172,7 @@ return;
     pangcd[i].gd.cid = CID_PanContrast;
     pangcd[i].gd.u.list = pancontrast;
     panarray[j++] = &pangcd[i];
-    pangcd[i++].creator = GListButtonCreate;
+    pangcd[i++].creator = GlyphListButtonCreate;
     panarray[j++] = NULL;
 
     pangcd[i].gd.pos.x = 20; pangcd[i].gd.pos.y = pangcd[i-1].gd.pos.y+26+5;
@@ -9190,7 +9190,7 @@ return;
     pangcd[i].gd.cid = CID_PanStrokeVar;
     pangcd[i].gd.u.list = panstrokevar;
     panarray[j++] = &pangcd[i];
-    pangcd[i++].creator = GListButtonCreate;
+    pangcd[i++].creator = GlyphListButtonCreate;
     panarray[j++] = NULL;
 
     pangcd[i].gd.pos.x = 20; pangcd[i].gd.pos.y = pangcd[i-1].gd.pos.y+26+5;
@@ -9208,7 +9208,7 @@ return;
     pangcd[i].gd.cid = CID_PanArmStyle;
     pangcd[i].gd.u.list = panarmstyle;
     panarray[j++] = &pangcd[i];
-    pangcd[i++].creator = GListButtonCreate;
+    pangcd[i++].creator = GlyphListButtonCreate;
     panarray[j++] = NULL;
 
     pangcd[i].gd.pos.x = 20; pangcd[i].gd.pos.y = pangcd[i-1].gd.pos.y+26+5;
@@ -9226,7 +9226,7 @@ return;
     pangcd[i].gd.cid = CID_PanLetterform;
     pangcd[i].gd.u.list = panletterform;
     panarray[j++] = &pangcd[i];
-    pangcd[i++].creator = GListButtonCreate;
+    pangcd[i++].creator = GlyphListButtonCreate;
     panarray[j++] = NULL;
 
     pangcd[i].gd.pos.x = 20; pangcd[i].gd.pos.y = pangcd[i-1].gd.pos.y+26+5;
@@ -9244,7 +9244,7 @@ return;
     pangcd[i].gd.cid = CID_PanMidLine;
     pangcd[i].gd.u.list = panmidline;
     panarray[j++] = &pangcd[i];
-    pangcd[i++].creator = GListButtonCreate;
+    pangcd[i++].creator = GlyphListButtonCreate;
     panarray[j++] = NULL;
 
     pangcd[i].gd.pos.x = 20; pangcd[i].gd.pos.y = pangcd[i-1].gd.pos.y+26+5;
@@ -9262,7 +9262,7 @@ return;
     pangcd[i].gd.cid = CID_PanXHeight;
     pangcd[i].gd.u.list = panxheight;
     panarray[j++] = &pangcd[i];
-    pangcd[i++].creator = GListButtonCreate;
+    pangcd[i++].creator = GlyphListButtonCreate;
     panarray[j++] = NULL;
 
     panarray[j++] = GCD_Glue; panarray[j++] = GCD_Glue;
@@ -9326,7 +9326,7 @@ return;
     cgcd[i].gd.cid = CID_UnicodeList;
     cgcd[i].gd.u.list = unicoderangenames;
     cgcd[i].gd.handle_controlevent = OS2_UnicodeChange;
-    cgcd[i++].creator = GListCreate;
+    cgcd[i++].creator = GlyphListCreate;
     cvarray[j++] = &cgcd[i-1];
 
     cgcd[i].gd.flags = gg_visible | gg_enabled ;
@@ -9384,7 +9384,7 @@ return;
     cgcd[i].gd.cid = CID_CodePageList;
     cgcd[i].gd.u.list = codepagenames;
     cgcd[i].gd.handle_controlevent = OS2_CodePageChange;
-    cgcd[i++].creator = GListCreate;
+    cgcd[i++].creator = GlyphListCreate;
     charray3[1] = &cgcd[i-1]; charray3[2] = NULL;
 
     cbox[5].gd.flags = gg_enabled|gg_visible;
@@ -9460,7 +9460,7 @@ return;
     gaspgcd[i].gd.u.list = gaspversions;
     gaspharray[j++] = &gaspgcd[i];
     gaspgcd[i].gd.handle_controlevent = GFI_GaspVersion;
-    gaspgcd[i++].creator = GListButtonCreate;
+    gaspgcd[i++].creator = GlyphListButtonCreate;
     gaspharray[j++] = GCD_HPad10;
 
     gasplabel[i].text = (unichar_t *) _("Optimized For ClearType");
@@ -10127,7 +10127,7 @@ return;
     mcgcd[k].gd.flags = (sf->macstyle==-1) ? (gg_visible | gg_list_multiplesel) : (gg_visible | gg_enabled | gg_list_multiplesel);
     mcgcd[k].gd.cid = CID_MacStyles;
     mcgcd[k].gd.u.list = macstyles;
-    mcgcd[k++].creator = GListCreate;
+    mcgcd[k++].creator = GlyphListCreate;
 
     mclabel[k].text = (unichar_t *) _("FOND Name:");
     mclabel[k].text_is_1byte = true;
@@ -10496,7 +10496,7 @@ return;
     ugcd[3].gd.cid = CID_Unicode;
     ugcd[3].gd.handle_controlevent = GFI_UnicodeRangeChange;
     ugcd[3].gd.popup_msg = _("Click on a range to select characters in that range.\nDouble click on a range to see characters that should be\nin the range but aren't.");
-    ugcd[3].creator = GListCreate;
+    ugcd[3].creator = GlyphListCreate;
 
     uarray[0] = &ugcd[0]; uarray[1] = &ubox[2]; uarray[2] = &ugcd[2]; uarray[3] = &ugcd[3]; uarray[4] = NULL;
 

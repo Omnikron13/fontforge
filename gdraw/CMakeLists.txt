@@ -35,7 +35,7 @@ add_library(gdraw STATIC
   gimagecvt.c
   gimagexdraw.c
   gkeysym.c
-  glist.c
+  glyphlist.c
   gmatrixedit.c
   gmenu.c
   gprogress.c

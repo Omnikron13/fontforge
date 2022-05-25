@@ -103,7 +103,7 @@ Complex version:
 /*  similar controls referring to coverage tables have 100 added to them */
 /* The CIDs here are also for the "match" aspect of the tabsets */
 /*  those in backtrack get 20 added, those in lookahead get 40 */
-#define CID_GList	305
+#define CID_GlyphList	305
 
 #define CID_MatchType	1003
 #define CID_Set		1004
@@ -126,15 +126,15 @@ Complex version:
 
 /* And for the simple dlg... */
 
-#define CID_GList_Simple	4000
+#define CID_GlyphList_Simple	4000
 #define CID_GNewSection		4001
 #define CID_GAddLookup		4002
 
-#define CID_CList_Simple	(CID_GList_Simple+100)
+#define CID_CList_Simple	(CID_GlyphList_Simple+100)
 #define CID_CNewSection		(CID_GNewSection+100)
 #define CID_CAddLookup		(CID_GAddLookup+100)
 
-#define CID_MatchClasses	(CID_GList_Simple+300+0*20)
+#define CID_MatchClasses	(CID_GlyphList_Simple+300+0*20)
 #define CID_BackClasses		(CID_MatchClasses+1*20)
 #define CID_ForeClasses		(CID_MatchClasses+2*20)
 #define CID_SameAsClasses_S	(CID_MatchClasses+1)		/* Not actually used itself */
@@ -651,11 +651,11 @@ static int ClassNamePrep(struct contextchaindlg *ccd,struct matrix_data **classe
 
     for ( i=0; i<3; ++i ) {
 	if ( i==0 || !GGadgetIsChecked(GWidgetGetControl(ccd->gw,CID_SameAsClasses+i*20)) )
-	    classes[i] = GMatrixEditGet(GWidgetGetControl(ccd->gw,CID_GList+300+i*20),&clen[i]);
+	    classes[i] = GMatrixEditGet(GWidgetGetControl(ccd->gw,CID_GlyphList+300+i*20),&clen[i]);
 	else
-	    classes[i] = GMatrixEditGet(GWidgetGetControl(ccd->gw,CID_GList+300),&clen[i]);
+	    classes[i] = GMatrixEditGet(GWidgetGetControl(ccd->gw,CID_GlyphList+300),&clen[i]);
     }
-return( GMatrixEditGetColCnt(GWidgetGetControl(ccd->gw,CID_GList+300+0*20)) );
+return( GMatrixEditGetColCnt(GWidgetGetControl(ccd->gw,CID_GlyphList+300+0*20)) );
 }
 
 static void CCD_FinishRule(struct contextchaindlg *ccd) {
@@ -710,7 +710,7 @@ return;
 	}
 	ret = classruleitem(&dummy,classes,clen,ccols);
 	FPSTRuleContentsFree(&dummy,pst_class);
-	list = GWidgetGetControl(ccd->gw,CID_GList+200);
+	list = GWidgetGetControl(ccd->gw,CID_GlyphList+200);
 	md = GMatrixEditGet(list,&len);
 	free(md[ccd->row_being_edited].u.md_str);
 	md[ccd->row_being_edited].u.md_str = ret;
@@ -750,7 +750,7 @@ return;
 	free(temp);
 	ret = gruleitem(&dummy);
 	FPSTRuleContentsFree(&dummy,pst_glyphs);
-	list = GWidgetGetControl(ccd->gw,CID_GList+0);
+	list = GWidgetGetControl(ccd->gw,CID_GlyphList+0);
 	md = GMatrixEditGet(list,&len);
 	free(md[ccd->row_being_edited].u.md_str);
 	md[ccd->row_being_edited].u.md_str = ret;
@@ -882,9 +882,9 @@ static void CCD_NewClassRule(GGadget *classrules,int r,int c) {
     GWidgetIndicateFocusGadget(GWidgetGetControl(ccd->gw,CID_ClassNumbers));
     for ( i=0; i<3; ++i ) {
 	if ( i!=0 && GGadgetIsChecked(GWidgetGetControl(ccd->gw,CID_SameAsClasses+i*20)) )
-	    md = GMatrixEditGet(GWidgetGetControl(ccd->gw,CID_GList+300),&len);
+	    md = GMatrixEditGet(GWidgetGetControl(ccd->gw,CID_GlyphList+300),&len);
 	else
-	    md = GMatrixEditGet(GWidgetGetControl(ccd->gw,CID_GList+300+i*20),&len);
+	    md = GMatrixEditGet(GWidgetGetControl(ccd->gw,CID_GlyphList+300+i*20),&len);
 	GMatrixEditSet(GWidgetGetControl(ccd->gw,CID_ClassList+i*20),MD2MD(md,len),len,false);
     }
     ccd->aw = aw_classnumber;
@@ -908,7 +908,7 @@ static int CCD_SameAsClasses(GGadget *g, GEvent *e) {
 
     if ( cid < CID_SameAsClasses_S ) {
 	int off = cid-CID_SameAsClasses;
-	GGadgetSetEnabled(GWidgetGetControl(ccd->gw,CID_GList+300+off),!ison);
+	GGadgetSetEnabled(GWidgetGetControl(ccd->gw,CID_GlyphList+300+off),!ison);
 return( true );
     } else {
 	int off = cid-CID_SameAsClasses_S;
@@ -989,7 +989,7 @@ static void _CCD_Ok(struct contextchaindlg *ccd) {
 
     switch ( ccd->aw ) {
       case aw_grules: {
-	old = GMatrixEditGet(GWidgetGetControl(ccd->gw,CID_GList),&len);
+	old = GMatrixEditGet(GWidgetGetControl(ccd->gw,CID_GlyphList),&len);
 	if ( len==0 ) {
 	    ff_post_error(_("Missing rules"),_(" There must be at least one contextual rule"));
 return;
@@ -1002,7 +1002,7 @@ return;
 	    gruleitem2rule(ccd->sf,old[i].u.md_str,&fpst->rules[i]);
       } break;
       case aw_classrules: {
-	old = GMatrixEditGet(GWidgetGetControl(ccd->gw,CID_GList+200),&len);
+	old = GMatrixEditGet(GWidgetGetControl(ccd->gw,CID_GlyphList+200),&len);
 	if ( len==0 ) {
 	    ff_post_error(_("Missing rules"),_(" There must be at least one contextual rule"));
 return;
@@ -1035,7 +1035,7 @@ return;
 	}
       } break;
       case aw_coverage:
-	old = GMatrixEditGet(GWidgetGetControl(ccd->gw,CID_GList+100),&len);
+	old = GMatrixEditGet(GWidgetGetControl(ccd->gw,CID_GlyphList+100),&len);
 	if ( len==0 ) {
 	    ff_post_error(_("Bad Coverage Table"),_("There must be at least one match coverage table"));
 return;
@@ -1067,10 +1067,10 @@ return;
 	fpst->format = fpst->type==pst_reversesub ? pst_reversecoverage : pst_coverage;
 	fpst->rule_cnt = 1;
 	fpst->rules = calloc(1,sizeof(struct fpst_rule));
-	fpst->rules[0].u.coverage.ncovers = CCD_ParseCoverageList(ccd,CID_GList+100,&fpst->rules[0].u.coverage.ncnt);
-	fpst->rules[0].u.coverage.bcovers = CCD_ParseCoverageList(ccd,CID_GList+100+20,&fpst->rules[0].u.coverage.bcnt);
+	fpst->rules[0].u.coverage.ncovers = CCD_ParseCoverageList(ccd,CID_GlyphList+100,&fpst->rules[0].u.coverage.ncnt);
+	fpst->rules[0].u.coverage.bcovers = CCD_ParseCoverageList(ccd,CID_GlyphList+100+20,&fpst->rules[0].u.coverage.bcnt);
 	CoverageReverse(fpst->rules[0].u.coverage.bcovers,fpst->rules[0].u.coverage.bcnt);
-	fpst->rules[0].u.coverage.fcovers = CCD_ParseCoverageList(ccd,CID_GList+100+40,&fpst->rules[0].u.coverage.fcnt);
+	fpst->rules[0].u.coverage.fcovers = CCD_ParseCoverageList(ccd,CID_GlyphList+100+40,&fpst->rules[0].u.coverage.fcnt);
 	if ( fpst->format==pst_reversecoverage )
 	    fpst->rules[0].u.rcoverage.replacements = dummy.u.rcoverage.replacements;
 	else {
@@ -1088,7 +1088,7 @@ return;
       break;
       case aw_classes_simple:
       case aw_glyphs_simple: {
-	old = GMatrixEditGet(GWidgetGetControl(ccd->gw,ccd->aw==aw_glyphs_simple?CID_GList_Simple:CID_CList_Simple),&len);
+	old = GMatrixEditGet(GWidgetGetControl(ccd->gw,ccd->aw==aw_glyphs_simple?CID_GlyphList_Simple:CID_CList_Simple),&len);
 	if ( len==0 ) {
 	    ff_post_error(_("Missing rules"),_(" There must be at least one contextual rule"));
 return;
@@ -1411,7 +1411,7 @@ static void CCD_SimulateDefaultButton( struct contextchaindlg *ccd ) {
 static int CCD_NewSection(GGadget *g, GEvent *e) {
     if ( e->type==et_controlevent && e->u.control.subtype == et_buttonactivate ) {
 	int off = GGadgetGetCid(g)-CID_GNewSection;
-	GGadget *gme = GWidgetGetControl(GGadgetGetWindow(g),CID_GList_Simple+off);
+	GGadget *gme = GWidgetGetControl(GGadgetGetWindow(g),CID_GlyphList_Simple+off);
 	GGadget *tf = _GMatrixEditGetActiveTextField(gme);
 	static const unichar_t section_mark[] = { ' ', '|', ' ', '\0' };
 
@@ -1424,7 +1424,7 @@ return( true );
 static int CCD_AddLookup(GGadget *g, GEvent *e) {
     if ( e->type==et_controlevent && e->u.control.subtype == et_listselected ) {
 	int off = GGadgetGetCid(g)-CID_GAddLookup;
-	GGadget *gme = GWidgetGetControl(GGadgetGetWindow(g),CID_GList_Simple+off);
+	GGadget *gme = GWidgetGetControl(GGadgetGetWindow(g),CID_GlyphList_Simple+off);
 	GGadget *tf = _GMatrixEditGetActiveTextField(gme);
 	GTextInfo *lookup_ti = GGadgetGetListItemSelected(g);
 	OTLookup *otl;
@@ -2329,15 +2329,15 @@ void ContextChainEdit(SplineFont *sf,FPST *fpst,
 	glyphrules_mi.matrix_data = NULL;
     }
     glgcd[k].gd.flags = gg_visible | gg_enabled;
-    glgcd[k].gd.cid = CID_GList+0;
+    glgcd[k].gd.cid = CID_GlyphList+0;
     glgcd[k].gd.u.matrix = &glyphrules_mi;
     glgcd[k++].creator = GMatrixEditCreate;
     /* No need for a box, this widget fills the pane */
 
     GGadgetsCreate(ccd->grules,glgcd);
-    GMatrixEditSetUpDownVisible(GWidgetGetControl(ccd->grules,CID_GList+0),
+    GMatrixEditSetUpDownVisible(GWidgetGetControl(ccd->grules,CID_GlyphList+0),
 	    true);
-    GMatrixEditSetOtherButtonEnable(GWidgetGetControl(ccd->grules,CID_GList+0),CCD_NewGlyphRule);
+    GMatrixEditSetOtherButtonEnable(GWidgetGetControl(ccd->grules,CID_GlyphList+0),CCD_NewGlyphRule);
 
     ccd->glyphs_simple = GWidgetCreateSubWindow(ccd->gw,&subpos,subccd_e_h,ccd,&wattrs);
     memset(&gllabel,0,sizeof(gllabel));
@@ -2359,15 +2359,15 @@ void ContextChainEdit(SplineFont *sf,FPST *fpst,
 	glyphs_mi.matrix_data = NULL;
     }
     glgcd[k].gd.flags = gg_visible | gg_enabled;
-    glgcd[k].gd.cid = CID_GList_Simple;
+    glgcd[k].gd.cid = CID_GlyphList_Simple;
     glgcd[k].gd.u.matrix = &glyphs_mi;
     glgcd[k++].creator = GMatrixEditCreate;
     /* No need for a box, this widget fills the pane */
 
     GGadgetsCreate(ccd->glyphs_simple,glgcd);
-    GMatrixEditSetUpDownVisible(GWidgetGetControl(ccd->glyphs_simple,CID_GList_Simple),
+    GMatrixEditSetUpDownVisible(GWidgetGetControl(ccd->glyphs_simple,CID_GlyphList_Simple),
 	    true);
-    GMatrixEditSetColumnCompletion(GWidgetGetControl(ccd->glyphs_simple,CID_GList_Simple),0,
+    GMatrixEditSetColumnCompletion(GWidgetGetControl(ccd->glyphs_simple,CID_GlyphList_Simple),0,
 	    CCD_GlyphListCompletion);
 
     memset(&extrabuttonslab,0,sizeof(extrabuttonslab));
@@ -2393,8 +2393,8 @@ void ContextChainEdit(SplineFont *sf,FPST *fpst,
 	    GDrawGetText8Width(ccd->glyphs_simple,(char *)extrabuttonslab[i].text,-1))+50;
     extrabuttonsgcd[i].gd.cid = CID_GAddLookup;
     extrabuttonsgcd[i].gd.handle_controlevent = CCD_AddLookup;
-    extrabuttonsgcd[i++].creator = GListButtonCreate;
-    GMatrixEditAddButtons(GWidgetGetControl(ccd->glyphs_simple,CID_GList_Simple),extrabuttonsgcd);
+    extrabuttonsgcd[i++].creator = GlyphListButtonCreate;
+    GMatrixEditAddButtons(GWidgetGetControl(ccd->glyphs_simple,CID_GlyphList_Simple),extrabuttonsgcd);
 
 	/* Pane showing a single rule from a glyph format (not classes or coverage tables) */
     ccd->glyphs = GWidgetCreateSubWindow(ccd->gw,&subpos,subccd_e_h,ccd,&wattrs);
@@ -2521,7 +2521,7 @@ void ContextChainEdit(SplineFont *sf,FPST *fpst,
 	}
 	coverage_mi[i].finishedit = CCD_FinishCoverageEdit;
 	cgcd[i][k].gd.flags = gg_visible | gg_enabled;
-	cgcd[i][k].gd.cid = CID_GList+100+i*20;
+	cgcd[i][k].gd.cid = CID_GlyphList+100+i*20;
 	cgcd[i][k].gd.u.matrix = &coverage_mi[i];
 	cgcd[i][k++].creator = GMatrixEditCreate;
 
@@ -2646,9 +2646,9 @@ void ContextChainEdit(SplineFont *sf,FPST *fpst,
     topbox[0].creator = GVBoxCreate;
     GGadgetsCreate(ccd->coverage,topbox);
     for ( i=0; i<3; ++i ) {
-	GMatrixEditSetUpDownVisible(GWidgetGetControl(ccd->coverage,CID_GList+100+i*20),
+	GMatrixEditSetUpDownVisible(GWidgetGetControl(ccd->coverage,CID_GlyphList+100+i*20),
 		true);
-	GMatrixEditSetColumnCompletion(GWidgetGetControl(ccd->coverage,CID_GList+100+i*20),0,
+	GMatrixEditSetColumnCompletion(GWidgetGetControl(ccd->coverage,CID_GlyphList+100+i*20),0,
 		CCD_GlyphListCompletion);
     }
     if ( ccd->fpst->type!=pst_reversesub ) {
@@ -2763,7 +2763,7 @@ void ContextChainEdit(SplineFont *sf,FPST *fpst,
     classrules_mi.col_init = classrules_ci;
     /* Further inits happen after we've set up the classnames */
     clgcd[k].gd.flags = gg_visible | gg_enabled;
-    clgcd[k].gd.cid = CID_GList+200;
+    clgcd[k].gd.cid = CID_GlyphList+200;
     clgcd[k].gd.u.matrix = &classrules_mi;
     clgcd[k++].creator = GMatrixEditCreate;
     classv[k-1] = &clgcd[k-1];
@@ -2848,7 +2848,7 @@ void ContextChainEdit(SplineFont *sf,FPST *fpst,
 	    cgcd[i][l].gd.flags = gg_visible;
 	else
 	    cgcd[i][l].gd.flags = gg_visible | gg_enabled;
-	cgcd[i][l].gd.cid = CID_GList+300+i*20;
+	cgcd[i][l].gd.cid = CID_GlyphList+300+i*20;
 	cgcd[i][l].gd.u.matrix = &class_mi[i];
 	cgcd[i][l++].creator = GMatrixEditCreate;
 	subvarray[i][l-1] = &cgcd[i][l-1];
@@ -2893,13 +2893,13 @@ void ContextChainEdit(SplineFont *sf,FPST *fpst,
     GHVBoxSetExpandableRow(subboxes[0][0].ret,0);
     GHVBoxSetExpandableRow(subboxes[1][0].ret,1);
     GHVBoxSetExpandableRow(subboxes[2][0].ret,1);
-    GMatrixEditSetColumnCompletion(GWidgetGetControl(ccd->classrules,CID_GList+300+0*20),0,CCD_GlyphListCompletion);
-    GMatrixEditSetColumnCompletion(GWidgetGetControl(ccd->classrules,CID_GList+300+1*20),0,CCD_GlyphListCompletion);
-    GMatrixEditSetColumnCompletion(GWidgetGetControl(ccd->classrules,CID_GList+300+2*20),0,CCD_GlyphListCompletion);
-    GMatrixEditSetUpDownVisible(GWidgetGetControl(ccd->classrules,CID_GList+200), true);
-    GMatrixEditSetOtherButtonEnable(GWidgetGetControl(ccd->classrules,CID_GList+200),CCD_NewClassRule);
+    GMatrixEditSetColumnCompletion(GWidgetGetControl(ccd->classrules,CID_GlyphList+300+0*20),0,CCD_GlyphListCompletion);
+    GMatrixEditSetColumnCompletion(GWidgetGetControl(ccd->classrules,CID_GlyphList+300+1*20),0,CCD_GlyphListCompletion);
+    GMatrixEditSetColumnCompletion(GWidgetGetControl(ccd->classrules,CID_GlyphList+300+2*20),0,CCD_GlyphListCompletion);
+    GMatrixEditSetUpDownVisible(GWidgetGetControl(ccd->classrules,CID_GlyphList+200), true);
+    GMatrixEditSetOtherButtonEnable(GWidgetGetControl(ccd->classrules,CID_GlyphList+200),CCD_NewClassRule);
     for ( i=0; i<3; ++i ) {
-	GGadget *list = GWidgetGetControl(ccd->classrules,CID_GList+300+i*20);
+	GGadget *list = GWidgetGetControl(ccd->classrules,CID_GlyphList+300+i*20);
 	GMatrixEditShowColumn(list,2,false);
 	GMatrixEditSetUpDownVisible(list, true);
 	GMatrixEditSetCanUpDown(list, CCD_EnableUpDown);

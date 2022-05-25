@@ -1673,7 +1673,7 @@ static void GMatrixEdit_SubExpose(GMatrixEdit *gme,GWindow pixmap,GEvent *event)
 		mkbg = gme->active_row==r+gme->off_top ?
 			gmatrixedit_activebg : GDrawGetDefaultBackground(GDrawGetDisplayOfWindow(pixmap));
 		GDrawFillRect(pixmap,&mr,mkbg);
-		GListMarkDraw(pixmap,
+		GlyphListMarkDraw(pixmap,
 			mr.x + gme->mark_skip + (gme->mark_size - gme->mark_length)/2,
 			clip.y,
 			clip.height,
@@ -2009,9 +2009,9 @@ GGadget *GMatrixEditCreate(struct gwindow *base, GGadgetData *gd,void *data) {
 	}
     }
 
-    gme->mark_length = GDrawPointsToPixels(base,_GListMarkSize);
+    gme->mark_length = GDrawPointsToPixels(base,_GlyphListMarkSize);
     gme->mark_size = gme->mark_length +
-	    2*GBoxBorderWidth(base,&_GListMark_Box);
+	    2*GBoxBorderWidth(base,&_GlyphListMark_Box);
     gme->mark_skip = GDrawPointsToPixels(base,_GGadget_TextImageSkip);
 
     /* Can't do this earlier. It depends on matrix_data being set */

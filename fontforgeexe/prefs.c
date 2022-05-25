@@ -1257,7 +1257,7 @@ static GTextInfo *Pref_MappingList(int use_user) {
 return( ti );
 }
 
-void GListAddStr(GGadget *list,unichar_t *str, void *ud) {
+void GlyphListAddStr(GGadget *list,unichar_t *str, void *ud) {
     int32_t i,len;
     GTextInfo **ti = GGadgetGetList(list,&len);
     GTextInfo **replace = malloc((len+2)*sizeof(GTextInfo *));
@@ -1275,7 +1275,7 @@ void GListAddStr(GGadget *list,unichar_t *str, void *ud) {
     GGadgetSetList(list,replace,false);
 }
 
-void GListReplaceStr(GGadget *list,int index, unichar_t *str, void *ud) {
+void GlyphListReplaceStr(GGadget *list,int index, unichar_t *str, void *ud) {
     int32_t i,len;
     GTextInfo **ti = GGadgetGetList(list,&len);
     GTextInfo **replace = malloc((len+2)*sizeof(GTextInfo *));
@@ -1423,7 +1423,7 @@ static unichar_t *AskSetting(struct macsettingname *temp,GGadget *list, int inde
 
     gcd[1].gd.pos.x = 50; gcd[1].gd.pos.y = 5; gcd[1].gd.pos.width = 170;
     gcd[1].gd.flags = gg_enabled|gg_visible;
-    gcd[1].creator = GListButtonCreate;
+    gcd[1].creator = GlyphListButtonCreate;
 
     label[2].text = (unichar_t *) _("Setting");
     label[2].text_is_1byte = true;
@@ -1513,7 +1513,7 @@ static void ChangeSetting(GGadget *list,int index,GGadget *flist) {
     free(str);
     if ( (ustr=AskSetting(&temp,list,index,flist))==NULL )
 return;
-    GListReplaceStr(list,index,ustr,NULL);
+    GlyphListReplaceStr(list,index,ustr,NULL);
 }
 
 static int Pref_NewMapping(GGadget *g, GEvent *e) {
@@ -1528,7 +1528,7 @@ static int Pref_NewMapping(GGadget *g, GEvent *e) {
 	temp.mac_feature_type = -1;
 	if ( (str=AskSetting(&temp,list,-1,flist))==NULL )
 return( true );
-	GListAddStr(list,str,NULL);
+	GlyphListAddStr(list,str,NULL);
 	/*free(str);*/
     }
 return( true );
@@ -1537,7 +1537,7 @@ return( true );
 static int Pref_DelMapping(GGadget *g, GEvent *e) {
     if ( e->type==et_controlevent && e->u.control.subtype == et_buttonactivate ) {
 	GWindow gw = GGadgetGetWindow(g);
-	GListDelSelected(GWidgetGetControl(gw,CID_Mapping));
+	GlyphListDelSelected(GWidgetGetControl(gw,CID_Mapping));
 	GGadgetSetEnabled(GWidgetGetControl(gw,CID_MappingDel),false);
 	GGadgetSetEnabled(GWidgetGetControl(gw,CID_MappingEdit),false);
     }
@@ -1883,7 +1883,7 @@ void DoPrefs(void) {
     msgcd[sgc].gd.cid = CID_Mapping;
     msgcd[sgc].gd.u.list = Pref_MappingList(true);
     msgcd[sgc].gd.handle_controlevent = Pref_MappingSel;
-    msgcd[sgc++].creator = GListCreate;
+    msgcd[sgc++].creator = GlyphListCreate;
     mparray[0] = &msgcd[sgc-1];
 
     msgcd[sgc].gd.pos.x = 6; msgcd[sgc].gd.pos.y = msgcd[sgc-1].gd.pos.y+msgcd[sgc-1].gd.pos.height+10;
@@ -2109,7 +2109,7 @@ void DoPrefs(void) {
 			    (strcmp(pgcd[gc].gd.u.list[ii].userdata,"Compacted")==0 ||
 			     strcmp(pgcd[gc].gd.u.list[ii].userdata,"Original")==0 ))
 			pgcd[gc].gd.u.list[ii].disabled = true;
-		pgcd[gc].creator = GListFieldCreate;
+		pgcd[gc].creator = GlyphListFieldCreate;
 		pgcd[gc].gd.pos.width = 160;
 		if ( pgcd[gc].gd.label==NULL ) pgcd[gc].gd.label = &encodingtypes[0];
 		++gc;
@@ -2132,7 +2132,7 @@ void DoPrefs(void) {
 		    }
 		}
 		pgcd[gc].gd.u.list = namelistnames;
-		pgcd[gc].creator = GListButtonCreate;
+		pgcd[gc].creator = GlyphListButtonCreate;
 		pgcd[gc].gd.pos.width = 160;
 		++gc;
 		hvarray[si++] = &pgcd[gc-1];
@@ -2678,7 +2678,7 @@ static void PrefsSubSetDlg(CharView *cv,char* windowTitle,struct prefs_list* pli
 			    (strcmp(pgcd[gc].gd.u.list[ii].userdata,"Compacted")==0 ||
 			     strcmp(pgcd[gc].gd.u.list[ii].userdata,"Original")==0 ))
 			pgcd[gc].gd.u.list[ii].disabled = true;
-		pgcd[gc].creator = GListFieldCreate;
+		pgcd[gc].creator = GlyphListFieldCreate;
 		pgcd[gc].gd.pos.width = 160;
 		if ( pgcd[gc].gd.label==NULL ) pgcd[gc].gd.label = &encodingtypes[0];
 		++gc;
@@ -2701,7 +2701,7 @@ static void PrefsSubSetDlg(CharView *cv,char* windowTitle,struct prefs_list* pli
 		    }
 		}
 		pgcd[gc].gd.u.list = namelistnames;
-		pgcd[gc].creator = GListButtonCreate;
+		pgcd[gc].creator = GlyphListButtonCreate;
 		pgcd[gc].gd.pos.width = 160;
 		++gc;
 		hvarray[si++] = &pgcd[gc-1];

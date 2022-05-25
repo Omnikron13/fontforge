@@ -22,7 +22,6 @@
 #ifndef FONTFORGE_FFGLIB_H
 #define FONTFORGE_FFGLIB_H
 
-#define GList  GList_Glib
 #define GMenuItem GMenuItem_GIO
 
 #include <gio/gio.h>
@@ -30,7 +29,6 @@
 #include <glib.h>
 #include <glib/gstdio.h>
 
-#undef GList
 #undef GMenuItem
 
 #endif /* FONTFORGE_FFGLIB_H */

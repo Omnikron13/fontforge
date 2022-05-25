@@ -189,7 +189,7 @@ static Group *_LoadGroupList(FILE *file, Group *parent, int expected_indent,
     Group *g;
     char *n;
     int i, ch;
-    Group **glist=NULL;
+    Group **grouplist=NULL;
     int gmax = 0;
 
     if ( expected_indent!=gc->found_indent )
@@ -226,17 +226,17 @@ return( NULL );
 	for ( i=0 ;; ++i ) {
 	    if ( i>=gmax ) {
 		gmax += 10;
-		glist = realloc(glist,gmax*sizeof(Group *));
+		grouplist = realloc(grouplist,gmax*sizeof(Group *));
 	    }
-	    glist[i] = _LoadGroupList(file, g, expected_indent+1, gc);
-	    if ( glist[i]==NULL )
+	    grouplist[i] = _LoadGroupList(file, g, expected_indent+1, gc);
+	    if ( grouplist[i]==NULL )
 	break;
 	}
 	g->kid_cnt = i;
 	if ( i!=0 ) {
 	    g->kids = malloc(i*sizeof(Group *));
-	    memcpy(g->kids,glist,i*sizeof(Group *));
-	    free(glist);
+	    memcpy(g->kids,grouplist,i*sizeof(Group *));
+	    free(grouplist);
 	}
     }
 return( g );

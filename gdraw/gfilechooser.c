@@ -681,7 +681,7 @@ static int GFileChooserFListSelected(GGadget *gl,GEvent *e) {
 	    ( e->u.control.subtype!=et_listselected &&
 	      e->u.control.subtype!=et_listdoubleclick ))
 return( true );
-    if ( ((GList *) gl)->multiple_sel ) {
+    if ( ((GlyphList *) gl)->multiple_sel ) {
 	all = GGadgetGetList(gl,&listlen);
 	len = cnt = 0;
 	dirpos = apos = -1;
@@ -1560,7 +1560,7 @@ static void GFileChooserCreateChildren(GFileChooser *gfc, int flags) {
     gcd[k].gd.flags = gg_visible|gg_enabled|gg_list_exactlyone;
     gcd[k].gd.handle_controlevent = GFileChooserDListChanged;
     dirsk = k;
-    gcd[k++].creator = GListButtonCreate;
+    gcd[k++].creator = GlyphListButtonCreate;
     harray[l++] = &gcd[k-1]; harray[l++] = GCD_Glue;
 
     gcd[k].gd.flags = gg_visible|gg_enabled;
@@ -1594,7 +1594,7 @@ static void GFileChooserCreateChildren(GFileChooser *gfc, int flags) {
 	gcd[k].gd.flags =            gg_enabled|gg_list_alphabetic|gg_list_exactlyone;
     gcd[k].gd.handle_controlevent = GFileChooserFListSelected;
     subdirsk = k;
-    gcd[k++].creator = GListCreate;
+    gcd[k++].creator = GlyphListCreate;
     harray2[0] = &gcd[k-1];
 
     if ( flags & gg_file_multiple )
@@ -1603,7 +1603,7 @@ static void GFileChooserCreateChildren(GFileChooser *gfc, int flags) {
 	gcd[k].gd.flags = gg_visible|gg_enabled|gg_list_alphabetic|gg_list_exactlyone;
     gcd[k].gd.handle_controlevent = GFileChooserFListSelected;
     filesk = k;
-    gcd[k++].creator = GListCreate;
+    gcd[k++].creator = GlyphListCreate;
     harray2[1] = &gcd[k-1]; harray2[2] = NULL;
 
     boxes[3].gd.flags = gg_enabled|gg_visible;
@@ -1615,7 +1615,7 @@ static void GFileChooserCreateChildren(GFileChooser *gfc, int flags) {
     gcd[k].gd.handle_controlevent = GFileChooserTextChanged;
     textk = k;
     if ( flags&gg_file_pulldown )
-	gcd[k++].creator = GListFieldCreate;
+	gcd[k++].creator = GlyphListFieldCreate;
     else
 	gcd[k++].creator = GTextCompletionCreate;
     varray[l++] = &gcd[k-1]; varray[l] = NULL;
@@ -1636,11 +1636,11 @@ static void GFileChooserCreateChildren(GFileChooser *gfc, int flags) {
     gfc->topbox      = (GHVBox *)      boxes[0].ret;
     gfc->home        = (GButton *)     gcd[homek].ret;
     gfc->bookmarks   = (GButton *)     gcd[bookk].ret;
-    gfc->directories = (GListButton *) gcd[dirsk].ret;
+    gfc->directories = (GlyphListButton *) gcd[dirsk].ret;
     gfc->up          = (GButton *)     gcd[upk  ].ret;
     gfc->config      = (GButton *)     gcd[confk].ret;
-    gfc->subdirs     = (GList *)       gcd[subdirsk].ret;
-    gfc->files       = (GList *)       gcd[filesk].ret;
+    gfc->subdirs     = (GlyphList *)       gcd[subdirsk].ret;
+    gfc->files       = (GlyphList *)       gcd[filesk].ret;
     gfc->name        = (GTextField *)  gcd[textk].ret;
 
     gfc->home->g.contained = true;
