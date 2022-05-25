@@ -44,6 +44,7 @@ add_uninstall_target()
 # Options
 build_option(BUILD_SHARED_LIBS       BOOL ON  "Build libfontforge as a shared library")
 build_option(ENABLE_GUI              BOOL ON  "Build FontForge with GUI support")
+build_option(ENABLE_GTK              BOOL ON  "Build FontForge with experimental GTK features")
 build_option(ENABLE_X11              BOOL OFF "Build the GUI using the X backend INSTEAD of the GDK backend" "ENABLE_GUI")
 
 build_option(ENABLE_NATIVE_SCRIPTING BOOL ON  "Enables FontForge's native scripting support")
@@ -125,6 +126,17 @@ endif()
 
 # Requirements for options
 if(ENABLE_GUI)
+   if(ENABLE_GTK)
+      # Find dependencies
+      find_package(PkgConfig REQUIRED)
+      pkg_check_modules(GTK3 REQUIRED gtk+-3.0)
+      message(STATUS "GTK3_INCLUDE_DIRS: ${GTK3_INCLUDE_DIRS}")
+
+      find_package(Pango REQUIRED)
+      find_package(ATK 1.0 REQUIRED)
+      find_package(DBus 1.0 REQUIRED)
+   endif()
+
   if(ENABLE_X11)
     if(APPLE)
       message(FATAL_ERROR "Using the X11 backend on MacOS is no longer supported.")
