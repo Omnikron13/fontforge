@@ -60,7 +60,7 @@ build_option(ENABLE_LIBTIFF          AUTO ON  "Enables TIFF support")
 build_option(ENABLE_WOFF2            AUTO ON  "Enables WOFF2 support")
 
 build_option(ENABLE_DOCS             AUTO ON  "Enables building and installing documentation. Sphinx is required to build it.")
-build_option(ENABLE_CODE_COVERAGE    BOOL OFF "Build with code coverage support")
+build_option(ENABLE_CODE_COVERAGE    BOOL ON  "Build with code coverage support")
 build_option(ENABLE_DEBUG_RAW_POINTS BOOL OFF "Add a raw mode to the points window of the debugger")
 build_option(ENABLE_FONTFORGE_EXTRAS BOOL OFF "Builds programs from the contrib directory")
 build_option(ENABLE_MAINTAINER_TOOLS BOOL OFF "Build programs normally only used by FontForge maintainers and developers")
