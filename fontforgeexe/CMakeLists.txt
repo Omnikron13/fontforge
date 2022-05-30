@@ -89,6 +89,13 @@ if(ENABLE_GUI)
     wordlistparser.h
   )
 
+   if(ENABLE_GTK)
+      target_sources(fontforgeexe PRIVATE
+         gtkui.h
+         gtkui.c
+      )
+   endif()
+
   if(APPLE)
     target_sources(fontforgeexe PRIVATE macobjective.m)
     target_link_libraries(fontforgeexe
