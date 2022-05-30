@@ -63,7 +63,7 @@ build_option(ENABLE_DOCS             AUTO ON  "Enables building and installing d
 build_option(ENABLE_CODE_COVERAGE    BOOL ON  "Build with code coverage support")
 build_option(ENABLE_DEBUG_RAW_POINTS BOOL OFF "Add a raw mode to the points window of the debugger")
 build_option(ENABLE_FONTFORGE_EXTRAS BOOL OFF "Builds programs from the contrib directory")
-build_option(ENABLE_MAINTAINER_TOOLS BOOL OFF "Build programs normally only used by FontForge maintainers and developers")
+build_option(ENABLE_MAINTAINER_TOOLS BOOL ON  "Build programs normally only used by FontForge maintainers and developers")
 build_option(ENABLE_TILE_PATH        BOOL OFF "Enable a 'tile path' command (a variant of 'expand stroke')")
 build_option(ENABLE_WRITE_PFM        BOOL OFF "Add the ability to save a PFM file without creating the associated font file")
 build_option(ENABLE_SANITIZER        ENUM "none" "Enables a sanitizer. Requires support from the compiler."
