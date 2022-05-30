@@ -258,6 +258,13 @@ if(ENABLE_GTK)
    message(STATUS "DBUS_LIBRARIES: ${DBUS_LIBRARIES}")
    target_link_libraries(fontforge PUBLIC ${DBUS_LIBRARIES})
    target_link_libraries(fontforge PUBLIC ${ATK_LIBRARIES})
+
+   # Helps to not forget GTK itself
+   target_include_directories(fontforge PUBLIC ${GTK3_INCLUDE_DIRS})
+   target_link_libraries(fontforge PUBLIC ${GTK3_LIBRARIES})
+
+   message(STATUS "GTK3_LIBRARY_DIRS: ${GTK3_LIBRARY_DIRS}")
+   message(STATUS "GTK3_CFLAGS_OTHER: ${GTK3_CFLAGS_OTHER}")
 endif()
 
 if(ENABLE_FREETYPE_DEBUGGER)
