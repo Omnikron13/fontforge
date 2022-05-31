@@ -162,7 +162,7 @@ static GGadget *_GWidget_FindPost(GContainerD *cd,GGadget *oldfocus,GGadget **la
     GWidgetD *w;
 
     if ( cd==NULL || !cd->iscontainer )
-return( false );
+return 0;
     for ( g=cd->gadgets; g!=NULL; g=g->prev ) {
 	if ( g==oldfocus )
 return( *last );
@@ -200,7 +200,7 @@ static GGadget *_GWidget_FindPrev(GContainerD *cd,GGadget *oldfocus,GGadget **fi
     GWidgetD *w;
 
     if ( cd==NULL || !cd->iscontainer )
-return( false );
+return 0;
     for ( g=cd->gadgets; g!=NULL; g=g->prev ) {
 	if ( g->focusable && g->state!=gs_invisible && g->state!=gs_disabled ) {
 	    if ( *first==NULL )

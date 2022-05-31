@@ -535,7 +535,7 @@ static char *AskName(struct macname *changing,struct macname *all,GGadget *list,
     while ( !nd.done )
 	GDrawProcessOneEvent(NULL);
     GDrawDestroyWindow(gw);
-return( false );
+   return 0;
 }
 
 static void ChangeName(GGadget *list,int index) {
@@ -888,7 +888,7 @@ static char *AskSetting(struct macsetting *changing,struct macsetting *all,
 	GDrawProcessOneEvent(NULL);
     GDrawDestroyWindow(gw);
 
-return( false );
+   return 0;
 }
 
 static void ChangeSetting(GGadget *list,int index) {
@@ -1235,7 +1235,7 @@ static char *AskFeature(MacFeat *changing,MacFeat *all,GGadget *list, int index)
 	GDrawProcessOneEvent(NULL);
     GDrawDestroyWindow(gw);
 
-return( false );
+   return 0;
 }
 
 static void ChangeFeature(GGadget *list,int index) {

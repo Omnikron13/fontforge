@@ -371,7 +371,7 @@ static GGadgetCreateData *LayoutMultiDlgCategoryBody(MultiDlgCategory *cat, stru
     for (i = 0; i < cat->len; ++i) {
         s1barray[i] = LayoutMultiDlgQuestion(cat->questions + i, mpp);
         if (s1barray[i] == NULL) {
-            return false;
+            return 0;
         }
     }
 

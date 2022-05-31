@@ -27,7 +27,7 @@ include(PackageUtils)
 include(TargetUtils)
 
 # Set any global defines
-set(CMAKE_C_STANDARD 99)
+set(CMAKE_C_STANDARD 23)
 set(CMAKE_C_STANDARD_REQUIRED TRUE)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
