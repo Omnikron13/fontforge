@@ -23,6 +23,7 @@
  */
 
 #include <fontforge-config.h>
+#include <gtk/gtk.h>
 
 /**
 *  \file  ggdkdraw.c
@@ -894,7 +895,9 @@ static void _GGDKDraw_DispatchEvent(GdkEvent *event, gpointer data) {
     if (w == NULL) {
         return;
     } else if ((gw = g_object_get_data(G_OBJECT(w), "GGDKWindow")) == NULL) {
-        //Log(LOGDEBUG, "MISSING GW!");
+        // Event doesn't appear to belong to GDraw; see if GTK wants it.
+        // TODO: This seems pretty hacky? Should see if there is a better way to filter GTK events
+        gtk_main_do_event(event);
         return;
     } else if (_GGDKDraw_WindowOrParentsDying(gw) || gdk_window_is_destroyed(w)) {
         Log(LOGDEBUG, "DYING! %p", w);
