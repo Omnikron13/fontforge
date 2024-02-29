@@ -3,7 +3,8 @@
 add_executable(fontforgeexe
         gtk/open_dialog_shim.hpp
         gtk/open_dialog_shim.cpp
-        gtk/open_filters.hpp)
+        gtk/open_filters.hpp
+   )
 target_sources(fontforgeexe PUBLIC main.cpp)
 set_target_properties(fontforgeexe PROPERTIES OUTPUT_NAME "fontforge")
 
